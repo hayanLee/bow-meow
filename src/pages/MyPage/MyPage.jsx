@@ -1,9 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const gap = '10px';
-const padding = '10px';
-
 //이슈: MyPage에서 나온 컴포넌트들을
 // components 폴더에 MyPage 하위폴더를 만들어서 넣어야 할지
 // 아니면 그냥 components 폴더에 넣어야 할지 몰라서
@@ -13,6 +10,9 @@ const padding = '10px';
 //  padding, gap 크기
 //  너비, 높이
 //  브레이크 포인트
+
+const gap = '10px';
+const padding = '10px';
 
 const Main = styled.main`
   height: 80vh;
@@ -24,7 +24,7 @@ const Main = styled.main`
   padding: ${padding};
 
   background-color: var(--bg-color);
-  background-color: green; //개발용 컬러
+  background-color: green; //영역 구분용 컬러
 
   color: var(--text-color);
 `;
@@ -38,7 +38,7 @@ const LeftSection = styled.section`
 
   padding: ${padding};
 
-  background-color: palegreen; //개발용 컬러
+  background-color: palegreen; //영역 구분용 컬러
 
   //프로필 사진 영역
   & > div {
@@ -48,7 +48,7 @@ const LeftSection = styled.section`
     align-items: center;
     justify-content: center;
 
-    background-color: skyblue; //개발용 컬러
+    background-color: skyblue; //영역 구분용 컬러
   }
 
   //회원정보 수정, 회원탈퇴 버튼 영역
@@ -72,7 +72,7 @@ const RightSection = styled.section`
   gap: ${gap};
   padding: ${padding};
 
-  background-color: palevioletred; //개발용 컬러
+  background-color: palevioletred; //영역 구분용 컬러
 
   & > div {
     background-color: var(--box-color);
@@ -104,15 +104,6 @@ const PostContainer = styled.div`
   height: 15%;
 `;
 
-/* 
-    --bg-color: #fffef5;
-    --header-color: #bc6c25;
-    --box-color: #dda15e;
-    --point-color: #606c38;
-    --button-color: #283618;
-    --text-color: #fefae0;
-*/
-
 const Post = styled.article`
   background-color: var(--bg-color);
   color: black;
@@ -120,7 +111,7 @@ const Post = styled.article`
   padding: 0px 10px;
 `;
 
-//공용컴포넌트 Button이 만들어지지 않아서
+//공용컴포넌트 Button이 아직 없어서
 //임시로 만들어 썼습니다
 const Button = styled.button`
   background-color: var(--point-color);
