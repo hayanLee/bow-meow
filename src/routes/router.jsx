@@ -9,7 +9,8 @@ import ErrorPage from '../pages/ErrorPage';
 import HomePage from '../pages/HomePage';
 import MyPage from '../pages/MyPage';
 import PostDetailPage from '../pages/PostDetailPage';
-import PostEditPage from '../pages/PostEditPage';
+import PostList from '../pages/PostDetailPage/PostList';
+import PostEditPage from '../pages/PostEditPage/PostEditPage';
 import ProfileEditPage from '../pages/ProfileEditPage';
 const router = createBrowserRouter([
   {
@@ -17,11 +18,13 @@ const router = createBrowserRouter([
     element: <Layout />,
     errorElement: <ErrorPage />,
     children: [
-      { index: true, element: <HomePage /> },
+      { path: '/myPage', element: <HomePage /> },
       { path: '/myPage', element: <MyPage /> },
       { path: '/myPage/profileEdit', element: <ProfileEditPage /> },
-      { path: '/posts/:postId', element: <PostDetailPage /> },
-      { path: '/posts/:postId/postEdit', element: <PostEditPage /> }
+      { path: '/posts', element: <PostDetailPage /> },
+      // 확인용 페이지
+      { path: '/posts/:postId', element: <PostList/> },
+      { index: true, element: <PostEditPage /> }
     ]
   },
   {
