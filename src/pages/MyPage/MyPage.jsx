@@ -4,10 +4,16 @@ import styled from 'styled-components';
 const gap = '10px';
 const padding = '10px';
 
-//Todo: 크기 관련 이후 팀결정에 맞춰 수정
+//이슈: MyPage에서 나온 컴포넌트들을
+// components 폴더에 MyPage 하위폴더를 만들어서 넣어야 할지
+// 아니면 그냥 components 폴더에 넣어야 할지 몰라서
+// 우선 이 파일에 두었습니다. 이후 결정에 따라 적절한 곳으로 옮기겠습니다!
+
+//Todo: 디자인 관련 결정 이후 팀 결정에 맞춰 수정
 //  padding, gap 크기
-//  화면 대비 높이 비율
+//  너비, 높이
 //  브레이크 포인트
+
 const Main = styled.main`
   height: 80vh;
   min-width: 1200px;
