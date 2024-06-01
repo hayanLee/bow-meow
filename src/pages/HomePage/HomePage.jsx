@@ -1,11 +1,12 @@
 import React from 'react';
-import { StUpIcon } from './HomePage.styles/HomePage.styled';
+import UpButton from './UpButton';
 
 export default function HomePage() {
   return (
     <>
-      <div>HomePage: main</div>;
-      <StUpIcon />
+      <div style={{ height: '2000px' }}>HomePage: main</div>
+
+      <UpButton />
     </>
   );
 }
