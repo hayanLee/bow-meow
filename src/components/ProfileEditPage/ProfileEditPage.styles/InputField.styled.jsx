@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
-const InputField = styled.input`
+import InputField from '../InputField';
+
+const StInputField = styled(InputField)`
   width: 66%;
 
   display: flex;
@@ -11,4 +13,4 @@ const InputField = styled.input`
   color: black;
 `;
 
-export default InputField;
+export default StInputField;

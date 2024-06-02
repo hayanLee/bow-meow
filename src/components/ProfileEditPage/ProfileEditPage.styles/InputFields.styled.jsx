@@ -1,7 +1,9 @@
 import styled from 'styled-components';
 import { baseGap, basePadding } from './style-values';
 
-const ProfileEditInputField = styled.div`
+import InputFields from '../InputFields';
+
+const StInputFields = styled(InputFields)`
   height: 80%;
 
   display: flex;
@@ -13,4 +15,4 @@ const ProfileEditInputField = styled.div`
   background-color: var(--box-color);
 `;
 
-export default ProfileEditInputField;
+export default StInputFields;

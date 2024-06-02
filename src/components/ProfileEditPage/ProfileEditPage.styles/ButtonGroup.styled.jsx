@@ -1,9 +1,11 @@
 import styled from 'styled-components';
 
-const ButtonGroup = styled.div`
+import ButtonGroup from '../ButtonGroup';
+
+const StButtonGroup = styled(ButtonGroup)`
   background-color: indianred;
 
   margin-left: auto;
 `;
 
-export default ButtonGroup;
+export default StButtonGroup;
