@@ -3,12 +3,14 @@ import styled from 'styled-components';
 import { gap, padding } from './common-values';
 
 const StPostList = styled(PostList)`
+  height: 85%;
+
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
   gap: ${gap};
   padding: ${padding};
-  height: 15%;
+
+  background-color: var(--box-color);
 `;
 
 export default StPostList;

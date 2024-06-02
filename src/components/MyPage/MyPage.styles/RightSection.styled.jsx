@@ -10,14 +10,6 @@ const RightSection = styled.section`
   padding: ${padding};
 
   background-color: palevioletred; //영역 구분용 컬러
-
-  & > div {
-    background-color: var(--box-color);
-  }
-
-  & > div:nth-child(2) {
-    height: 85%;
-  }
 `;
 
 export default RightSection;

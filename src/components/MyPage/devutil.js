@@ -1,7 +1,10 @@
 import { v4 as uuidv4 } from 'uuid';
 
 function loadMyPageMockData() {
-  const userJohn = createUser('john');
+  const userJohn = createUser(
+    'john',
+    'https://uxwing.com/wp-content/themes/uxwing/download/peoples-avatars/employee-icon.png'
+  );
 
   const mockUserList = [
     userJohn,
@@ -46,14 +49,14 @@ function createPost(nickname) {
   return post;
 }
 
-function createUser(nickname) {
+function createUser(nickname, imgURL) {
   const user = {
     id: uuidv4(),
     nickname: nickname ?? uuidv4(),
     email: uuidv4(),
 
     pwd: uuidv4(),
-    profileImg: uuidv4(),
+    profileImg: imgURL ?? uuidv4(),
     introduce: '자기소개: ' + uuidv4()
   };
 

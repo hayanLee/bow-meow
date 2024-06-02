@@ -2,8 +2,10 @@
 import Main from '../../components/MyPage/MyPage.styles/Main.styled';
 import LeftSection from '../../components/MyPage/MyPage.styles/LeftSection.styled';
 import RightSection from '../../components/MyPage/MyPage.styles/RightSection.styled';
+import StProfileImg from '../../components/MyPage/MyPage.styles/ProfileImg.styled';
 import StSummary from '../../components/MyPage/MyPage.styles/Summary.styled';
 import StPostList from '../../components/MyPage/MyPage.styles/PostList.styled';
+import StSide from '../../components/MyPage/MyPage.styles/Side.styled';
 import StLink from '../../components/MyPage/MyPage.styles/Link.styled';
 import Button from '../../components/MyPage/MyPage.styles/Button.styled';
 
@@ -23,20 +25,15 @@ function MyPage() {
   return (
     <Main>
       <LeftSection>
-        <div>
-          <img src="" alt="프로필 사진" />
-        </div>
-        <nav>
+        <StProfileImg profileImg={loginedUser.profileImg} />
+        <StSide>
           <StLink to={'/mypage/profileedit'}>회원정보 수정</StLink>
           <Button>회원탈퇴</Button>
-        </nav>
+        </StSide>
       </LeftSection>
       <RightSection>
         <StSummary />
-        <div>
-          <p>내가 작성한 포스트</p>
-          <StPostList />
-        </div>
+        <StPostList />
       </RightSection>
     </Main>
   );
