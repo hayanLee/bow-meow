@@ -14,28 +14,24 @@ import PostEditPage from '../pages/PostEditPage/PostEditPage';
 import ProfileEditPage from '../pages/ProfileEditPage';
 const router = createBrowserRouter([
   {
-    path: '/',
     element: <Layout />,
     errorElement: <ErrorPage />,
     children: [
-      { path: '/myPage', element: <HomePage /> },
+      { path: '/', element: <HomePage /> },
       { path: '/myPage', element: <MyPage /> },
       { path: '/myPage/profileEdit', element: <ProfileEditPage /> },
       { path: '/posts', element: <PostDetailPage /> },
-      // 확인용 페이지
-      { path: '/posts/:postId', element: <PostList/> },
-      { index: true, element: <PostEditPage /> }
+      { path: '/posts/:postId', element: <PostList /> },
+      { path: '/posts/:postId/postEdit', element: <PostEditPage /> }
     ]
   },
   {
-    path: 'auth',
     element: <AuthLayout />,
     children: [
-      { index: true, element: <Login /> },
-      { path: 'logIn', element: <Login /> },
-      { path: 'signUp', element: <SignUp /> },
-      { path: 'searchID', element: <SearchId /> },
-      { path: 'searchPW', element: <SearchPw /> }
+      { path: 'auth/logIn', element: <Login /> },
+      { path: 'auth/signUp', element: <SignUp /> },
+      { path: 'auth/searchID', element: <SearchId /> },
+      { path: 'auth/searchPW', element: <SearchPw /> }
     ]
   }
 ]);
