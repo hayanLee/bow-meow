@@ -1,13 +1,18 @@
 import styled from 'styled-components';
 import { gap, padding } from './common-values';
 
-const PostContainer = styled.div`
+import Summary from '../Summary';
+
+const StSummary = styled(Summary)`
   display: flex;
-  flex-direction: column;
   justify-content: space-around;
   gap: ${gap};
   padding: ${padding};
   height: 15%;
+
+  & > Label {
+    width: 33%;
+  }
 `;
 
-export default PostContainer;
+export default StSummary;

@@ -1,16 +1,14 @@
+import PostList from '../PostList';
 import styled from 'styled-components';
 import { gap, padding } from './common-values';
 
-const SummaryContainer = styled.div`
+const StPostList = styled(PostList)`
   display: flex;
+  flex-direction: column;
   justify-content: space-around;
   gap: ${gap};
   padding: ${padding};
   height: 15%;
-
-  & > Label {
-    width: 33%;
-  }
 `;
 
-export default SummaryContainer;
+export default StPostList;
