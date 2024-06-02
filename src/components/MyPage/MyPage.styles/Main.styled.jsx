@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { gap, padding } from './common-values';
+import { gap, padding } from './style-common-values';
 
 const Main = styled.main`
   height: 80vh;
@@ -8,8 +8,8 @@ const Main = styled.main`
 
   display: flex;
   justify-content: center;
-  gap: ${gap};
-  padding: ${padding};
+  gap: ${gap}px;
+  padding: ${padding}px;
 
   background-color: var(--bg-color);
   background-color: green; //영역 구분용 컬러

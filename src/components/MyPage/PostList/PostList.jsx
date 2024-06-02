@@ -1,4 +1,4 @@
-import Post from './MyPage.styles/Post.styled';
+import Post from './../MyPage.styles/Post.styled';
 
 function PostList({ className, ...props }) {
   return (
