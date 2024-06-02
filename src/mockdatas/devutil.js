@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
 
-function loadMyPageMockData() {
+function loadMockData() {
   const userJohn = createUser(
     'john',
     'https://uxwing.com/wp-content/themes/uxwing/download/peoples-avatars/employee-icon.png'
@@ -63,7 +63,7 @@ function createUser(nickname, imgURL) {
   return user;
 }
 
-export { loadMyPageMockData };
+export { loadMockData };
 
 /*
 //postComment: 포스트 아이디와 댓글 아이디들을 연결하는 객체

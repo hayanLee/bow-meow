@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import ProfileImg from './../ProfileImg';
+import ProfileImg from './ProfileImg';
 
 const StProfileImg = styled(ProfileImg)`
   aspect-ratio: 1/1;

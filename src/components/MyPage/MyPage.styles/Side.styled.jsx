@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { padding } from './common-values';
+import { padding } from './style-common-values';
 
 const StSide = styled.nav`
   background-color: var(--box-color);

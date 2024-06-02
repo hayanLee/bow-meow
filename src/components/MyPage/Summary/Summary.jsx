@@ -1,4 +1,4 @@
-import Label from './MyPage.styles/Label.styled';
+import Label from './../MyPage.styles/Label.styled';
 
 function Summary({ className, ...props }) {
   return (
