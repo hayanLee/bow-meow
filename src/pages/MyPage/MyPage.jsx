@@ -29,7 +29,7 @@ function MyPage() {
       <LeftSection>
         <StProfileImg profileImg={loginedUser.profileImg} />
         <StSide>
-          <StLink to={'/mypage/profileedit'}>회원정보 수정</StLink>
+          <StLink to={'/myPage/profileEdit'}>회원정보 수정</StLink>
           <Button>회원탈퇴</Button>
         </StSide>
       </LeftSection>
