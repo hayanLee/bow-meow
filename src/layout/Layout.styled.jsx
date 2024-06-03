@@ -1,7 +1,7 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const LayoutContainer = styled.div`
-  max-width: 60%;
+  max-width: 70%;
   min-width: 955px;
   background-color: var(--box-color);
   height: auto;
