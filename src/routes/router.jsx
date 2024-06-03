@@ -14,15 +14,14 @@ import PostEditPage from '../pages/PostEditPage/PostEditPage';
 import ProfileEditPage from '../pages/ProfileEditPage';
 const router = createBrowserRouter([
   {
-    path: '/',
     element: <Layout />,
     errorElement: <ErrorPage />,
     children: [
       { path: '/', element: <HomePage /> },
       { path: '/myPage', element: <MyPage /> },
       { path: '/myPage/profileEdit', element: <ProfileEditPage /> },
-      { path: '/posts/post/:id', element: <PostDetailPage /> },
-      { index: '/posts/:postId', element: <PostList /> },
+      { path: '/posts', element: <PostDetailPage /> },
+      { path: '/posts/:postId', element: <PostList /> },
       { path: '/posts/:postId/postEdit', element: <PostEditPage /> }
     ]
   },
