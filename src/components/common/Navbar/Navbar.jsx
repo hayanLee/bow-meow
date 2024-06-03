@@ -1,5 +1,5 @@
 import React from 'react';
-import { StNavbar, StUl, Stli } from './common.styles/Navbar.styled';
+import { StNavbar, StUl, Stli } from './Navbar.styled';
 
 export default function Navbar() {
   return (
