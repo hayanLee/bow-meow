@@ -110,4 +110,3 @@ export const StyledPostBtn = styled.button`
   font-size: 1rem;
   cursor: pointer;
 `;
-
