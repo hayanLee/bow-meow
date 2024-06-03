@@ -20,7 +20,6 @@ const PostList = () => {
   return (
     <div>
       <PostAddPage onPostSubmit={handlePostSubmit} /> {/* onPostSubmit prop 전달 */}
-      <PostEditPage onPostSubmit={handlePostSubmit} /> {/* onPostSubmit prop 전달 */}
       <div>
         <h2>게시물 목록</h2>
         <ul>
