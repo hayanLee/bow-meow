@@ -1,7 +1,6 @@
 import styled from 'styled-components';
-import ProfileImg from './ProfileImg';
 
-const StProfileImg = styled(ProfileImg)`
+const StProfileImg = styled.div`
   aspect-ratio: 1/1;
 
   display: flex;
