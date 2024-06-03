@@ -1,5 +1,5 @@
 import React from 'react';
-import UpButton from './UpButton';
+import UpButton from '../../components/common/UpButton/UpButton';
 
 
 export default function HomePage() {
