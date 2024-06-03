@@ -1,12 +1,13 @@
 import Button from '../ProfileEditPage.styles/Button.styled';
+import StButtonGroup from './ButtonGroup.styled';
 
-function ButtonGroup({ className, ...props }) {
+function ButtonGroup(props) {
   return (
-    <div className={className}>
+    <StButtonGroup>
       <Button>회원탈퇴</Button>
       <Button>뒤로가기</Button>
       <Button>수정하기</Button>
-    </div>
+    </StButtonGroup>
   );
 }
 export default ButtonGroup;

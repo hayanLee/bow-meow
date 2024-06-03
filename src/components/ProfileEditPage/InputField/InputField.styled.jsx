@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 
-import InputField from './InputField';
-
-const StInputField = styled(InputField)`
+const StInputField = styled.input`
   width: 66%;
 
   background-color: var(--text-color);

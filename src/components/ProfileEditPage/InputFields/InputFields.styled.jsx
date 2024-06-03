@@ -1,9 +1,8 @@
 import styled from 'styled-components';
-import InputFields from './InputFields';
 
 import { baseGap, basePadding } from '../ProfileEditPage.styles/style-values';
 
-const StInputFields = styled(InputFields)`
+const StInputFields = styled.div`
   height: 80%;
 
   display: flex;

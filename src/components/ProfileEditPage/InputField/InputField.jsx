@@ -1,5 +1,7 @@
-function InputField({ className, ...props }) {
+import StInputField from './InputField.styled';
+
+function InputField(props) {
   const { defaultValue } = props;
-  return <input className={className} defaultValue={defaultValue} />;
+  return <StInputField defaultValue={defaultValue} />;
 }
 export default InputField;

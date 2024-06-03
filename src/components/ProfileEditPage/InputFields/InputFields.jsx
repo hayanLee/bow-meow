@@ -1,21 +1,22 @@
-import StInputField from './../InputField/InputField.styled';
+import StInputFields from './InputFields.styled';
+import InputField from '../InputField/InputField';
 
-function InputFields({ className, ...props }) {
+function InputFields(props) {
   return (
-    <div className={className}>
+    <StInputFields>
       <div>
         <label>(임시)닉네임</label>
-        <StInputField defaultValue="닉네임123" />
+        <InputField defaultValue="닉네임123" />
       </div>
       <div>
         <label>(임시)비밀번호</label>
-        <StInputField defaultValue="********" />
+        <InputField defaultValue="********" />
       </div>
       <div>
         <label>(임시)한줄소개</label>
-        <StInputField defaultValue="잘 부탁드려요~" />
+        <InputField defaultValue="잘 부탁드려요~" />
       </div>
-    </div>
+    </StInputFields>
   );
 }
 export default InputFields;

@@ -1,6 +1,6 @@
 //기능 컴포넌트
-import StInputFields from './../../components/ProfileEditPage/InputFields/InputFields.styled';
-import StButtonGroup from '../../components/ProfileEditPage/ButtonGroup/ButtonGroup.styled';
+import InputFields from './../../components/ProfileEditPage/InputFields/InputFields';
+import ButtonGroup from './../../components/ProfileEditPage/ButtonGroup/ButtonGroup';
 
 //스타일링 컴포넌트
 import Main from './../../components/ProfileEditPage/ProfileEditPage.styles/Main.styled';
@@ -28,8 +28,8 @@ function ProfileEditPage() {
         <Button>프로필 수정</Button>
       </UpperSection>
       <LowerSection>
-        <StInputFields />
-        <StButtonGroup />
+        <InputFields />
+        <ButtonGroup />
       </LowerSection>
     </Main>
   );
