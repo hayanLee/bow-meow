@@ -9,23 +9,38 @@ export const Wrapper = styled.div`
   align-items: center;
 `;
 
-export const StInput = styled.div`
+export const AuthsInput = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: column;
   input {
-    margin: 5px;
     border-radius: 5px;
+    width: 250px;
+    height: 40px;
+    margin: 10px;
+    border: 0;
   }
 `;
-export const StBtn = styled.div`
-  width: auto;
-  height: 100px;
+
+export const AuthsBtn = styled.div`
+  display: flex;
+  justify-content: center;
   button {
-    width: 70px;
-    height: 20px;
-    margin: 10px;
     border-radius: 5px;
-    background-color: #a49384;
+    width: 100px;
+    height: 40px;
+    margin: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+`;
+
+export const SearchIdPw = styled.div`
+  display: flex;
+  justify-content: center;
+
+  div {
+    padding: 5px;
+    cursor: pointer;
   }
 `;
