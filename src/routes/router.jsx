@@ -9,30 +9,29 @@ import ErrorPage from '../pages/ErrorPage';
 import HomePage from '../pages/HomePage';
 import MyPage from '../pages/MyPage';
 import PostDetailPage from '../pages/PostDetailPage';
-import PostEditPage from '../pages/PostEditPage';
+import PostList from '../pages/PostDetailPage/PostList';
+import PostEditPage from '../pages/PostEditPage/PostEditPage';
 import ProfileEditPage from '../pages/ProfileEditPage';
 const router = createBrowserRouter([
   {
-    path: '/',
     element: <Layout />,
     errorElement: <ErrorPage />,
     children: [
-      { index: true, element: <HomePage /> },
+      { path: '/', element: <HomePage /> },
       { path: '/myPage', element: <MyPage /> },
       { path: '/myPage/profileEdit', element: <ProfileEditPage /> },
-      { path: '/posts/:postId', element: <PostDetailPage /> },
+      { path: '/posts', element: <PostDetailPage /> },
+      { path: '/posts/:postId', element: <PostList /> },
       { path: '/posts/:postId/postEdit', element: <PostEditPage /> }
     ]
   },
   {
-    path: 'auth',
     element: <AuthLayout />,
     children: [
-      { index: true, element: <Login /> },
-      { path: 'logIn', element: <Login /> },
-      { path: 'signUp', element: <SignUp /> },
-      { path: 'searchID', element: <SearchId /> },
-      { path: 'searchPW', element: <SearchPw /> }
+      { path: 'auth/logIn', element: <Login /> },
+      { path: 'auth/signUp', element: <SignUp /> },
+      { path: 'auth/searchID', element: <SearchId /> },
+      { path: 'auth/searchPW', element: <SearchPw /> }
     ]
   }
 ]);

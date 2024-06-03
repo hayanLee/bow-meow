@@ -1,15 +1,8 @@
 import React from 'react';
-import logoImg from '../../assets/logo.png';
-import Navbar from './Navbar';
-import {
-  StContainer,
-  StHambuger,
-  StHeader,
-  StLogo,
-  StSearchIcon,
-  StSearchInput,
-  StSearchWrapper
-} from './common.styles/Header.styled';
+import logoImg from '../../../assets/logo.png';
+import Input from '../Input/Input';
+import Navbar from '../Navbar/Navbar';
+import { StContainer, StHamburger, StHeader, StLogo, StSearchIcon, StSearchWrapper } from './Header.styled';
 
 function Header() {
   return (
@@ -19,14 +12,13 @@ function Header() {
       <StContainer>
         <Navbar />
         <StSearchWrapper>
-          <StSearchInput type="text" />
+          <Input />
           <StSearchIcon />
         </StSearchWrapper>
-        <StHambuger />
+        <StHamburger />
       </StContainer>
     </StHeader>
   );
 }
 
 export default Header;
- 
