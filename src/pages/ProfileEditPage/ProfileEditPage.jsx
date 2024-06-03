@@ -1,6 +1,7 @@
 //기능 컴포넌트
 import InputFields from './../../components/ProfileEditPage/InputFields';
 import ButtonGroup from './../../components/ProfileEditPage/ButtonGroup';
+import ProfileImg from './../../components/ProfileEditPage/ProfileImg';
 
 //스타일링 컴포넌트
 import {
@@ -26,9 +27,7 @@ function ProfileEditPage() {
   return (
     <Main>
       <UpperSection>
-        <div>
-          <img src="..." alt="프로필 사진" />
-        </div>
+        <ProfileImg src={mockLoginedUser.profileImg} />
         <Button text="프로필 수정" />
       </UpperSection>
       <LowerSection>
