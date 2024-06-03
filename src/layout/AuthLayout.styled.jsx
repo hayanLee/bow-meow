@@ -21,5 +21,6 @@ export const StLayout = styled.div`
     width: 200px;
     height: auto;
     margin: 0 auto;
+    cursor: pointer;
   }
 `;
