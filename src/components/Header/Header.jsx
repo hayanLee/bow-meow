@@ -1,16 +1,8 @@
 import React from 'react';
 import logoImg from '../../assets/logo.png';
-import Navbar from './Navbar';
-import {
-  StContainer,
-  StHambuger,
-  StHeader,
-  StLogo,
-  StSearchIcon,
-  StSearchInput,
-  StSearchWrapper
-} from './common.styles/Header.styled';
-
+import Input from '../common/Input';
+import Navbar from '../common/Navbar';
+import { StContainer, StHamburger, StHeader, StLogo, StSearchIcon, StSearchWrapper } from './Header.styled';
 function Header() {
   return (
     <StHeader>
@@ -19,10 +11,10 @@ function Header() {
       <StContainer>
         <Navbar />
         <StSearchWrapper>
-          <StSearchInput type="text" />
+          <Input />
           <StSearchIcon />
         </StSearchWrapper>
-        <StHambuger />
+        <StHamburger />
       </StContainer>
     </StHeader>
   );

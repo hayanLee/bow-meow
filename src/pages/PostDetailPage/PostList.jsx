@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import PostAddPage from '../PostAddPage/PostAddPage';
 import PostEditPage from '../PostEditPage/PostEditPage';
 
-// 확인용으로 만들어둔거예요! 잘 들어가면 삭제하겠습니다ㅏ
 const PostList = () => {
   const [posts, setPosts] = useState([]);
 
@@ -44,3 +43,5 @@ const PostList = () => {
 };
 
 export default PostList;
+
+

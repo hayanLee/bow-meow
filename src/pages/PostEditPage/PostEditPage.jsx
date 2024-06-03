@@ -118,4 +118,92 @@ function PostEditPage({ onPostSubmit }) {
   );
 }
 
+const StyledContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const StyledPostBox = styled.div`
+  width: 80%;
+  background-color: var(--box-color);
+  border: 1px solid var(--box-color);
+  border-radius: 5px;
+  margin: 4rem;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const StyledPostInput = styled.input`
+  width: 90%;
+  margin-top: 0.5rem;
+  padding: 1rem;
+`;
+
+const StyledUploadArea = styled.div`
+  width: 90%;
+  height: auto;
+  margin: 1rem 0;
+  padding: 1rem;
+  border: 2px dashed var(--point-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+  background-color: var(--bg-color);
+  color: var(--point-color);
+  position: relative;
+`;
+
+const CenteredText = styled.p`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+`;
+
+const HiddenFileInput = styled.input`
+  display: none;
+`;
+
+const ImagePreviewContainer = styled.div`
+  width: 90%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+`;
+
+const ImagePreview = styled.img`
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+`;
+
+const StyledPostContent = styled.textarea`
+  width: 90%;
+  height: 700px; /* 원하는 높이로 설정 */
+  margin: 0.5rem;
+  padding: 1rem;
+`;
+
+const StyledPostBtn = styled.button`
+  padding: 1rem;
+  margin: 1rem;
+  color: var(--text-color);
+  background-color: var(--point-color);
+  border: 1px solid var(--point-color);
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+`;
+
 export default PostEditPage;

@@ -8,7 +8,6 @@ export const StHeader = styled.header`
 
   width: 100%;
   height: 100px;
-  background-color: var(--header-color);
   padding: 0 20px;
 `;
 
@@ -27,20 +26,6 @@ export const StSearchWrapper = styled.div`
   position: relative;
 `;
 
-export const StSearchInput = styled.input`
-  width: 100%;
-  height: 20%;
-  border: 2px solid var(--point-color);
-  border-radius: 30px;
-  padding: 10px 20px;
-  outline: none;
-  font-size: 1rem;
-
-  &:focus {
-    outline: 1px solid var(--bg-color);
-  }
-`;
-
 export const StSearchIcon = styled(FiSearch)`
   position: absolute;
   font-size: 1.2rem;
@@ -49,7 +34,7 @@ export const StSearchIcon = styled(FiSearch)`
   cursor: pointer;
 `;
 
-export const StHambuger = styled(GiHamburgerMenu)`
+export const StHamburger = styled(GiHamburgerMenu)`
   color: var(--text-color);
   font-size: 2rem;
   cursor: pointer;

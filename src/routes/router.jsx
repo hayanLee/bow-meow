@@ -26,14 +26,12 @@ const router = createBrowserRouter([
     ]
   },
   {
-    path: 'auth',
     element: <AuthLayout />,
     children: [
-      { index: true, element: <Login /> },
-      { path: 'logIn', element: <Login /> },
-      { path: 'signUp', element: <SignUp /> },
-      { path: 'searchID', element: <SearchId /> },
-      { path: 'searchPW', element: <SearchPw /> }
+      { path: 'auth/logIn', element: <Login /> },
+      { path: 'auth/signUp', element: <SignUp /> },
+      { path: 'auth/searchID', element: <SearchId /> },
+      { path: 'auth/searchPW', element: <SearchPw /> }
     ]
   }
 ]);
