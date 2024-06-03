@@ -1,8 +1,7 @@
-import PostList from './PostList';
 import styled from 'styled-components';
 import { gap, padding } from '../MyPage.styles/style-common-values';
 
-const StPostList = styled(PostList)`
+const StPostList = styled.div`
   height: 85%;
 
   display: grid;

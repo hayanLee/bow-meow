@@ -1,10 +1,11 @@
+import StPostList from './PostList.styled';
 import Post from './../MyPage.styles/Post.styled';
 
-function PostList({ className, ...props }) {
+function PostList(props) {
   return (
     <>
       <p> 내가 작성한 포스트 </p>
-      <div className={className}>
+      <StPostList>
         <Post> 포스트: 123 </Post>
         <Post> 포스트: 456 </Post>
         <Post> 포스트: abc </Post>
@@ -17,7 +18,7 @@ function PostList({ className, ...props }) {
         <Post> 포스트: 987 </Post>
         <Post> 포스트: hgf </Post>
         <Post> 포스트: poi </Post>
-      </div>
+      </StPostList>
     </>
   );
 }

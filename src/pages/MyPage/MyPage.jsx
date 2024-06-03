@@ -2,13 +2,12 @@
 import Main from '../../components/MyPage/MyPage.styles/Main.styled';
 import UpperSection from '../../components/MyPage/MyPage.styles/UpperSection.styled';
 import LowerSection from '../../components/MyPage/MyPage.styles/LowerSection.styled';
-import StSide from '../../components/MyPage/MyPage.styles/Side.styled';
 import StLink from '../../components/MyPage/MyPage.styles/Link.styled';
 
 //스타일된 기능용 컴포넌트
-import StSummary from '../../components/MyPage/Summary/Summary.styled';
-import StProfileImg from '../../components/MyPage/ProfileImg/ProfileImg.styled';
-import StPostList from '../../components/MyPage/PostList/PostList.styled';
+import ProfileImg from '../../components/MyPage/ProfileImg/ProfileImg';
+import PostList from '../../components/MyPage/PostList';
+import Summary from './../../components/MyPage/Summary/Summary';
 
 //공용 컴포넌트
 import Button from './../../components/common/Button/Button';
@@ -29,14 +28,14 @@ function MyPage() {
   return (
     <Main>
       <UpperSection>
-        <StProfileImg profileImg={loginedUser.profileImg} />
-        <StSummary />
+        <ProfileImg profileImg={loginedUser.profileImg} />
+        <Summary />
         <Button>(임시)글쓰기</Button>
         <StLink to={'/myPage/profileEdit'}>회원정보 수정</StLink>
         <Button>(임시)로그아웃</Button>
       </UpperSection>
       <LowerSection>
-        <StPostList />
+        <PostList />
       </LowerSection>
     </Main>
   );

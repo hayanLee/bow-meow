@@ -1,10 +1,12 @@
-function ProfileImg({ className, ...props }) {
+import StProfileImg from './ProfileImg.styled';
+
+function ProfileImg(props) {
   const { profileImg } = props;
 
   return (
-    <div className={className}>
+    <StProfileImg>
       <img src={profileImg} alt="프로필 사진" />
-    </div>
+    </StProfileImg>
   );
 }
 

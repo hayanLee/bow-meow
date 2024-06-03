@@ -1,9 +1,8 @@
 import styled from 'styled-components';
 //import { gap, padding } from './../common-values';
-import Summary from './Summary';
 import { gap, padding } from '../MyPage.styles/style-common-values';
 
-const StSummary = styled(Summary)`
+const StSummary = styled.div`
   display: flex;
   justify-content: space-around;
   gap: ${gap}px;
