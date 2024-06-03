@@ -1,4 +1,4 @@
-import Button from './ProfileEditPage.styles/Button.styled';
+import Button from '../ProfileEditPage.styles/Button.styled';
 
 function ButtonGroup({ className, ...props }) {
   return (

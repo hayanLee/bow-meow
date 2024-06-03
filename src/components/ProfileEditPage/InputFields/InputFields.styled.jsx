@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { baseGap, basePadding } from './style-values';
+import InputFields from './InputFields';
 
-import InputFields from '../InputFields';
+import { baseGap, basePadding } from '../ProfileEditPage.styles/style-values';
 
 const StInputFields = styled(InputFields)`
   height: 80%;

@@ -1,16 +1,18 @@
-//사용 컴포넌트
+//기능 컴포넌트
+import StInputFields from './../../components/ProfileEditPage/InputFields/InputFields.styled';
+import StButtonGroup from '../../components/ProfileEditPage/ButtonGroup/ButtonGroup.styled';
+
+//스타일링 컴포넌트
 import Main from './../../components/ProfileEditPage/ProfileEditPage.styles/Main.styled';
 import UpperSection from './../../components/ProfileEditPage/ProfileEditPage.styles/UpperSection.styled';
 import LowerSection from './../../components/ProfileEditPage/ProfileEditPage.styles/LowerSection.styled';
-import StInputFields from '../../components/ProfileEditPage/ProfileEditPage.styles/InputFields.styled';
-import StButtonGroup from './../../components/ProfileEditPage/ProfileEditPage.styles/ButtonGroup.styled';
 import Button from './../../components/ProfileEditPage/ProfileEditPage.styles/Button.styled';
 
 //리액트 라이브러리
 import { useState } from 'react';
 
 //개발용 가짜 데이터
-import { loadProfileEditPageMockData } from '../../components/ProfileEditPage/devutil';
+//import { loadProfileEditPageMockData } from '../../components/ProfileEditPage/devutil';
 
 const { mockUserList, mockPostList, mockLoginedUser } = loadProfileEditPageMockData();
 

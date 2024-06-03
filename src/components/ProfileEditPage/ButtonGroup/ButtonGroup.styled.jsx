@@ -1,6 +1,5 @@
 import styled from 'styled-components';
-
-import ButtonGroup from '../ButtonGroup';
+import ButtonGroup from './ButtonGroup';
 
 const StButtonGroup = styled(ButtonGroup)`
   background-color: indianred;

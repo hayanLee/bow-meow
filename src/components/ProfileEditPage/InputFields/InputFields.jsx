@@ -1,4 +1,4 @@
-import StInputField from './ProfileEditPage.styles/InputField.styled';
+import StInputField from './../InputField/InputField.styled';
 
 function InputFields({ className, ...props }) {
   return (
