@@ -52,7 +52,6 @@ export const ImagePreviewContainer = styled.div`
 
 export const ImageContainer = styled.div`
   position: relative;
-  display: inline-block; /* 이미지와 버튼을 인라인 레벨로 표시 */
   margin-right: 10px; /* 이미지와 버튼 사이의 간격 조절 */
 `;
 
