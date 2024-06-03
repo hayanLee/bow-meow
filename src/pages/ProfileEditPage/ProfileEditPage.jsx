@@ -12,9 +12,9 @@ import Button from './../../components/ProfileEditPage/ProfileEditPage.styles/Bu
 import { useState } from 'react';
 
 //개발용 가짜 데이터
-//import { loadProfileEditPageMockData } from '../../components/ProfileEditPage/devutil';
+import { loadMockData } from '../../mockdatas/devutil';
 
-const { mockUserList, mockPostList, mockLoginedUser } = loadProfileEditPageMockData();
+const { mockUserList, mockPostList, mockLoginedUser } = loadMockData();
 
 function ProfileEditPage() {
   const [userList, setUserList] = useState(mockUserList);
