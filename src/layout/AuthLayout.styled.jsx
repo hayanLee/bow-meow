@@ -1,6 +1,25 @@
 import styled from 'styled-components';
 
-export const StLayout = styled.StLayout`
-  width: 100px;
-  height: 100px;
+export const Wrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+export const StLayout = styled.div`
+  border-radius: 20px;
+  width: 500px;
+  height: 700px;
+  margin-top: 100px;
+  background-color: #f1f1f1;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+
+  img {
+    width: 200px;
+    height: auto;
+    margin: 0 auto;
+  }
 `;
