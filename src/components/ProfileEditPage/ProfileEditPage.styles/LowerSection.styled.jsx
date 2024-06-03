@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { baseGap, basePadding } from './style-values';
 
 const LowerSection = styled.section`
-  height: 50%;
+  height: 60%;
   width: 80%;
 
   display: flex;

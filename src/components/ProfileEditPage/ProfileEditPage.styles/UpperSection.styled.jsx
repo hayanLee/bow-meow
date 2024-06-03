@@ -2,13 +2,12 @@ import styled from 'styled-components';
 import { basePadding } from './style-values';
 
 const UpperSection = styled.section`
-  height: 50%;
+  height: 40%;
   aspect-ratio: 1 / 1;
 
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 0px;
   padding: ${basePadding * 2}px;
 
   background-color: palegreen; //영역 구분용 컬러
@@ -22,9 +21,13 @@ const UpperSection = styled.section`
     justify-content: center;
     padding: ${basePadding}px;
 
-    border-radius: 100%;
-
     background-color: skyblue; //영역 구분용 컬러
+
+    border-radius: 100%;
+  }
+
+  & img {
+    aspect-ratio: 1/1;
   }
 `;
 
