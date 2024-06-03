@@ -14,7 +14,9 @@ import {
   StyledRightContainer,
   StyledBtnContainer,
   StyledContentContainer,
-  StyledLeftContainer
+  StyledLeftContainer,
+  DeleteButton,
+  ImageContainer
 } from '../../components/PostAdd/PostAddPage.styled';
 
 function PostAddPage({ onPostSubmit }) {
@@ -27,7 +29,11 @@ function PostAddPage({ onPostSubmit }) {
   const handleImageChange = (files) => {
     // 선택된 이미지를 이미지 배열에 추가
     if (images.length + files.length <= 5) {
-      setImages((prevImages) => [...prevImages, ...files]);
+      const newImages = files.map((file) => ({
+        file,
+        id: uuidv4() // 고유한 id 생성
+      }));
+      setImages((prevImages) => [...prevImages, ...newImages]);
     } else {
       alert('이미지는 최대 5장까지만 업로드할 수 있습니다.');
     }
@@ -47,10 +53,15 @@ function PostAddPage({ onPostSubmit }) {
     event.preventDefault();
   };
 
+  const handleImageRemove = (id) => {
+    setImages((prevImages) => prevImages.filter((image) => image.id !== id));
+  };
+
+  // 선택한 이미지 삭제하는 함수
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (!title || !content) {
-      alert('제목과 내용 모두 입력해주세요!!');
+    if (!title || images.length === 0 || !content) {
+      alert('칸을 모두 채워주세요!!');
       return;
     }
 
@@ -74,26 +85,29 @@ function PostAddPage({ onPostSubmit }) {
 
   return (
     <StyledContainer>
-      <StyledPostBox onSubmit={handleSubmit}>
+      <StyledPostBox>
         <StyledContentContainer>
           <StyledLeftContainer>
+            <ImagePreviewContainer>
+              {images.map((image, index) => (
+                <ImageContainer key={image.id}>
+                  <ImagePreview src={URL.createObjectURL(image.file)} alt={`preview ${index}`} />
+                  <DeleteButton onClick={() => handleImageRemove(image.id)}>삭제</DeleteButton>
+                </ImageContainer>
+              ))}
+            </ImagePreviewContainer>
             <StyledUploadArea>
-              {/*이미지 업로드 부분*/}
               <PostUpload
                 value={images}
                 onFileChange={handleImageChange}
                 onDrop={handleDrop}
                 onDragOver={handleDragOver}
               >
-                {images.length === 0 && <CenteredText>여기에 파일을 드래그하거나 클릭하여 업로드</CenteredText>}
-                <ImagePreviewContainer>
-                  {images.map((image, index) => (
-                    <ImagePreview key={index} src={URL.createObjectURL(image)} alt={`preview ${index}`} />
-                  ))}
-                </ImagePreviewContainer>
+                <CenteredText>여기에 파일을 드래그하거나 클릭하여 업로드</CenteredText>
               </PostUpload>
             </StyledUploadArea>
           </StyledLeftContainer>
+
           <StyledRightContainer>
             <StyledPostInput
               type="text"
@@ -109,7 +123,9 @@ function PostAddPage({ onPostSubmit }) {
           </StyledRightContainer>
         </StyledContentContainer>
         <StyledBtnContainer>
-          <StyledPostBtn type="submit">작성 완료</StyledPostBtn>
+          <StyledPostBtn type="submit" onClick={handleSubmit}>
+            작성 완료
+          </StyledPostBtn>
         </StyledBtnContainer>
       </StyledPostBox>
     </StyledContainer>
