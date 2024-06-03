@@ -1,15 +1,15 @@
 //순수 스타일용 컴포넌트
-import Main from '../../components/MyPage/MyPage.styles/Main.styled';
+import Button from '../../components/MyPage/MyPage.styles/Button.styled';
 import LeftSection from '../../components/MyPage/MyPage.styles/LeftSection.styled';
+import StLink from '../../components/MyPage/MyPage.styles/Link.styled';
+import Main from '../../components/MyPage/MyPage.styles/Main.styled';
 import RightSection from '../../components/MyPage/MyPage.styles/RightSection.styled';
 import StSide from '../../components/MyPage/MyPage.styles/Side.styled';
-import StLink from '../../components/MyPage/MyPage.styles/Link.styled';
-import Button from '../../components/MyPage/MyPage.styles/Button.styled';
 
 //스타일된 기능용 컴포넌트
-import StSummary from '../../components/MyPage/Summary/Summary.styled';
-import StProfileImg from '../../components/MyPage/ProfileImg/ProfileImg.styled';
 import StPostList from '../../components/MyPage/PostList/PostList.styled';
+import StProfileImg from '../../components/MyPage/ProfileImg/ProfileImg.styled';
+import StSummary from '../../components/MyPage/Summary/Summary.styled';
 
 //리액트 라이브러리
 import { useState } from 'react';
