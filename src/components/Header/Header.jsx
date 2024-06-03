@@ -1,9 +1,8 @@
 import React from 'react';
-import logoImg from '../../../assets/logo.png';
-import Input from '../Input/Input';
-import Navbar from '../Navbar/Navbar';
+import logoImg from '../../assets/logo.png';
+import Input from '../common/Input';
+import Navbar from '../common/Navbar';
 import { StContainer, StHamburger, StHeader, StLogo, StSearchIcon, StSearchWrapper } from './Header.styled';
-
 function Header() {
   return (
     <StHeader>

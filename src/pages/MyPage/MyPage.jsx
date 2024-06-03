@@ -1,15 +1,17 @@
 //순수 스타일용 컴포넌트
 import Main from '../../components/MyPage/MyPage.styles/Main.styled';
-import LeftSection from '../../components/MyPage/MyPage.styles/LeftSection.styled';
-import RightSection from '../../components/MyPage/MyPage.styles/RightSection.styled';
-import StSide from '../../components/MyPage/MyPage.styles/Side.styled';
+import UpperSection from '../../components/MyPage/MyPage.styles/UpperSection.styled';
+import LowerSection from '../../components/MyPage/MyPage.styles/LowerSection.styled';
 import StLink from '../../components/MyPage/MyPage.styles/Link.styled';
-import Button from '../../components/MyPage/MyPage.styles/Button.styled';
 
 //스타일된 기능용 컴포넌트
-import StSummary from '../../components/MyPage/Summary/Summary.styled';
-import StProfileImg from '../../components/MyPage/ProfileImg/ProfileImg.styled';
-import StPostList from '../../components/MyPage/PostList/PostList.styled';
+import ProfileImg from '../../components/MyPage/ProfileImg/ProfileImg';
+import PostList from '../../components/MyPage/PostList';
+import Summary from './../../components/MyPage/Summary/Summary';
+
+//공용 컴포넌트
+import Button from './../../components/common/Button/Button';
+
 
 //리액트 라이브러리
 import { useState } from 'react';
@@ -26,17 +28,16 @@ function MyPage() {
 
   return (
     <Main>
-      <LeftSection>
-        <StProfileImg profileImg={loginedUser.profileImg} />
-        <StSide>
-          <StLink to={'/mypage/profileedit'}>회원정보 수정</StLink>
-          <Button>회원탈퇴</Button>
-        </StSide>
-      </LeftSection>
-      <RightSection>
-        <StSummary />
-        <StPostList />
-      </RightSection>
+      <UpperSection>
+        <ProfileImg profileImg={loginedUser.profileImg} />
+        <Summary />
+        <Button>(임시)글쓰기</Button>
+        <StLink to={'/myPage/profileEdit'}>회원정보 수정</StLink>
+        <Button>(임시)로그아웃</Button>
+      </UpperSection>
+      <LowerSection>
+        <PostList />
+      </LowerSection>
     </Main>
   );
 }
