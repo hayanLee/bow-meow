@@ -4,8 +4,6 @@ import Summary from './Summary';
 import { gap, padding } from '../MyPage.styles/style-common-values';
 
 const StSummary = styled(Summary)`
-  height: 15%;
-
   display: flex;
   justify-content: space-around;
   gap: ${gap}px;

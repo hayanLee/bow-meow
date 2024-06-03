@@ -5,8 +5,8 @@ import { gap, padding } from '../MyPage.styles/style-common-values';
 const StPostList = styled(PostList)`
   height: 85%;
 
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   gap: ${gap}px;
   padding: ${padding}px;
 

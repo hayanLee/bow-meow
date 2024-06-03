@@ -7,7 +7,7 @@ const Main = styled.main`
   max-width: 1500px;
 
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   gap: ${gap}px;
   padding: ${padding}px;
 
