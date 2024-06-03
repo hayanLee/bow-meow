@@ -1,11 +1,13 @@
-import Label from './../MyPage.styles/Label.styled';
+import { StLabel } from '../MyPage.styles/MyPage.styled';
+import StSummary from './Summary.styled';
 
-function Summary({ className, ...props }) {
+function Summary(props) {
   return (
-    <div className={className}>
-      <Label> 작성한 게시물 수 </Label>
-      <Label> 좋아요 수 </Label>
-    </div>
+    <StSummary>
+      <StLabel> (임시)좋아요 수 </StLabel>
+      <StLabel> (임시)작성한 게시물 수 </StLabel>
+      <StLabel> (임시)댓글 수 </StLabel>
+    </StSummary>
   );
 }
 export default Summary;

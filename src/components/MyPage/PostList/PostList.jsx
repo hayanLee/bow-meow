@@ -1,14 +1,24 @@
-import Post from './../MyPage.styles/Post.styled';
+import { StPost } from '../MyPage.styles/MyPage.styled';
+import StPostList from './PostList.styled';
 
-function PostList({ className, ...props }) {
+function PostList(props) {
   return (
     <>
       <p> 내가 작성한 포스트 </p>
-      <div className={className}>
-        <Post> 첫번째 포스트: 123 </Post>
-        <Post> 두번째 포스트: 456 </Post>
-        <Post> 세번째 포스트: 789 </Post>
-      </div>
+      <StPostList>
+        <StPost> 포스트: 123 </StPost>
+        <StPost> 포스트: 456 </StPost>
+        <StPost> 포스트: abc </StPost>
+        <StPost> 포스트: def </StPost>
+        <StPost> 포스트: zxc </StPost>
+        <StPost> 포스트: asd </StPost>
+        <StPost> 포스트: qwe </StPost>
+        <StPost> 포스트: 321 </StPost>
+        <StPost> 포스트: 654 </StPost>
+        <StPost> 포스트: 987 </StPost>
+        <StPost> 포스트: hgf </StPost>
+        <StPost> 포스트: poi </StPost>
+      </StPostList>
     </>
   );
 }

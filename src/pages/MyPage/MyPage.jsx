@@ -1,15 +1,13 @@
-//순수 스타일용 컴포넌트
-import Main from '../../components/MyPage/MyPage.styles/Main.styled';
-import LeftSection from '../../components/MyPage/MyPage.styles/LeftSection.styled';
-import RightSection from '../../components/MyPage/MyPage.styles/RightSection.styled';
-import StSide from '../../components/MyPage/MyPage.styles/Side.styled';
-import StLink from '../../components/MyPage/MyPage.styles/Link.styled';
-import Button from '../../components/MyPage/MyPage.styles/Button.styled';
-
 //스타일된 기능용 컴포넌트
-import StSummary from '../../components/MyPage/Summary/Summary.styled';
-import StProfileImg from '../../components/MyPage/ProfileImg/ProfileImg.styled';
-import StPostList from '../../components/MyPage/PostList/PostList.styled';
+import ProfileImg from '../../components/MyPage/ProfileImg';
+import PostList from '../../components/MyPage/PostList';
+import Summary from './../../components/MyPage/Summary';
+
+//스타일용 컴포넌트
+import { StMain, StUpperSection, StLowerSection, StLink } from '../../components/MyPage/MyPage.styles/MyPage.styled';
+
+//공용 컴포넌트
+import Button from './../../components/common/Button';
 
 //리액트 라이브러리
 import { useState } from 'react';
@@ -25,19 +23,20 @@ function MyPage() {
   const [loginedUser, setLoginedUser] = useState(mockLoginedUser);
 
   return (
-    <Main>
-      <LeftSection>
-        <StProfileImg profileImg={loginedUser.profileImg} />
-        <StSide>
-          <StLink to={'/mypage/profileedit'}>회원정보 수정</StLink>
-          <Button>회원탈퇴</Button>
-        </StSide>
-      </LeftSection>
-      <RightSection>
-        <StSummary />
-        <StPostList />
-      </RightSection>
-    </Main>
+    <StMain>
+      <StUpperSection>
+        <ProfileImg profileImg={loginedUser.profileImg} />
+        <Summary />
+        <div>
+          <Button text="글쓰기" />
+          <StLink to={'/myPage/profileEdit'}>회원정보 수정</StLink>
+          <Button text="로그아웃" />
+        </div>
+      </StUpperSection>
+      <StLowerSection>
+        <PostList />
+      </StLowerSection>
+    </StMain>
   );
 }
 
