@@ -15,7 +15,7 @@ import {
   StyledBtnContainer,
   StyledContentContainer,
   StyledLeftContainer
-} from '../../components/PostEdit/PostEditPage.styled';
+} from '../../components/PostAdd/PostAddPage.styled';
 
 function PostAddPage({ onPostSubmit }) {
   // 이미지, 제목, 내용 상태를 useState 훅을 통해 관리

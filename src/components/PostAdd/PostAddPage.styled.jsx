@@ -18,28 +18,11 @@ export const StyledPostBox = styled.form`
   gap: 2rem;
 `;
 
-export const StyledContentContainer = styled.div`
-  display: flex;
-  width: 100%;
-  gap: 2rem;
-`;
-
 export const StyledLeftContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 50%;
-`;
-
-export const StyledRightContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 50%;
-`;
-
-export const StyledPostInput = styled.input`
-  width: 100%;
-  padding: 1rem;
 `;
 
 export const StyledUploadArea = styled.div`
@@ -80,11 +63,29 @@ export const ImagePreviewContainer = styled.div`
 `;
 
 export const ImagePreview = styled.img`
-  width: 100px;
-  height: 100px;
+  width: 150px;
+  height: 150px;
   object-fit: cover;
   border: 1px solid #ccc;
   border-radius: 5px;
+`;
+
+
+export const StyledContentContainer = styled.div`
+  display: flex;
+  width: 100%;
+  gap: 2rem;
+`;
+
+export const StyledRightContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+`;
+
+export const StyledPostInput = styled.input`
+  width: 100%;
+  padding: 1rem;
 `;
 
 export const StyledPostContent = styled.textarea`
@@ -98,7 +99,7 @@ export const StyledBtnContainer = styled.div`
   width: 100%;
   display: flex;
   justify-content: center; 
-  margin-top: 1rem; 
+  margin-bottom: 1rem; 
 `;
 
 export const StyledPostBtn = styled.button`
