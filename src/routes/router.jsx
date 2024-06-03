@@ -18,13 +18,12 @@ const router = createBrowserRouter([
     element: <Layout />,
     errorElement: <ErrorPage />,
     children: [
-      { path: '/myPage', element: <HomePage /> },
+      { path: '/', element: <HomePage /> },
       { path: '/myPage', element: <MyPage /> },
       { path: '/myPage/profileEdit', element: <ProfileEditPage /> },
-      { path: '/posts', element: <PostDetailPage /> },
-      // 확인용 페이지
-      { path: '/posts/:postId', element: <PostList/> },
-      { index: true, element: <PostEditPage /> }
+      { path: '/posts/post/:id', element: <PostDetailPage /> },
+      { index: '/posts/:postId', element: <PostList /> },
+      { path: '/posts/:postId/postEdit', element: <PostEditPage /> }
     ]
   },
   {
