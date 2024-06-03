@@ -1,11 +1,6 @@
 import React from 'react';
-import { SlArrowUpCircle } from 'react-icons/sl';
-import styled from 'styled-components';
+import { StUpIcon } from './HomePage.styles/HomePage.styled';
 
-const StUpIcon = styled(SlArrowUpCircle)`
-  font-size: 2rem;
-  cursor: pointer;
-`;
 
 export default function HomePage() {
   return (
