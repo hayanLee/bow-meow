@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { StUpIcon } from './HomePage.styles/HomePage.styled';
+import { StUpIcon } from './UpButton.styled';
 
 function UpButton() {
   const [upButton, setUpButton] = useState(false);

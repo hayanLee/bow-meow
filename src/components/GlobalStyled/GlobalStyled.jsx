@@ -12,12 +12,12 @@ const GlobalStyle = createGlobalStyle`
     }
     :root {
         font-family: 'omyu_pretty', Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-        --bg-color: #fffef5;
-        --header-color: #bc6c25;
-        --box-color: #dda15e;
-        --point-color: #606c38;
-        --button-color: #283618;
-        --text-color: #fefae0;
+        --bg-color: #fff;
+        --header-color: #fff;
+        --box-color: #F1F1F1;
+        --point-color: #7E7165;
+        --button-color: #DACFC6;
+        --text-color: #000;
     } 
     html, body{
         width: 100%;

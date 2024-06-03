@@ -16,5 +16,8 @@ export const StUpIcon = styled(HiArrowUpCircle)`
   visibility: visible;
   opacity: 1;
   border-radius: 50px;
-  color: #dacfc6;
+  color: var(--button-color);
+  &:hover {
+    color: var(--point-color);
+  }
 `;
