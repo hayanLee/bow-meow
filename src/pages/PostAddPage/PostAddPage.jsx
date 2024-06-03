@@ -53,11 +53,11 @@ function PostAddPage({ onPostSubmit }) {
     event.preventDefault();
   };
 
+  // 선택한 이미지 삭제하는 함수
   const handleImageRemove = (id) => {
     setImages((prevImages) => prevImages.filter((image) => image.id !== id));
   };
 
-  // 선택한 이미지 삭제하는 함수
   const handleSubmit = (event) => {
     event.preventDefault();
     if (!title || images.length === 0 || !content) {
