@@ -18,6 +18,7 @@ export default function ImageMasonry() {
                 borderBottomRightRadius: 4,
                 display: 'block',
                 width: '100%',
+                cursor: 'pointer',
               }}
             />
           </div>
