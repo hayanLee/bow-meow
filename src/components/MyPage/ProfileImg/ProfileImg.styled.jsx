@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 const StProfileImg = styled.div`
+  width: 200px;
   aspect-ratio: 1/1;
 
   display: flex;

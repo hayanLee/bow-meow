@@ -1,9 +1,10 @@
 import styled from 'styled-components';
 
 const StButtonGroup = styled.div`
-  background-color: indianred;
+  display: flex;
+  justify-content: space-between;
 
-  margin-left: auto;
+  background-color: indianred;
 `;
 
 export default StButtonGroup;

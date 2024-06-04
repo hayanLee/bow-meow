@@ -4,10 +4,16 @@ import PostList from '../../components/MyPage/PostList';
 import Summary from './../../components/MyPage/Summary';
 
 //스타일용 컴포넌트
-import { StMain, StUpperSection, StLowerSection, StLink } from '../../components/MyPage/MyPage.styles/MyPage.styled';
+import {
+  StMain,
+  StUpperSection,
+  StLowerSection,
+  StSideGroup
+} from '../../components/MyPage/MyPage.styles/MyPage.styled';
 
 //공용 컴포넌트
 import Button from './../../components/common/Button';
+import CustomLink from './../../components/common/CustomLink';
 
 //리액트 라이브러리
 import { useState } from 'react';
@@ -22,16 +28,23 @@ function MyPage() {
   const [postList, setPostList] = useState(mockPostList);
   const [loginedUser, setLoginedUser] = useState(mockLoginedUser);
 
+  //Todo: 좋아요 받은 개수
+  //작성 포스트 개수
+  //댓글 달린 개수 계산하기
+  const totalLiked = 123;
+  const totalPosts = 321;
+  const totalComments = 220;
+
   return (
     <StMain>
       <StUpperSection>
         <ProfileImg profileImg={loginedUser.profileImg} />
-        <Summary />
-        <div>
-          <Button text="글쓰기" />
-          <StLink to={'/myPage/profileEdit'}>회원정보 수정</StLink>
+        <Summary totalLiked={totalLiked} totalPosts={totalPosts} totalComments={totalComments} />
+        <StSideGroup>
+          <CustomLink to={'/임시링크'}>글쓰기</CustomLink>
+          <CustomLink to={'/myPage/profileEdit'}>회원정보 수정</CustomLink>
           <Button text="로그아웃" />
-        </div>
+        </StSideGroup>
       </StUpperSection>
       <StLowerSection>
         <PostList />
