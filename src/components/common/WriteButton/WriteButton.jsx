@@ -7,14 +7,11 @@ const WriteButton = () => {
   const navigate = useNavigate();
 
   const goPostAdd = () => {
-    navigate('/postAdd');
+    navigate('/PostAdd');
   };
-
   return (
     <StUpIcon>
-      <button onClick={goPostAdd}>
-        <BiSolidPencil />
-      </button>
+        <BiSolidPencil onClick={goPostAdd} />
     </StUpIcon>
   );
 };
