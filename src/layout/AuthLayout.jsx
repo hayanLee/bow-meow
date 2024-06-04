@@ -1,7 +1,6 @@
-import { Outlet } from 'react-router-dom';
-import { StLayout, Wrapper } from './AuthLayout.styled';
+import { Outlet, useNavigate } from 'react-router-dom';
 import logo from '../assets/logo_img.png';
-import { useNavigate } from 'react-router-dom';
+import { StLayout, StLogo, Wrapper } from './AuthLayout.styled';
 
 function AuthLayout() {
   const navigate = useNavigate();
@@ -13,7 +12,7 @@ function AuthLayout() {
   return (
     <Wrapper>
       <StLayout>
-        <img onClick={handleLogoClick} src={logo} alt="로고이미지" />
+        <StLogo onClick={handleLogoClick} src={logo} alt="로고이미지" />
         <Outlet />
       </StLayout>
     </Wrapper>
