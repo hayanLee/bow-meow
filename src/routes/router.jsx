@@ -14,6 +14,7 @@ import PostList from '../pages/PostDetailPage/PostList';
 import PostEditPage from '../pages/PostEditPage/PostEditPage';
 import ProfileEditPage from '../pages/ProfileEditPage';
 import SupabaseTestPage from '../pages/SupabaseTestPage';
+import LoginModalProvider from '../components/LoginModal/LoginModalProvider';
 
 const router = createBrowserRouter([
   {
@@ -21,7 +22,12 @@ const router = createBrowserRouter([
     element: <SupabaseTestPage />
   },
   {
-    element: <Layout />,
+    element: (
+      <LoginModalProvider>
+        <Layout />
+      </LoginModalProvider>
+    ),
+
     errorElement: <ErrorPage />,
     children: [
       { path: '/', element: <HomePage /> },
@@ -34,7 +40,11 @@ const router = createBrowserRouter([
     ]
   },
   {
-    element: <AuthLayout />,
+    element: (
+      <LoginModalProvider>
+        <AuthLayout />
+      </LoginModalProvider>
+    ),
     children: [
       { path: 'auth/logIn', element: <Login /> },
       { path: 'auth/signUp', element: <SignUp /> },
