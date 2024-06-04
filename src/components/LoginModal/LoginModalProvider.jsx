@@ -2,7 +2,7 @@ import React, { createContext, useState } from 'react';
 import LoginModal from './LoginModal';
 export const LoginModalContext = createContext(null);
 
-const LoginModalProvider = ({ children }) => {
+const LoginModalProvider = ({ children, navigate }) => {
   const [showModal, setShowModal] = useState(false);
 
   const value = {
@@ -17,7 +17,7 @@ const LoginModalProvider = ({ children }) => {
   return (
     <LoginModalContext.Provider value={value}>
       {children}
-      {showModal && <LoginModal />}
+      {showModal && <LoginModal navigate={navigate} />}
     </LoginModalContext.Provider>
   );
 };

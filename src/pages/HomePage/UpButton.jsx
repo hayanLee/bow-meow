@@ -13,7 +13,7 @@ function UpButton() {
   };
   useEffect(() => {
     const handleShowButton = () => {
-      if (window.scrollY > 500) {
+      if (window.scrollY > 300) {
         setUpButton(true);
       } else {
         setUpButton(false);
@@ -30,8 +30,7 @@ function UpButton() {
   return (
     <div className="scroll__container">
       <button id="top" onClick={scrollToTop} type="button">
-        {' '}
-        <StUpIcon />
+        {upButton && <StUpIcon />}
       </button>
     </div>
   );

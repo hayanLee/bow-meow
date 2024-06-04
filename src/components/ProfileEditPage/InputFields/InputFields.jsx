@@ -1,21 +1,25 @@
-import StInputFields from './InputFields.styled';
 import InputField from '../InputField/InputField';
+import { StInputField, StInputFields } from './InputFields.styled';
 
 function InputFields(props) {
+  const loginedUserNickname = '닉네임abc';
+  const loginedUserPassword = 'mypassword';
+  const loginedUserIntroduce = '잘 부탁드려요~';
+
   return (
     <StInputFields>
-      <div>
-        <label>닉네임</label>
-        <InputField defaultValue="닉네임123" />
-      </div>
-      <div>
-        <label>비밀번호</label>
-        <InputField defaultValue="********" />
-      </div>
-      <div>
-        <label>한줄소개</label>
-        <InputField defaultValue="잘 부탁드려요~" />
-      </div>
+      <StInputField>
+        <span>닉네임</span>
+        <InputField defaultValue={loginedUserNickname} />
+      </StInputField>
+      <StInputField>
+        <span>비밀번호</span>
+        <InputField defaultValue={loginedUserPassword} />
+      </StInputField>
+      <StInputField>
+        <span>한줄소개</span>
+        <InputField defaultValue={loginedUserIntroduce} />
+      </StInputField>
     </StInputFields>
   );
 }

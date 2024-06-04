@@ -1,12 +1,16 @@
-import StButtonGroup from './ButtonGroup.styled';
+import { StButtonGroup, StRightGroup, StLeftGroup } from './ButtonGroup.styled';
 import Button from './../../common/Button/Button';
 
 function ButtonGroup(props) {
   return (
     <StButtonGroup>
-      <Button text="회원탈퇴" />
-      <Button text="뒤로가기" />
-      <Button text="수정하기" />
+      <StLeftGroup>
+        <Button text="회원탈퇴" />
+      </StLeftGroup>
+      <StRightGroup>
+        <Button text="뒤로가기" />
+        <Button text="수정하기" />
+      </StRightGroup>
     </StButtonGroup>
   );
 }
