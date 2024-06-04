@@ -1,20 +1,20 @@
 import React from 'react';
-import logoImg from '../../assets/logo.png';
+import logoImg from '../../assets/logo_img.png';
 import Input from '../common/Input';
 import Navbar from '../common/Navbar';
-import { StContainer, StHamburger, StHeader, StLogo, StSearchIcon, StSearchWrapper } from './Header.styled';
+import { StContainer, StHeader, StLogin, StLogo, StSearchIcon, StSearchWrapper, StTitle } from './Header.styled';
 function Header() {
   return (
     <StHeader>
       <StLogo src={logoImg} alt="logo" />
-
+       <StTitle>멍멍냥냥</StTitle>
       <StContainer>
         <Navbar />
         <StSearchWrapper>
           <Input />
           <StSearchIcon />
         </StSearchWrapper>
-        <StHamburger />
+        <StLogin>로그인</StLogin>
       </StContainer>
     </StHeader>
   );

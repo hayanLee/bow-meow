@@ -1,14 +1,13 @@
 import { FiSearch } from 'react-icons/fi';
-import { GiHamburgerMenu } from 'react-icons/gi';
 import styled from 'styled-components';
+
 export const StHeader = styled.header`
   display: flex;
   /* justify-content: space-between; */
   align-items: center;
-
-  width: 100%;
-  height: 100px;
-  padding: 0 20px;
+  margin: 20px auto 0 auto;
+  width: 80%;
+  height: 50px;
 `;
 
 export const StContainer = styled(StHeader)`
@@ -17,12 +16,20 @@ export const StContainer = styled(StHeader)`
 `;
 
 export const StLogo = styled.img`
-  height: inherit;
+  /* height: inherit; */
+  margin-top: 20px;
   cursor: pointer;
 `;
 
+export const StTitle = styled.div`
+  font-size: 2rem;
+  width: auto;
+  background-color: red;
+`;
+
 export const StSearchWrapper = styled.div`
-  width: 350px;
+  width: auto;
+  height: auto;
   position: relative;
 `;
 
@@ -34,9 +41,9 @@ export const StSearchIcon = styled(FiSearch)`
   cursor: pointer;
 `;
 
-export const StHamburger = styled(GiHamburgerMenu)`
-  color: var(--text-color);
-  font-size: 2rem;
+export const StLogin = styled.div`
+  color: var(--write-color);
+  font-size: 1.2rem;
   cursor: pointer;
 
   &:hover {
