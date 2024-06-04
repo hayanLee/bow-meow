@@ -13,14 +13,18 @@ import {
 } from '../../components/PostAdd/PostAddPage.styled';
 import PostImg from '../../components/PostAdd/PostImgUpload/PostImg';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { createPost } from '../../redux/slices/postReducer.slice';
+import { clearImg } from '../../redux/slices/postImgReducer';
 
-function PostAddPage({ onPostSubmit }) {
+function PostAddPage() {
   // 이미지, 제목, 내용 상태를 useState 훅을 통해 관리
-  const [title, setTitle] = useState('');
-  const [images, setImages] = useState([]);
-  const [content, setContent] = useState('');
-
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const [title, setTitle] = useState('');
+  const images = useSelector((state) => state.images.images);
+  const [content, setContent] = useState('');
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -30,18 +34,16 @@ function PostAddPage({ onPostSubmit }) {
     }
 
     const newPost = {
-      id: uuidv4(),
       title,
       content,
-      images,
-      thumbnail: images.length > 0 ? images[0] : null
+      images: images.map((image) => URL.createObjectURL(image.file))
     };
 
     console.log('Submitting post:', newPost); // 콘솔 로그 추가
-    onPostSubmit(newPost);
+    dispatch(createPost(newPost));
 
     setTitle('');
-    setImages([]);
+    dispatch(clearImg());
     setContent('');
 
     alert('성공적으로 작성되었습니다!');
@@ -52,7 +54,7 @@ function PostAddPage({ onPostSubmit }) {
       <StyledPostBox>
         <StyledContentContainer>
           <StyledLeftContainer>
-            <PostImg images={images} setImages={setImages} />
+            <PostImg />
           </StyledLeftContainer>
           <StyledRightContainer>
             <StyledPostInput

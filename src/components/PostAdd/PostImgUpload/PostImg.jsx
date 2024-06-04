@@ -10,18 +10,19 @@ import {
   CenteredText
 } from '../PostAddPage.styled';
 import ModalImg from './ModalImg';
+import { useDispatch, useSelector } from 'react-redux';
+import { addImg, removeImg } from '../../../redux/slices/postImgReducer';
 
-const PostImg = ({ images, setImages }) => {
+const PostImg = () => {
   const [largedImage, setLargedImage] = useState(null);
+  const dispatch = useDispatch();
+  const images = useSelector((state) => state.images.images);
+
   // 파일 입력 엘리먼트에서 이미지가 선택될 때 호출되는 함수
   const handleImageChange = (files) => {
     // 선택된 이미지를 이미지 배열에 추가
     if (images.length + files.length <= 5) {
-      const newImages = files.map((file) => ({
-        file,
-        id: uuidv4() // 고유한 id 생성
-      }));
-      setImages((prevImages) => [...prevImages, ...newImages]);
+      dispatch(addImg(files));
     } else {
       alert('이미지는 최대 5장까지만 업로드할 수 있습니다.');
     }
@@ -30,11 +31,7 @@ const PostImg = ({ images, setImages }) => {
   // 드래그 앤 드롭으로 파일이 추가될 때 호출되는 함수
   const handleDrop = (files) => {
     if (images.length + files.length <= 5) {
-      const newImages = files.map((file) => ({
-        file,
-        id: uuidv4()
-      }));
-      setImages((prevImages) => [...prevImages, ...newImages]);
+      dispatch(addImg(files));
     } else {
       alert('이미지는 최대 5장까지만 업로드할 수 있습니다.');
     }
@@ -47,7 +44,7 @@ const PostImg = ({ images, setImages }) => {
 
   // 선택한 이미지 삭제하는 함수
   const handleImageRemove = (id) => {
-    setImages((prevImages) => prevImages.filter((image) => image.id !== id));
+    dispatch(removeImg(id));
   };
 
   // 이미지를 클릭했을 때 호출되는 함수
@@ -62,8 +59,6 @@ const PostImg = ({ images, setImages }) => {
   return (
     <>
       {largedImage && <ModalImg imgSrc={largedImage} onClose={closeLargedImage} />}
-
-      {console.log(largedImage)}
       <ImagePreviewContainer>
         {images.map((image, index) => (
           <ImageContainer key={image.id}>
