@@ -1,20 +1,16 @@
-import { memo, useMemo } from 'react';
+import { memo } from 'react';
 
 import StPostList from './PostList.styled';
-import { StPost, StPostImg } from '../MyPage.styles/MyPage.styled';
+import Post from './../Post';
 
 function PostList({ userWrittenPostList }) {
-  const postImages = useMemo(() => userWrittenPostList.map((post) => post.images[0]), [userWrittenPostList]);
+  const extractedPosts = userWrittenPostList.map((post) => ({ image: post.images[0], date: post.date }));
 
   return (
     <StPostList>
-      {postImages.map((postImage) => {
-        return (
-          <StPost>
-            <StPostImg src={postImage} />
-          </StPost>
-        );
-      })}
+      {extractedPosts.map((post) => (
+        <Post image={post.image} date={post.date} />
+      ))}
     </StPostList>
   );
 }

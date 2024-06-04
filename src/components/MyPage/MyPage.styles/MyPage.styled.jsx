@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { gap, padding } from './style-common-values';
 
-//{StMain, StUpperSection, StLowerSection, StLabel, StLink, StSide, StPost }
+//{StMain, StUpperSection, StLowerSection, StSide }
 
 export const StMain = styled.main`
   display: flex;
@@ -62,22 +62,6 @@ export const StLabel = styled.div`
   align-items: center;
   gap: ${gap}px;
   font-size: 1.5rem;
-`;
-
-export const StPost = styled.article`
-  width: 200px;
-  height: 200px;
-
-  display: flex;
-  justify-content: center;
-
-  background-color: var(--bg-color);
-  border-radius: 30px;
-  padding: 10px 10px;
-`;
-
-export const StPostImg = styled.img`
-  width: 80%;
 `;
 
 export const StSide = styled.nav`
