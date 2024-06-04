@@ -1,8 +1,19 @@
-import { StLabel } from '../MyPage.styles/MyPage.styled';
-import StSummary from './Summary.styled';
+import { memo } from 'react';
 
-function Summary(props) {
-  const { totalLiked, totalPosts, totalComments } = props;
+import StSummary from './Summary.styled';
+import { StLabel } from '../MyPage.styles/MyPage.styled';
+
+function Summary({ userWrittenPostList }) {
+  const { totalLiked, totalComments } = userWrittenPostList.reduce(
+    ({ totalLiked, totalComments }, post) => ({
+      totalLiked: totalLiked + post.likeCount,
+      totalComments: totalComments + post.commentCount
+    }),
+    { totalLiked: 0, totalComments: 0 }
+  );
+
+  const totalPosts = userWrittenPostList.length;
+
   return (
     <StSummary>
       <StLabel>
@@ -20,4 +31,4 @@ function Summary(props) {
     </StSummary>
   );
 }
-export default Summary;
+export default memo(Summary);

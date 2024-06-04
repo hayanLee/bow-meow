@@ -1,8 +1,10 @@
 import { createBrowserRouter } from 'react-router-dom';
 import Login from '../components/Auths/Login';
-import SearchId from '../components/Auths/SearchId';
+// import SearchId from '../components/Auths/SearchId';
 import SearchPw from '../components/Auths/SearchPw';
 import SignUp from '../components/Auths/SignUp';
+import UpdatePw from '../components/Auths/UpdatePw';
+import LoginModalProvider from '../components/LoginModal/LoginModalProvider';
 import AuthLayout from '../layout/AuthLayout';
 import Layout from '../layout/Layout';
 import ErrorPage from '../pages/ErrorPage';
@@ -14,7 +16,6 @@ import PostList from '../pages/PostDetailPage/PostList';
 import PostEditPage from '../pages/PostEditPage/PostEditPage';
 import ProfileEditPage from '../pages/ProfileEditPage';
 import SupabaseTestPage from '../pages/SupabaseTestPage';
-import LoginModalProvider from '../components/LoginModal/LoginModalProvider';
 
 const router = createBrowserRouter([
   {
@@ -48,8 +49,9 @@ const router = createBrowserRouter([
     children: [
       { path: 'auth/logIn', element: <Login /> },
       { path: 'auth/signUp', element: <SignUp /> },
-      { path: 'auth/searchID', element: <SearchId /> },
-      { path: 'auth/searchPW', element: <SearchPw /> }
+      // { path: 'auth/searchID', element: <SearchId /> },
+      { path: 'auth/searchPW', element: <SearchPw /> },
+      { path: 'auth/updatePW', element: <UpdatePw /> }
     ]
   }
 ]);
