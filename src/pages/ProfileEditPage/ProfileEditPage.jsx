@@ -1,7 +1,7 @@
 //기능 컴포넌트
-import InputFields from './../../components/ProfileEditPage/InputFields';
+import ProfileImageEdit from '../../components/ProfileEditPage/ProfileImageEdit';
+import ProfileInfoEdit from '../../components/ProfileEditPage/ProfileInfoEdit';
 import ButtonGroup from './../../components/ProfileEditPage/ButtonGroup';
-import ProfileImg from './../../components/ProfileEditPage/ProfileImg';
 
 //스타일링 컴포넌트
 import {
@@ -9,9 +9,6 @@ import {
   UpperSection,
   LowerSection
 } from '../../components/ProfileEditPage/ProfileEditPage.styles/ProfileEditPage.styled';
-
-//공용 컴포넌트
-import Button from './../../components/common/Button';
 
 //리액트 라이브러리
 import { useState } from 'react';
@@ -27,11 +24,10 @@ function ProfileEditPage() {
   return (
     <Main>
       <UpperSection>
-        <ProfileImg src={mockLoginedUser.profileImg} />
-        <Button text="프로필 수정" />
+        <ProfileImageEdit loginedUser={loginedUser} />
       </UpperSection>
       <LowerSection>
-        <InputFields />
+        <ProfileInfoEdit loginedUser={loginedUser} />
         <ButtonGroup />
       </LowerSection>
     </Main>
