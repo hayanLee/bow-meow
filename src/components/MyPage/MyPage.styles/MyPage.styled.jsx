@@ -5,10 +5,6 @@ import { gap, padding } from './style-common-values';
 //{StMain, StUpperSection, StLowerSection, StLabel, StLink, StSide, StPost }
 
 export const StMain = styled.main`
-  height: 80vh;
-  min-width: 1200px;
-  max-width: 1500px;
-
   display: flex;
   flex-direction: column;
   gap: ${gap}px;
@@ -20,9 +16,10 @@ export const StMain = styled.main`
 `;
 
 export const StUpperSection = styled.section`
-  height: 20%;
+  height: 200px;
 
   display: flex;
+  justify-content: center;
   gap: ${gap}px;
   padding: ${padding}px;
 
@@ -30,7 +27,7 @@ export const StUpperSection = styled.section`
 `;
 
 export const StLowerSection = styled.section`
-  height: 80%;
+  min-height: 800px;
 
   display: flex;
   flex-direction: column;
@@ -49,13 +46,6 @@ export const StLabel = styled.label`
 
   background-color: var(--point-color);
   color: var(--text-color);
-`;
-
-export const StLink = styled(Link)`
-  background-color: var(--point-color);
-  color: var(--text-color);
-
-  border-radius: 30px;
 `;
 
 export const StPost = styled.article`

@@ -4,10 +4,11 @@ import PostList from '../../components/MyPage/PostList';
 import Summary from './../../components/MyPage/Summary';
 
 //스타일용 컴포넌트
-import { StMain, StUpperSection, StLowerSection, StLink } from '../../components/MyPage/MyPage.styles/MyPage.styled';
+import { StMain, StUpperSection, StLowerSection } from '../../components/MyPage/MyPage.styles/MyPage.styled';
 
 //공용 컴포넌트
 import Button from './../../components/common/Button';
+import CustomLink from './../../components/common/CustomLink';
 
 //리액트 라이브러리
 import { useState } from 'react';
@@ -29,7 +30,7 @@ function MyPage() {
         <Summary />
         <div>
           <Button text="글쓰기" />
-          <StLink to={'/myPage/profileEdit'}>회원정보 수정</StLink>
+          <CustomLink to={'/myPage/profileEdit'}>회원정보 수정</CustomLink>
           <Button text="로그아웃" />
         </div>
       </StUpperSection>
