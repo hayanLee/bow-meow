@@ -16,3 +16,7 @@ export const StPost = styled.article`
   border-radius: 30px;
   padding: 10px 10px;
 `;
+
+export const StSpan = styled.span`
+  user-select: none;
+`;

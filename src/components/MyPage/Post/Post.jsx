@@ -1,6 +1,14 @@
-import { StPost } from './Post.styled';
+import { StPost, StSpan } from './Post.styled';
 
 function Post({ image, date }) {
-  return <StPost $image={image}>{date}</StPost>;
+  function handlePostClick() {
+    console.log('clicked');
+  }
+
+  return (
+    <StPost onClick={handlePostClick} $image={image}>
+      <StSpan>{date}</StSpan>
+    </StPost>
+  );
 }
 export default Post;
