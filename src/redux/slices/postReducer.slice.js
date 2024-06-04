@@ -51,7 +51,8 @@ const postSlice = createSlice({
         ...action.payload,
         postId: uuidv4(),
         postCommentId: uuidv4(),
-        userId: uuidv4()
+        userId: uuidv4(),
+        createdAt: new Date().toISOString()
       };
       state.posts.push(newPost);
     },
