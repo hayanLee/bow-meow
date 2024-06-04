@@ -1,11 +1,11 @@
 import StProfileImg from './ProfileImg.styled';
 
 function ProfileImg(props) {
-  const { profileImg } = props;
+  const { src } = props;
 
   return (
     <StProfileImg>
-      <img src={profileImg} alt="프로필 사진" />
+      <img src={src} alt="프로필 사진" />
     </StProfileImg>
   );
 }
