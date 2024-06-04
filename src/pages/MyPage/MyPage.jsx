@@ -16,7 +16,7 @@ import Button from './../../components/common/Button';
 import CustomLink from './../../components/common/CustomLink';
 
 //리액트 라이브러리
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 
 //가짜 데이터
 import { loadMockData } from '../../mockdatas/devutil';
@@ -26,14 +26,25 @@ const { mockUserList, mockPostList, mockLoginedUser } = loadMockData();
 function MyPage() {
   const [userList, setUserList] = useState(mockUserList);
   const [postList, setPostList] = useState(mockPostList);
+
   const [loginedUser, setLoginedUser] = useState(mockLoginedUser);
 
-  //Todo: 좋아요 받은 개수
-  //작성 포스트 개수
-  //댓글 달린 개수 계산하기
-  const totalLiked = 123;
-  const totalPosts = 321;
-  const totalComments = 220;
+  const userWrittenPostList = useMemo(() => postList.filter((post) => post.userId === loginedUser.userId), [postList]);
+
+  //issue: post에 comment 개수 직접 저장하기
+  const { totalLiked, totalPosts, totalComments } = useMemo(
+    () =>
+      userWrittenPostList.reduce(
+        ({ totalLiked, totalPosts, totalComments }, post) => {
+          totalLiked += post.likeCount;
+          totalPosts += 1;
+          totalComments += 1000; //<<<<<<<<<<
+          return { totalLiked, totalPosts, totalComments };
+        },
+        { totalLiked: 0, totalPosts: 0, totalComments: 0 }
+      ),
+    [postList]
+  );
 
   return (
     <StMain>

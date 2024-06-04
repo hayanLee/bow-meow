@@ -8,10 +8,6 @@ const StSummary = styled.div`
   justify-content: space-around;
   gap: ${gap}px;
   padding: ${padding}px;
-
-  & > Label {
-    width: 33%;
-  }
 `;
 
 export default StSummary;
