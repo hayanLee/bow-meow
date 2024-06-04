@@ -1,17 +1,13 @@
 import styled from 'styled-components';
 import { gap, padding } from './style-common-values';
 
-//{StMain, StUpperSection, StLowerSection, StLabel, StLink, StSide, StPost }
+//{StMain, StUpperSection, StLowerSection, StSide }
 
 export const StMain = styled.main`
   display: flex;
   flex-direction: column;
   gap: ${gap * 3}px;
   padding: ${padding}px;
-
-  background-color: var(--bg-color);
-  background-color: green; //영역 구분용 컬러
-  color: var(--text-color);
 `;
 
 export const StUpperSection = styled.section`
@@ -22,7 +18,7 @@ export const StUpperSection = styled.section`
   gap: ${gap}px;
   padding: ${padding}px;
 
-  background-color: palegreen; //영역 구분용 컬러
+  background-color: white;
 `;
 
 export const StLowerSection = styled.section`
@@ -34,7 +30,7 @@ export const StLowerSection = styled.section`
   gap: ${gap}px;
   padding: ${padding}px;
 
-  background-color: palevioletred; //영역 구분용 컬러
+  background-color: white;
 `;
 
 export const StSideGroup = styled.div`
@@ -46,8 +42,6 @@ export const StSideGroup = styled.div`
   justify-content: center;
 
   padding: 10px 0px;
-
-  background-color: coral;
 
   & > :is(a, button) {
     line-height: 24px;
@@ -70,18 +64,7 @@ export const StLabel = styled.div`
   font-size: 1.5rem;
 `;
 
-export const StPost = styled.article`
-  width: 200px;
-  height: 200px;
-
-  background-color: var(--bg-color);
-  color: black;
-  border-radius: 30px;
-  padding: 0px 10px;
-`;
-
 export const StSide = styled.nav`
-  background-color: var(--box-color);
   height: 66%;
 
   display: flex;

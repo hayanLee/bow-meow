@@ -8,8 +8,6 @@ const StProfileImg = styled.div`
   align-items: center;
   justify-content: center;
 
-  background-color: skyblue; //영역 구분용 컬러
-
   & > img {
     width: 75%;
     aspect-ratio: 1 / 1;
