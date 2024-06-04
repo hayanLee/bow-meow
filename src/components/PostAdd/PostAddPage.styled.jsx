@@ -25,7 +25,7 @@ export const StyledContentContainer = styled.div`
 `;
 
 // 이미지 크게 보는 모달창
-const StyledModalImg = styled.div`
+export const StyledModalImg = styled.div`
   position: fixed;
   top: 0;
   left: 0;
@@ -38,9 +38,9 @@ const StyledModalImg = styled.div`
   z-index: 1000;
 `;
 
-const StyledModalContent = styled.div`
-  max-width: 90%;
-  max-height: 90%;
+export const StyledModalContent = styled.div`
+  max-width: 100%;
+  max-height: 100%;
 `;
 
 // 이미지 박스 css

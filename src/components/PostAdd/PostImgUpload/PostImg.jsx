@@ -12,7 +12,7 @@ import {
 import ModalImg from './ModalImg';
 
 const PostImg = ({ images, setImages }) => {
-  const [largedImage, setlargedImage] = useState(null);
+  const [largedImage, setLargedImage] = useState(null);
   // 파일 입력 엘리먼트에서 이미지가 선택될 때 호출되는 함수
   const handleImageChange = (files) => {
     // 선택된 이미지를 이미지 배열에 추가
@@ -49,19 +49,21 @@ const PostImg = ({ images, setImages }) => {
   const handleImageRemove = (id) => {
     setImages((prevImages) => prevImages.filter((image) => image.id !== id));
   };
-  const handleImageClick = (file) => {
-    setlargedImage(file);
+
+  // 이미지를 클릭했을 때 호출되는 함수
+  const handleImageClick = (imageUrl) => {
+    setLargedImage(imageUrl);
   };
 
-  const closelargedImage = () => {
-    setlargedImage(null);
+  const closeLargedImage = () => {
+    setLargedImage(null);
   };
 
   return (
     <>
-      {largedImage && (
-        <ModalImg imgSrc={largedImage} onClose={closelargedImage} />
-      )}
+      {largedImage && <ModalImg imgSrc={largedImage} onClose={closeLargedImage} />}
+
+      {console.log(largedImage)}
       <ImagePreviewContainer>
         {images.map((image, index) => (
           <ImageContainer key={image.id}>
@@ -69,7 +71,7 @@ const PostImg = ({ images, setImages }) => {
               <ImagePreview
                 src={URL.createObjectURL(image.file)}
                 alt={`preview ${index}`}
-                onClick={() => handleImageClick(image.file)}
+                onClick={() => handleImageClick(URL.createObjectURL(image.file))}
               />
             ) : (
               <span>이미지 로드 실패</span>

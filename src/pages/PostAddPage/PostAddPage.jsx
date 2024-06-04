@@ -11,14 +11,16 @@ import {
   StyledContentContainer,
   StyledLeftContainer
 } from '../../components/PostAdd/PostAddPage.styled';
-import PostImg from '../../components/PostAdd/PostImgUpload/PostImg'
-import { Link } from 'react-router-dom';
+import PostImg from '../../components/PostAdd/PostImgUpload/PostImg';
+import { useNavigate } from 'react-router-dom';
 
 function PostAddPage({ onPostSubmit }) {
   // 이미지, 제목, 내용 상태를 useState 훅을 통해 관리
   const [title, setTitle] = useState('');
   const [images, setImages] = useState([]);
   const [content, setContent] = useState('');
+
+  const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -43,14 +45,14 @@ function PostAddPage({ onPostSubmit }) {
     setContent('');
 
     alert('성공적으로 작성되었습니다!');
-    // 작성이 완료된 후에 마이페이지로 이동
+    navigate('/myPage'); // 작성이 완료된 후에 마이페이지로 이동
   };
   return (
     <StyledContainer>
       <StyledPostBox>
         <StyledContentContainer>
           <StyledLeftContainer>
-            <PostImg images={images} setImages={setImages}/>
+            <PostImg images={images} setImages={setImages} />
           </StyledLeftContainer>
           <StyledRightContainer>
             <StyledPostInput
