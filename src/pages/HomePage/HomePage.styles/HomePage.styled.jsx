@@ -32,4 +32,27 @@ export const Modal = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  text-align: center;
+`;
+
+export const ModalLoginBtn = styled.div`
+  button {
+    width: 180px;
+    height: 40px;
+    font-size: 1rem;
+    border-radius: 10px;
+    border: 1px solid #000;
+    background-color: var(--bg-color);
+  }
+`;
+
+export const ModalSginUpBtn = styled.div`
+  button {
+    width: 180px;
+    height: 40px;
+    font-size: 1rem;
+    border-radius: 10px;
+    border: 1px solid #000;
+    color: var(--bg-color);
+  }
 `;
