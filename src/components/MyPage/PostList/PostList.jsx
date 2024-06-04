@@ -4,12 +4,10 @@ import StPostList from './PostList.styled';
 import Post from './../Post';
 
 function PostList({ userWrittenPostList }) {
-  const extractedPosts = userWrittenPostList.map((post) => ({ image: post.images[0], date: post.date }));
-
   return (
     <StPostList>
-      {extractedPosts.map((post) => (
-        <Post image={post.image} date={post.date} />
+      {userWrittenPostList.map((post) => (
+        <Post key={post.postId} image={post.images[0]} date={post.date} postId={post.postId} />
       ))}
     </StPostList>
   );
