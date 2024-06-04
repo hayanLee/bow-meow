@@ -1,6 +1,6 @@
 import Box from '@mui/material/Box';
 import Masonry from '@mui/lab/Masonry';
-import { useLoginModal } from '../components/LoginModal/LoginModalHook';
+import { useLoginModal } from '../Hooks/loginModalHook';
 
 export default function ImageMasonry() {
   const { open } = useLoginModal();
