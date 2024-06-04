@@ -45,7 +45,6 @@ function PostAddPage({ onPostSubmit }) {
     alert('성공적으로 작성되었습니다!');
     // 작성이 완료된 후에 마이페이지로 이동
   };
-
   return (
     <StyledContainer>
       <StyledPostBox>
