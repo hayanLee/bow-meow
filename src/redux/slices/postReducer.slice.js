@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { v4 as uuidv4 } from 'uuid';
 const initialState = {
   posts: [
     {
@@ -46,13 +47,23 @@ const postSlice = createSlice({
   name: 'post',
   reducers: {
     createPost: (state, action) => {
-      console.log(action);
+      const newPost = {
+        ...action.payload,
+        postId: uuidv4(),
+        postCommentId: uuidv4(),
+        userId: uuidv4()
+      };
+      state.posts.push(newPost);
     },
     deletePost: (state, action) => {
-      console.log(action);
+      state.posts = state.posts.filter((post) => post.postId !== action.payload);
     },
     updatePost: (state, action) => {
-      console.log(action);
+      const { postId, updatedData } = action.payload;
+      const index = state.posts.findIndex((post) => post.postId === postId);
+      if (index !== -1) {
+        state.posts[index] = { ...state.posts[index], ...updatedData };
+      }
     }
   }
 });
