@@ -1,0 +1,112 @@
+[
+  {
+    "postId": 1,
+    "userId": 101,
+    "postCommentId": 1001,
+    "title": "First Post",
+    "content": "This is the content of the first post.",
+    "images": ["https://cdn.pixabay.com/photo/2023/04/28/14/35/dog-7956828_960_720.jpg"]
+  },
+  {
+    "postId": 2,
+    "userId": 102,
+    "postCommentId": 1002,
+    "title": "Second Post",
+    "content": "This is the content of the second post.",
+    "images": [
+      "https://cdn.pixabay.com/photo/2023/04/27/10/22/cat-7954262_1280.jpg",
+      "https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg"
+    ]
+  },
+  {
+    "postId": 3,
+    "userId": 103,
+    "postCommentId": 1003,
+    "title": "Third Post",
+    "content": "This is the content of the third post.",
+    "images": [
+      "https://cdn.pixabay.com/photo/2017/11/09/21/41/cat-2934720_1280.jpg",
+      "https://cdn.pixabay.com/photo/2023/06/29/12/28/cats-8096304_960_720.jpg",
+      "https://cdn.pixabay.com/photo/2023/07/15/15/41/dog-8129106_1280.jpg"
+    ]
+  },
+  {
+    "postId": 4,
+    "userId": 104,
+    "postCommentId": 1004,
+    "title": "Fourth Post",
+    "content": "This is the content of the fourth post.",
+    "images": [
+      "https://cdn.pixabay.com/photo/2020/03/31/19/20/dog-4988985_960_720.jpg",
+      "https://cdn.pixabay.com/photo/2018/03/12/04/27/cute-3218752_1280.jpg",
+      "https://cdn.pixabay.com/photo/2020/03/08/11/22/cat-4912213_1280.jpg",
+      "https://cdn.pixabay.com/photo/2021/12/22/06/23/cat-6886790_960_720.jpg"
+    ]
+  },
+  {
+    "postId": 5,
+    "userId": 105,
+    "postCommentId": 1005,
+    "title": "Fifth Post",
+    "content": "This is the content of the fifth post.",
+    "images": ["https://cdn.pixabay.com/photo/2017/08/07/04/14/green-2599728_1280.jpg"]
+  },
+  {
+    "postId": 6,
+    "userId": 106,
+    "postCommentId": 1006,
+    "title": "Sixth Post",
+    "content": "This is the content of the sixth post.",
+    "images": [
+      "https://cdn.pixabay.com/photo/2023/04/28/14/35/dog-7956828_960_720.jpg",
+      "https://cdn.pixabay.com/photo/2023/04/27/10/22/cat-7954262_1280.jpg"
+    ]
+  },
+  {
+    "postId": 7,
+    "userId": 107,
+    "postCommentId": 1007,
+    "title": "Seventh Post",
+    "content": "This is the content of the seventh post.",
+    "images": [
+      "https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg",
+      "https://cdn.pixabay.com/photo/2017/11/09/21/41/cat-2934720_1280.jpg",
+      "https://cdn.pixabay.com/photo/2023/06/29/12/28/cats-8096304_960_720.jpg"
+    ]
+  },
+  {
+    "postId": 8,
+    "userId": 108,
+    "postCommentId": 1008,
+    "title": "Eighth Post",
+    "content": "This is the content of the eighth post.",
+    "images": [
+      "https://cdn.pixabay.com/photo/2023/07/15/15/41/dog-8129106_1280.jpg",
+      "https://cdn.pixabay.com/photo/2020/03/31/19/20/dog-4988985_960_720.jpg",
+      "https://cdn.pixabay.com/photo/2018/03/12/04/27/cute-3218752_1280.jpg",
+      "https://cdn.pixabay.com/photo/2020/03/08/11/22/cat-4912213_1280.jpg",
+      "https://cdn.pixabay.com/photo/2021/12/22/06/23/cat-6886790_960_720.jpg"
+    ]
+  },
+  {
+    "postId": 9,
+    "userId": 109,
+    "postCommentId": 1009,
+    "title": "Ninth Post",
+    "content": "This is the content of the ninth post.",
+    "images": ["https://cdn.pixabay.com/photo/2017/08/07/04/14/green-2599728_1280.jpg"]
+  },
+  {
+    "postId": 10,
+    "userId": 110,
+    "postCommentId": 1010,
+    "title": "Tenth Post",
+    "content": "This is the content of the tenth post.",
+    "images": [
+      "https://cdn.pixabay.com/photo/2023/04/28/14/35/dog-7956828_960_720.jpg",
+      "https://cdn.pixabay.com/photo/2023/04/27/10/22/cat-7954262_1280.jpg",
+      "https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg",
+      "https://cdn.pixabay.com/photo/2017/11/09/21/41/cat-2934720_1280.jpg"
+    ]
+  }
+]
