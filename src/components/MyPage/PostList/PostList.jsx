@@ -1,22 +1,15 @@
-import { StPost } from '../MyPage.styles/MyPage.styled';
-import StPostList from './PostList.styled';
+import { memo } from 'react';
 
-function PostList(props) {
+import StPostList from './PostList.styled';
+import Post from './../Post';
+
+function PostList({ userWrittenPostList }) {
   return (
     <StPostList>
-      <StPost> 포스트: 123 </StPost>
-      <StPost> 포스트: 456 </StPost>
-      <StPost> 포스트: abc </StPost>
-      <StPost> 포스트: def </StPost>
-      <StPost> 포스트: zxc </StPost>
-      <StPost> 포스트: asd </StPost>
-      <StPost> 포스트: qwe </StPost>
-      <StPost> 포스트: 321 </StPost>
-      <StPost> 포스트: 654 </StPost>
-      <StPost> 포스트: 987 </StPost>
-      <StPost> 포스트: hgf </StPost>
-      <StPost> 포스트: poi </StPost>
+      {userWrittenPostList.map((post) => (
+        <Post key={post.postId} image={post.images[0]} date={post.date} postId={post.postId} />
+      ))}
     </StPostList>
   );
 }
-export default PostList;
+export default memo(PostList);
