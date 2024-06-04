@@ -12,6 +12,7 @@ import PostDetailPage from '../pages/PostDetailPage';
 import PostList from '../pages/PostDetailPage/PostList';
 import PostEditPage from '../pages/PostEditPage/PostEditPage';
 import ProfileEditPage from '../pages/ProfileEditPage';
+import PostAddPage from '../pages/PostAddPage/PostAddPage';
 const router = createBrowserRouter([
   {
     element: <Layout />,
@@ -22,6 +23,7 @@ const router = createBrowserRouter([
       { path: '/myPage/profileEdit', element: <ProfileEditPage /> },
       { path: '/posts', element: <PostDetailPage /> },
       { path: '/posts/:postId', element: <PostList /> },
+      { path: '/postAdd', element: <PostAddPage/>},
       { path: '/posts/:postId/postEdit', element: <PostEditPage /> }
     ]
   },
