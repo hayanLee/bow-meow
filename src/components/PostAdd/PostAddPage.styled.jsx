@@ -24,6 +24,25 @@ export const StyledContentContainer = styled.div`
   gap: 2rem;
 `;
 
+// 이미지 크게 보는 모달창
+const StyledModalImg = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+`;
+
+const StyledModalContent = styled.div`
+  max-width: 90%;
+  max-height: 90%;
+`;
+
 // 이미지 박스 css
 export const StyledLeftContainer = styled.div`
   display: flex;

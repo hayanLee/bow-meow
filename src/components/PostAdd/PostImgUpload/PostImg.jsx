@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PostFile from './PostFile';
 import { v4 as uuidv4 } from 'uuid';
 import {
@@ -9,8 +9,10 @@ import {
   StyledUploadArea,
   CenteredText
 } from '../PostAddPage.styled';
+import ModalImg from './ModalImg';
 
 const PostImg = ({ images, setImages }) => {
+  const [largedImage, setlargedImage] = useState(null);
   // 파일 입력 엘리먼트에서 이미지가 선택될 때 호출되는 함수
   const handleImageChange = (files) => {
     // 선택된 이미지를 이미지 배열에 추가
@@ -47,14 +49,28 @@ const PostImg = ({ images, setImages }) => {
   const handleImageRemove = (id) => {
     setImages((prevImages) => prevImages.filter((image) => image.id !== id));
   };
+  const handleImageClick = (file) => {
+    setlargedImage(file);
+  };
+
+  const closelargedImage = () => {
+    setlargedImage(null);
+  };
 
   return (
     <>
+      {largedImage && (
+        <ModalImg imgSrc={largedImage} onClose={closelargedImage} />
+      )}
       <ImagePreviewContainer>
         {images.map((image, index) => (
           <ImageContainer key={image.id}>
             {image.file instanceof Blob ? (
-              <ImagePreview src={URL.createObjectURL(image.file)} alt={`preview ${index}`} />
+              <ImagePreview
+                src={URL.createObjectURL(image.file)}
+                alt={`preview ${index}`}
+                onClick={() => handleImageClick(image.file)}
+              />
             ) : (
               <span>이미지 로드 실패</span>
             )}
