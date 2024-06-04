@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import PostAddPage from '../PostAddPage/PostAddPage';
-import PostEditPage from '../PostEditPage/PostEditPage';
 
 const PostList = () => {
   const [posts, setPosts] = useState([]);
