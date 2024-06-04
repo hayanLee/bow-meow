@@ -11,8 +11,8 @@ export const StUpIcon = styled(HiArrowUpCircle)`
   visibility: hidden;
   display: block;
   position: fixed;
-  bottom: 50px;
-  right: 50px;
+  bottom: 95px;
+  right: 70px;
   visibility: visible;
   opacity: 1;
   border-radius: 50px;
