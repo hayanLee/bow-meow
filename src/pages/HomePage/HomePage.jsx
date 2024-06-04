@@ -13,7 +13,6 @@ export default function HomePage() {
   console.log(posts);
   return (
     <>
-      <div>HomePage: main</div>
       <UpButton />
     </>
   );

@@ -43,6 +43,18 @@ export const StyledModalContent = styled.div`
   max-height: 100%;
 `;
 
+export const CloseButton = styled.button`
+  width: 1.5rem;
+  height: 1.5rem;
+  position: fixed;
+  top: 0;
+  right: 0;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center; 
+  justify-content: center; 
+`;
+
 // 이미지 박스 css
 export const StyledLeftContainer = styled.div`
   display: flex;
@@ -84,7 +96,7 @@ export const ImagePreview = styled.img`
 `;
 
 export const DeleteButton = styled.button`
-  padding: 0.3rem; 
+  padding: 0.3rem;
   color: #fff;
   background-color: gray;
   border: none;
