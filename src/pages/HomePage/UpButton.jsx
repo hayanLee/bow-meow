@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useEffect, useState } from 'react';
 import { StUpIcon } from './HomePage.styles/HomePage.styled';
 
