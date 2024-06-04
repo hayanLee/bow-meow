@@ -68,9 +68,16 @@ export const StPost = styled.article`
   width: 200px;
   height: 200px;
 
+  display: flex;
+  justify-content: center;
+
   background-color: var(--bg-color);
   border-radius: 30px;
-  padding: 0px 10px;
+  padding: 10px 10px;
+`;
+
+export const StPostImg = styled.img`
+  width: 80%;
 `;
 
 export const StSide = styled.nav`

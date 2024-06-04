@@ -18,7 +18,7 @@ import CustomLink from './../../components/common/CustomLink';
 //리액트 라이브러리
 import { useMemo, useState } from 'react';
 
-//가짜 데이터
+//더미 데이터
 import { loadMockData } from '../../mockdatas/devutil';
 
 const { mockLoginedUser, mockPostList } = loadMockData();
@@ -28,8 +28,6 @@ function MyPage() {
   const [postList, setPostList] = useState(mockPostList);
 
   const userWrittenPostList = useMemo(() => postList.filter((post) => post.userId === loginedUser.userId), [postList]);
-
-  const postImages = useMemo(() => userWrittenPostList.map((post) => post.images[0]), [userWrittenPostList]);
 
   return (
     <StMain>
@@ -43,7 +41,7 @@ function MyPage() {
         </StSideGroup>
       </StUpperSection>
       <StLowerSection>
-        <PostList postImages={postImages} />
+        <PostList userWrittenPostList={userWrittenPostList} />
       </StLowerSection>
     </StMain>
   );
