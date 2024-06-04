@@ -1,6 +1,5 @@
 import React from 'react';
-import { StUpIcon } from './WriteButton.styled';
-import { BiSolidPencil } from 'react-icons/bi';
+import { StWriteIcon } from './WriteButton.styled';
 import { useNavigate } from 'react-router-dom';
 
 const WriteButton = () => {
@@ -11,11 +10,11 @@ const WriteButton = () => {
   };
 
   return (
-    <StUpIcon>
+    <>
       <button onClick={goPostAdd}>
-        <BiSolidPencil />
+        <StWriteIcon />
       </button>
-    </StUpIcon>
+    </>
   );
 };
 
