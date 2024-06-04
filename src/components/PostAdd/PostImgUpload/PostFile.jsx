@@ -1,8 +1,8 @@
 import React, { useRef } from 'react';
-import { StyledUploadArea, HiddenFileInput } from './PostAddPage.styled';
+import { StyledUploadArea, HiddenFileInput } from '../PostAddPage.styled';
 
-// PostUpload 컴포넌트는 파일 업로드와 관련된 기능을 담당
-const PostUpload = ({ onFileChange, onDrop, onDragOver, children }) => {
+// PostFile 컴포넌트는 파일 업로드와 관련된 기능을 담당
+const PostFile = ({ onFileChange, onDrop, onDragOver, children }) => {
   // 파일 입력 엘리먼트를 참조하기 위한 useRef 훅을 사용
   const fileInputRef = useRef([]);
 
@@ -51,4 +51,4 @@ const PostUpload = ({ onFileChange, onDrop, onDragOver, children }) => {
   );
 };
 
-export default PostUpload;
+export default PostFile;
