@@ -3,6 +3,8 @@ import Login from '../components/Auths/Login';
 // import SearchId from '../components/Auths/SearchId';
 import SearchPw from '../components/Auths/SearchPw';
 import SignUp from '../components/Auths/SignUp';
+import UpdatePw from '../components/Auths/UpdatePw';
+import LoginModalProvider from '../components/LoginModal/LoginModalProvider';
 import AuthLayout from '../layout/AuthLayout';
 import Layout from '../layout/Layout';
 import ErrorPage from '../pages/ErrorPage';
@@ -21,7 +23,12 @@ const router = createBrowserRouter([
     element: <SupabaseTestPage />
   },
   {
-    element: <Layout />,
+    element: (
+      <LoginModalProvider>
+        <Layout />
+      </LoginModalProvider>
+    ),
+
     errorElement: <ErrorPage />,
     children: [
       { path: '/', element: <HomePage /> },
@@ -34,12 +41,17 @@ const router = createBrowserRouter([
     ]
   },
   {
-    element: <AuthLayout />,
+    element: (
+      <LoginModalProvider>
+        <AuthLayout />
+      </LoginModalProvider>
+    ),
     children: [
       { path: 'auth/logIn', element: <Login /> },
       { path: 'auth/signUp', element: <SignUp /> },
       // { path: 'auth/searchID', element: <SearchId /> },
-      { path: 'auth/searchPW', element: <SearchPw /> }
+      { path: 'auth/searchPW', element: <SearchPw /> },
+      { path: 'auth/updatePW', element: <UpdatePw /> }
     ]
   }
 ]);
