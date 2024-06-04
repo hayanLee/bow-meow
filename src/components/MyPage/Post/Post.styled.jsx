@@ -15,6 +15,10 @@ export const StPost = styled.article`
   background-color: var(--bg-color);
   border-radius: 30px;
   padding: 10px 10px;
+
+  &:hover {
+    filter: brightness(80%);
+  }
 `;
 
 export const StSpan = styled.span`

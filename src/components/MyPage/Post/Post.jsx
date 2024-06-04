@@ -1,8 +1,11 @@
+import { useNavigate } from 'react-router-dom';
 import { StPost, StSpan } from './Post.styled';
 
 function Post({ image, date, postId }) {
+  const navigate = useNavigate();
+
   function handlePostClick() {
-    console.log('clicked');
+    navigate(`/posts/${postId}`);
   }
 
   return (
