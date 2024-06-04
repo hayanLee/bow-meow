@@ -31,7 +31,7 @@ function UpButton() {
     <div className="scroll__container">
       <button id="top" onClick={scrollToTop} type="button">
         {' '}
-        <StUpIcon className={`${window.scrollY > 500 ? 'active' : null}`} />
+        <StUpIcon />
       </button>
     </div>
   );

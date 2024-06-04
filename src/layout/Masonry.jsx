@@ -1,27 +1,34 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Masonry from '@mui/lab/Masonry';
+import { useLoginModal } from '../components/LoginModal/loginModalHook'
+  
 
-export default function ImageMasonry() {
+export default function ImageMasonry () { 
+
+    const { open } = useLoginModal();
   return (
     <Box sx={{ width: '100%', height: '100%', padding: '40px 20px', marginLeft: '13px' }}>
       <Masonry columns={3} spacing={3}>
         {itemData.map((item, index) => (
-          <div key={index}>
-            <img
-              srcSet={`${item.img}?w=162&auto=format&dpr=2 2x`}
-              src={`${item.img}?w=162&auto=format`}
-              alt={item.title}
-              loading="lazy"
-              style={{
-                borderBottomLeftRadius: 4,
-                borderBottomRightRadius: 4,
-                display: 'block',
-                width: '100%',
-                cursor: 'pointer'
-              }}
-            />
-          </div>
+          <>
+            <div key={index}>
+              <img
+                srcSet={`${item.img}?w=162&auto=format&dpr=2 2x`}
+                src={`${item.img}?w=162&auto=format`}
+                alt={item.title}
+                loading="lazy"
+                style={{
+                  borderBottomLeftRadius: 4,
+                  borderBottomRightRadius: 4,
+                  display: 'block',
+                  width: '100%',
+                  cursor: 'pointer'
+                }}
+                onClick={ open }
+              />
+            </div>
+          </>
         ))}
       </Masonry>
     </Box>

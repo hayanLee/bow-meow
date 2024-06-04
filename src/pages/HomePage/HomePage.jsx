@@ -1,4 +1,3 @@
-import React from 'react';
 import UpButton from '../../components/common/UpButton/UpButton';
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
