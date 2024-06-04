@@ -30,6 +30,7 @@ export const StLowerSection = styled.section`
 
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: ${gap}px;
   padding: ${padding}px;
 
@@ -70,6 +71,9 @@ export const StLabel = styled.div`
 `;
 
 export const StPost = styled.article`
+  width: 200px;
+  height: 200px;
+
   background-color: var(--bg-color);
   color: black;
   border-radius: 30px;
