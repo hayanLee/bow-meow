@@ -17,6 +17,7 @@ const GlobalStyle = createGlobalStyle`
         --button-color: #DACFC6;
         --text-color: #000;
         --modal-bg-color: #FFFEF5;
+        --write-color:#A49384;
     } 
     html, body{
         width: 100%;

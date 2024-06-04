@@ -1,102 +1,109 @@
+/* eslint-disable no-unused-vars */
+import * as React from 'react';
+import { useEffect, useState } from "react";
 import Box from '@mui/material/Box';
 import Masonry from '@mui/lab/Masonry';
-import { useLoginModal } from '../Hooks/loginModalHook';
+import styled, { keyframes } from "styled-components";
+import {useLoginModal } from '../Hooks/loginModalHook'
+import fetchPosts from '../mockdatas/postFn';
+const ImageMasonry=  ()=> { 
 
-export default function ImageMasonry() {
-  const { open } = useLoginModal();
+    const { open } = useLoginModal();
+    const itemDatas = new Array(15).fill(null) // 스켈레톤 ui를 위한 더미 배열
+    const [loading, setLoading] = useState(false); // 첫 페이지가 아닌 다음 무한스크롤 부터 해당 로딩이 적용됨
+    const [firstLoading, setFirstLoading] = useState(false) // only for  첫 페이지 진입시 등장하는 스켈레톤을 위한 상태 
+    const [update, setUpdate] = useState(10); // 변경될 때마다 새로운 정보를 가져올 것
+    const [itemTest, setItemTest] = useState([]);
+    const columns = ['1/2', '2/3', '3/4']
+    const rows = ['1/2', '1/3', '1/4', '2/7', '3/5', '4/7', '7/10', '5/10', '7/12', '10/14', '10/13', '12/16', '14/20', '13/20', '16/20']
+
+
+  const fetchData = (setFunction) =>{
+    setFunction(true);
+    fetchPosts(update).then((data)=>{
+      setFunction(false)
+      setItemTest(data)
+    }).catch((error)=>{
+      setFunction(false)
+      console.log(error)
+    })
+  }
+
+    useEffect(()=>{
+      fetchData(setLoading);
+    },[update])
+
+    useEffect(()=>{
+      fetchData(setFirstLoading);
+    },[])
+
   return (
     <Box sx={{ width: '100%', height: '100%', padding: '40px 20px', marginLeft: '13px' }}>
+      {!firstLoading ?
       <Masonry columns={3} spacing={3}>
-        {itemData.map((item, index) => (
-          <div key={index}>
-            <img
-              srcSet={`${item.img}?w=162&auto=format&dpr=2 2x`}
-              src={`${item.img}?w=162&auto=format`}
-              alt={item.title}
-              loading="lazy"
-              style={{
-                borderBottomLeftRadius: 4,
-                borderBottomRightRadius: 4,
-                display: 'block',
-                width: '100%',
-                cursor: 'pointer'
-              }}
-              onClick={open}
-            />
-          </div>
+        {itemTest.map((item, index) => (
+          <>
+            <div key={index}>
+              <img
+                srcSet={`${item.images[0]}?w=162&auto=format&dpr=2 2x`}
+                src={`${item.images[0]}?w=162&auto=format`}
+                alt={item.title}
+                loading="lazy"
+                style={{
+                  borderBottomLeftRadius: 4,
+                  borderBottomRightRadius: 4,
+                  display: 'block',
+                  width: '100%',
+                  cursor: 'pointer'
+                }}
+                onClick={ open }
+              />
+            </div>
+          </>
         ))}
-      </Masonry>
+      </Masonry>:
+      <StMansonry>
+        {
+          itemDatas.map((value, index) => {
+              return <>
+                  <div key={index} className="coverItems" style={{ width: '100%', gridColumn: `${columns[index % 3]}`, gridRow: `${rows[index]}` }}>
+                      <div className="item" />
+                  </div>
+              </>
+          })
+        }
+      </StMansonry>
+      }
+      {loading && <>로딩중!</>}
     </Box>
   );
 }
 
-const itemData = [
-  {
-    img: 'https://images.unsplash.com/photo-1518756131217-31eb79b20e8f',
-    title: 'Fern'
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1627308595229-7830a5c91f9f',
-    title: 'Snacks'
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1597645587822-e99fa5d45d25',
-    title: 'Mushrooms'
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1529655683826-aba9b3e77383',
-    title: 'Tower'
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1471357674240-e1a485acb3e1',
-    title: 'Sea star'
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1558642452-9d2a7deb7f62',
-    title: 'Honey'
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1516802273409-68526ee1bdd6',
-    title: 'Basketball'
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1551963831-b3b1ca40c98e',
-    title: 'Breakfast'
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1627328715728-7bcc1b5db87d',
-    title: 'Tree'
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1551782450-a2132b4ba21d',
-    title: 'Burger'
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1522770179533-24471fcdba45',
-    title: 'Camera'
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c',
-    title: 'Coffee'
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1627000086207-76eabf23aa2e',
-    title: 'Camping Car'
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1533827432537-70133748f5c8',
-    title: 'Hats'
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1567306301408-9b74779a11af',
-    title: 'Tomato basil'
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1627328561499-a3584d4ee4f7',
-    title: 'Mountain'
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1589118949245-7d38baf380d6',
-    title: 'Bike'
-  }
-];
+
+const pulseAnimation = keyframes`
+        0% {
+          background: rgba(237,237,237,0);
+        }
+        100% {
+          background: #cecece;
+        }
+`
+
+const StMansonry = styled.div`
+    display: grid;
+    width : 100%;
+    height : 1200px;
+    grid-template-columns: repeat(3,1fr);
+    grid-template-rows: repeat(20,1fr);
+    gap: 10px;
+    .coverItems{
+        width : 300px;
+    }
+    .item{
+        height: 100%;
+        animation: ${pulseAnimation} 0.5s alternate infinite;
+    }
+`;
+
+
+export default ImageMasonry
