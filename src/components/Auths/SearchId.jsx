@@ -23,7 +23,7 @@ export default function SearchId() {
         />
       </AuthsInput>
       <AuthsBtn>
-        <Button onClick={handleSearchClick} text="조회"></Button>
+        <Button onClick={handleSearchClick} text="전송"></Button>
       </AuthsBtn>
     </Wrapper>
   );

@@ -1,6 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
 import Login from '../components/Auths/Login';
-import SearchId from '../components/Auths/SearchId';
+// import SearchId from '../components/Auths/SearchId';
 import SearchPw from '../components/Auths/SearchPw';
 import SignUp from '../components/Auths/SignUp';
 import AuthLayout from '../layout/AuthLayout';
@@ -23,7 +23,7 @@ const router = createBrowserRouter([
       { path: '/myPage/profileEdit', element: <ProfileEditPage /> },
       { path: '/posts', element: <PostDetailPage /> },
       { path: '/posts/:postId', element: <PostList /> },
-      { path: '/postAdd', element: <PostAddPage/>},
+      { path: '/postAdd', element: <PostAddPage /> },
       { path: '/posts/:postId/postEdit', element: <PostEditPage /> }
     ]
   },
@@ -32,7 +32,7 @@ const router = createBrowserRouter([
     children: [
       { path: 'auth/logIn', element: <Login /> },
       { path: 'auth/signUp', element: <SignUp /> },
-      { path: 'auth/searchID', element: <SearchId /> },
+      // { path: 'auth/searchID', element: <SearchId /> },
       { path: 'auth/searchPW', element: <SearchPw /> }
     ]
   }

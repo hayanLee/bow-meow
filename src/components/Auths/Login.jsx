@@ -6,11 +6,11 @@ import { useState } from 'react';
 
 export default function Login() {
   const navigate = useNavigate();
-  const [userId, setUserId] = useState('');
+  const [userEmail, setUserEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleLogInClick = () => {
-    if (!userId || !password) {
+    if (!userEmail || !password) {
       alert('아이디와 비밀번호를 모두 입력하세요.');
     }
   };
@@ -19,9 +19,9 @@ export default function Login() {
     navigate('/auth/signUp');
   };
 
-  const handleSearchIdClick = () => {
-    navigate('/auth/searchId');
-  };
+  // const handleSearchIdClick = () => {
+  //   navigate('/auth/searchId');
+  // };
 
   const handleSearchPWClick = () => {
     navigate('/auth/searchPW');
@@ -32,9 +32,9 @@ export default function Login() {
       <AuthsInput>
         <Input
           type="text"
-          placeholder="아이디를 입력하세요"
-          value={userId}
-          onChange={(e) => setUserId(e.target.value)}
+          placeholder="이메일을 입력하세요"
+          value={userEmail}
+          onChange={(e) => setUserEmail(e.target.value)}
         />
         <Input
           type="text"
@@ -44,12 +44,10 @@ export default function Login() {
         />
       </AuthsInput>
       <AuthsBtn>
-        <Button onClick={handleLogInClick} text="로그인"></Button>
-        <Button onClick={handleSignUpClick} text="회원가입"></Button>
+        <Button type="submit" onClick={handleLogInClick} text="로그인"></Button>
+        <Button type="submit" onClick={handleSignUpClick} text="회원가입"></Button>
       </AuthsBtn>
       <SearchIdPw>
-        <div onClick={handleSearchIdClick}>아이디 찾기</div>
-        <div>|</div>
         <div onClick={handleSearchPWClick}>비밀번호 찾기</div>
       </SearchIdPw>
     </Wrapper>
