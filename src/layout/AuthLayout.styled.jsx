@@ -17,9 +17,16 @@ export const StLayout = styled.div`
   flex-direction: column;
   align-items: center;
 
+  .signupForm {
+    margin-top: 27%;
+  }
+
   img {
     width: 200px;
     height: auto;
     margin: 0 auto;
+    cursor: pointer;
+    position: absolute;
+    top: 20%;
   }
 `;
