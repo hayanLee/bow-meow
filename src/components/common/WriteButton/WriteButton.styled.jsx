@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { BiSolidPencil } from 'react-icons/bi';
 
-export const StUpIcon = styled(BiSolidPencil)`
+export const StWriteIcon = styled(BiSolidPencil)`
   width: 40px;
   height: 40px;
   font-size: 1rem;
