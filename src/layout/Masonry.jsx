@@ -1,8 +1,9 @@
-import * as React from 'react';
 import Box from '@mui/material/Box';
 import Masonry from '@mui/lab/Masonry';
+import { useLoginModal } from '../components/LoginModal/LoginModalHook';
 
 export default function ImageMasonry() {
+  const { open } = useLoginModal();
   return (
     <Box sx={{ width: '100%', height: '100%', padding: '40px 20px', marginLeft: '13px' }}>
       <Masonry columns={3} spacing={3}>
@@ -20,6 +21,7 @@ export default function ImageMasonry() {
                 width: '100%',
                 cursor: 'pointer'
               }}
+              onClick={open}
             />
           </div>
         ))}
