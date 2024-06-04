@@ -1,8 +1,10 @@
 import { v4 as uuidv4 } from 'uuid';
 
+//Version 2.0 : 피그마 => 객체 구조 섹션에서 수정한 내용 반영
+
 function loadMockData() {
   const userJohn = createUser(
-    'john',
+    'John',
     'https://uxwing.com/wp-content/themes/uxwing/download/peoples-avatars/employee-icon.png'
   );
 
@@ -18,8 +20,8 @@ function loadMockData() {
   ];
 
   const mockPostList = [
-    createPost('john'),
-    createPost('john'),
+    createPost(userJohn.userId),
+    createPost(userJohn.userId),
     createPost(),
     createPost(),
     createPost(),
@@ -32,18 +34,19 @@ function loadMockData() {
   return { mockUserList, mockPostList, mockLoginedUser };
 }
 
-function createPost(nickname) {
+function createPost(userId) {
   const post = {
-    id: uuidv4(),
+    postId: uuidv4(),
+    userId: userId ?? uuidv4(),
+    postCommentsId: uuidv4(),
+
     date: '2020-02-02',
-    nickname: nickname ?? '닉네임' + uuidv4(),
 
     title: '제목: ' + uuidv4(),
     images: ['dog.jpg', 'cat.jpg', 'cat2.jpg'],
     content: '내용: ' + uuidv4(),
 
-    likeCount: 10,
-    visitedCount: 20
+    likeCount: 10
   };
 
   return post;
@@ -51,10 +54,10 @@ function createPost(nickname) {
 
 function createUser(nickname, imgURL) {
   const user = {
-    id: uuidv4(),
+    userId: uuidv4(),
     nickname: nickname ?? uuidv4(),
-    email: uuidv4(),
 
+    email: uuidv4(),
     pwd: uuidv4(),
     profileImg: imgURL ?? uuidv4(),
     introduce: '자기소개: ' + uuidv4()

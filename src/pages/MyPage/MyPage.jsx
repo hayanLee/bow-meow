@@ -1,17 +1,19 @@
-//순수 스타일용 컴포넌트
-import Main from '../../components/MyPage/MyPage.styles/Main.styled';
-import UpperSection from '../../components/MyPage/MyPage.styles/UpperSection.styled';
-import LowerSection from '../../components/MyPage/MyPage.styles/LowerSection.styled';
-import StLink from '../../components/MyPage/MyPage.styles/Link.styled';
-
 //스타일된 기능용 컴포넌트
-import ProfileImg from '../../components/MyPage/ProfileImg/ProfileImg';
+import ProfileImg from '../../components/MyPage/ProfileImg';
 import PostList from '../../components/MyPage/PostList';
-import Summary from './../../components/MyPage/Summary/Summary';
+import Summary from './../../components/MyPage/Summary';
+
+//스타일용 컴포넌트
+import {
+  StMain,
+  StUpperSection,
+  StLowerSection,
+  StSideGroup
+} from '../../components/MyPage/MyPage.styles/MyPage.styled';
 
 //공용 컴포넌트
-import Button from './../../components/common/Button/Button';
-
+import Button from './../../components/common/Button';
+import CustomLink from './../../components/common/CustomLink';
 
 //리액트 라이브러리
 import { useState } from 'react';
@@ -26,19 +28,28 @@ function MyPage() {
   const [postList, setPostList] = useState(mockPostList);
   const [loginedUser, setLoginedUser] = useState(mockLoginedUser);
 
+  //Todo: 좋아요 받은 개수
+  //작성 포스트 개수
+  //댓글 달린 개수 계산하기
+  const totalLiked = 123;
+  const totalPosts = 321;
+  const totalComments = 220;
+
   return (
-    <Main>
-      <UpperSection>
+    <StMain>
+      <StUpperSection>
         <ProfileImg profileImg={loginedUser.profileImg} />
-        <Summary />
-        <Button>(임시)글쓰기</Button>
-        <StLink to={'/myPage/profileEdit'}>회원정보 수정</StLink>
-        <Button>(임시)로그아웃</Button>
-      </UpperSection>
-      <LowerSection>
+        <Summary totalLiked={totalLiked} totalPosts={totalPosts} totalComments={totalComments} />
+        <StSideGroup>
+          <CustomLink to={'/임시링크'}>글쓰기</CustomLink>
+          <CustomLink to={'/myPage/profileEdit'}>회원정보 수정</CustomLink>
+          <Button text="로그아웃" />
+        </StSideGroup>
+      </StUpperSection>
+      <StLowerSection>
         <PostList />
-      </LowerSection>
-    </Main>
+      </StLowerSection>
+    </StMain>
   );
 }
 

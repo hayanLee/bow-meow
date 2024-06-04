@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import PostUpload from '../../components/PostEdit/PostUpload';
+import PostUpload from '../../components/PostAdd/PostUpload';
 import { v4 as uuidv4 } from 'uuid';
 import {
   StyledContainer,
@@ -15,11 +15,9 @@ import {
   StyledBtnContainer,
   StyledContentContainer,
   StyledLeftContainer
-} from '../../components/PostEdit/PostEditPage.styled';
+} from '../../components/PostAdd/PostAddPage.styled';
 
-
-/// 게시물 수정 페이지로 로직 바꿀 예정
-function PostEditPage({ onPostSubmit }) {
+function PostAddPage({ onPostSubmit }) {
   // 이미지, 제목, 내용 상태를 useState 훅을 통해 관리
   const [title, setTitle] = useState('');
   const [images, setImages] = useState([]);
@@ -118,4 +116,4 @@ function PostEditPage({ onPostSubmit }) {
   );
 }
 
-export default PostEditPage;
+export default PostAddPage;
