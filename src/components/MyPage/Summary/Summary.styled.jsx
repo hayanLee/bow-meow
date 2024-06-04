@@ -9,8 +9,6 @@ const StSummary = styled.div`
   gap: ${gap}px;
   padding: ${padding}px;
 
-  background-color: var(--box-color);
-
   & > Label {
     width: 33%;
   }
