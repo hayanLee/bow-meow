@@ -11,9 +11,7 @@ const WriteButton = () => {
 
   return (
     <>
-      <button onClick={goPostAdd}>
-        <StWriteIcon />
-      </button>
+      <StWriteIcon onClick={goPostAdd} />
     </>
   );
 };
