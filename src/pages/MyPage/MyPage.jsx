@@ -21,36 +21,21 @@ import { useMemo, useState } from 'react';
 //가짜 데이터
 import { loadMockData } from '../../mockdatas/devutil';
 
-const { mockUserList, mockPostList, mockLoginedUser } = loadMockData();
+const { mockLoginedUser, mockPostList } = loadMockData();
 
 function MyPage() {
-  const [userList, setUserList] = useState(mockUserList);
-  const [postList, setPostList] = useState(mockPostList);
-
   const [loginedUser, setLoginedUser] = useState(mockLoginedUser);
+  const [postList, setPostList] = useState(mockPostList);
 
   const userWrittenPostList = useMemo(() => postList.filter((post) => post.userId === loginedUser.userId), [postList]);
 
-  //issue: post에 comment 개수 직접 저장하기
-  const { totalLiked, totalPosts, totalComments } = useMemo(
-    () =>
-      userWrittenPostList.reduce(
-        ({ totalLiked, totalPosts, totalComments }, post) => {
-          totalLiked += post.likeCount;
-          totalPosts += 1;
-          totalComments += 1000; //<<<<<<<<<<
-          return { totalLiked, totalPosts, totalComments };
-        },
-        { totalLiked: 0, totalPosts: 0, totalComments: 0 }
-      ),
-    [postList]
-  );
+  const postImages = useMemo(() => userWrittenPostList.map((post) => post.images[0]), [userWrittenPostList]);
 
   return (
     <StMain>
       <StUpperSection>
         <ProfileImg profileImg={loginedUser.profileImg} />
-        <Summary totalLiked={totalLiked} totalPosts={totalPosts} totalComments={totalComments} />
+        <Summary userWrittenPostList={userWrittenPostList} />
         <StSideGroup>
           <CustomLink to={'/임시링크'}>글쓰기</CustomLink>
           <CustomLink to={'/myPage/profileEdit'}>회원정보 수정</CustomLink>
@@ -58,7 +43,7 @@ function MyPage() {
         </StSideGroup>
       </StUpperSection>
       <StLowerSection>
-        <PostList />
+        <PostList postImages={postImages} />
       </StLowerSection>
     </StMain>
   );
