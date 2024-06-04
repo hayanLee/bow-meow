@@ -28,9 +28,10 @@ export const AuthsBtn = styled.div`
   button {
     border-radius: 5px;
     width: 100px;
-    height: 40px;
+    height: 35px;
     margin: 10px;
     font-size: 1rem;
+    color: #ffffff;
     cursor: pointer;
   }
 `;

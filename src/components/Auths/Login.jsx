@@ -2,9 +2,18 @@ import Input from '../common/Input/Input';
 import Button from '../common/Button/Button';
 import { AuthsBtn, AuthsInput, SearchIdPw, Wrapper } from './Login.styled';
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
 export default function Login() {
   const navigate = useNavigate();
+  const [userId, setUserId] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleLogInClick = () => {
+    if (!userId || !password) {
+      alert('아이디와 비밀번호를 모두 입력하세요.');
+    }
+  };
 
   const handleSignUpClick = () => {
     navigate('/auth/signUp');
@@ -21,11 +30,21 @@ export default function Login() {
   return (
     <Wrapper>
       <AuthsInput>
-        <Input type="text" placeholder="아이디를 입력하세요" />
-        <Input type="text" placeholder="비밀번호를 입력하세요" />
+        <Input
+          type="text"
+          placeholder="아이디를 입력하세요"
+          value={userId}
+          onChange={(e) => setUserId(e.target.value)}
+        />
+        <Input
+          type="text"
+          placeholder="비밀번호를 입력하세요"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
       </AuthsInput>
       <AuthsBtn>
-        <Button text="로그인"></Button>
+        <Button onClick={handleLogInClick} text="로그인"></Button>
         <Button onClick={handleSignUpClick} text="회원가입"></Button>
       </AuthsBtn>
       <SearchIdPw>
