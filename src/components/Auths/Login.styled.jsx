@@ -16,7 +16,7 @@ export const AuthsInput = styled.div`
   flex-direction: column;
   input {
     border-radius: 5px;
-    width: 250px;
+    width: 270px;
     height: 40px;
     margin: 20px;
     border: 0;
@@ -28,7 +28,7 @@ export const AuthsBtn = styled.div`
   justify-content: center;
   button {
     border-radius: 5px;
-    width: 100px;
+    width: 120px;
     height: 35px;
     margin: 15px;
     margin-top: 25px;
