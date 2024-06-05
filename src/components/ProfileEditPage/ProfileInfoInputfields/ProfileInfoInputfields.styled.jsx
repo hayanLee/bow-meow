@@ -15,7 +15,7 @@ export const StInputFields = styled.div`
   background-color: var(--box-color);
 `;
 
-export const StInputField = styled.div`
+export const StLabelInputPair = styled.div`
   width: 100%;
 
   display: flex;
