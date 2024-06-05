@@ -56,9 +56,11 @@ const { data } = supabase.auth.onAuthStateChange((event, session) => {
     // console.log('첫번째 세션');
     // handle initial session
   } else if (event === 'SIGNED_IN') {
+    // alert('로그인에 성공했습니다!');
     console.log('로그인 이벤트');
     // handle sign in event
   } else if (event === 'SIGNED_OUT') {
+    // alert('로그아웃에 성공했습니다!');
     console.log('로그아웃 이벤트');
     // handle sign out event
   } else if (event === 'PASSWORD_RECOVERY') {

@@ -2,6 +2,7 @@ import { useRef, useState } from 'react';
 import Button from '../common/Button/Button';
 import Input from '../common/Input/Input';
 import { AuthsBtn, AuthsInput, Wrapper } from './Login.styled';
+import supabase from '../../supabase/supabaseClient';
 
 export default function SignUp() {
   const emailRef = useRef(null);
@@ -10,13 +11,31 @@ export default function SignUp() {
   const checkpasswordRef = useRef(null);
 
   const [form, setForm] = useState({
+    email: '',
     nickname: '',
-    signEmail: '',
-    signPw: '',
+    password: '',
     checkPw: ''
   });
 
-  const handleSignUpClick = () => {
+  const handleSignUpClick = async () => {
+    const { data, error } = await supabase.auth.signUp({
+      email: emailRef.current.value,
+      password: passwordRef.current.value,
+      nickname: nicknameRef.current.value,
+      checkPw: checkpasswordRef.current.value
+    });
+    console.log(data);
+    if (error) {
+      throw error;
+    }
+    const userData = await supabase.from('users').insert({
+      uuid: data.user.id,
+      user_email: data.user.email
+
+      // user_profile:
+    });
+
+    console.log(userData);
     if (
       !nicknameRef.current.value ||
       !emailRef.current.value ||
@@ -37,6 +56,7 @@ export default function SignUp() {
     });
   };
   console.log(form);
+
   return (
     <Wrapper>
       멍멍냥냥 회원가입

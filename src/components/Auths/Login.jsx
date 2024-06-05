@@ -1,20 +1,35 @@
-import { useState } from 'react';
+import { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '../common/Button/Button';
 import Input from '../common/Input/Input';
 import { AuthsBtn, AuthsInput, SearchIdPw, Wrapper } from './Login.styled';
+import supabase from '../../supabase/supabaseClient';
 
 export default function Login() {
   const navigate = useNavigate();
-  const [userEmail, setUserEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const idRef = useRef();
+  const passwordRef = useRef();
 
-  const handleLogInClick = () => {
-    if (!userEmail || !password) {
+  const handleLogInClick = async () => {
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email: idRef.current.value,
+      password: passwordRef.current.value
+    });
+    if (error) {
+      console.error('로그인 오류:', error.message);
+      return;
+    }
+
+    localStorage.setItem('accessToken', data.session.access_token);
+    console.log('accessToken:', data.session.access_token);
+
+    if (!idRef.current.value || !passwordRef.current.value) {
       alert('아이디와 비밀번호를 모두 입력하세요.');
+      return;
     }
   };
 
+  console.log(localStorage.getItem('accessToken'));
   const handleSignUpClick = () => {
     navigate('/auth/signUp');
   };
@@ -31,18 +46,8 @@ export default function Login() {
     <Wrapper>
       <div>
         <AuthsInput>
-          <Input
-            type="text"
-            placeholder="이메일을 입력하세요"
-            value={userEmail}
-            onChange={(e) => setUserEmail(e.target.value)}
-          />
-          <Input
-            type="text"
-            placeholder="비밀번호를 입력하세요"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
+          <Input type="text" placeholder="이메일을 입력하세요" inputref={idRef} />
+          <Input type="text" placeholder="비밀번호를 입력하세요" inputref={passwordRef} />
         </AuthsInput>
         <AuthsBtn>
           <Button type="submit" onClick={handleLogInClick} text="로그인"></Button>
