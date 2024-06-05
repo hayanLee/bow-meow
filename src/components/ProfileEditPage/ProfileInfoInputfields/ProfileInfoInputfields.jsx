@@ -1,12 +1,15 @@
 import { forwardRef, useImperativeHandle } from 'react';
+
 import InputField from '../InputField/InputField';
 import { StLabelInputPair, StInputFields } from './ProfileInfoInputfields.styled';
 
 import useInput from '../../../Hooks/useInput';
 import { useDispatch } from 'react-redux';
+import { updateUserProfile } from '../../../redux/slices/userReducer';
 
 const ProfileInfoInputFields = forwardRef(({ loginedUser }, ref) => {
   const { nickname: defaultNickname, introduce: defaultIntroduce } = loginedUser;
+
   const [nickname, changeNickname] = useInput(defaultNickname);
   const [introduce, changeIntroduce] = useInput(defaultIntroduce);
 
@@ -17,7 +20,7 @@ const ProfileInfoInputFields = forwardRef(({ loginedUser }, ref) => {
     () => ({
       handleEditButtonClick
     }),
-    []
+    [nickname, introduce]
   );
 
   function handleEditButtonClick() {
@@ -28,11 +31,12 @@ const ProfileInfoInputFields = forwardRef(({ loginedUser }, ref) => {
     const editedUser = { ...loginedUser, nickname, introduce };
 
     //Step 3: 리듀서에게 보내기
-    //Todo
-    //dispatch(updateUser);
+    dispatch(updateUserProfile(editedUser));
 
     //확인메시지
-    console.log('handleEditButtonClick is called');
+    console.log('fn: handleEditButtonClick');
+    console.log('editedUser ↓');
+    console.dir(editedUser);
   }
 
   return (
