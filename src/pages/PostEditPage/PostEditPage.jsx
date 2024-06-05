@@ -2,9 +2,19 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { updatePost } from '../../redux/slices/postReducer.slice';
+import {
+  StyledContainer,
+  StyledPostBox,
+  StyledPostInput,
+  StyledPostContent,
+  StyledPostBtn,
+  StyledRightContainer,
+  StyledBtnContainer,
+  StyledContentContainer,
+  StyledLeftContainer
+} from '../../components/PostAdd/PostAddPage.styled';
+import PostImg from '../../components/PostAdd/PostImgUpload/PostImg';
 import { clearImg } from '../../redux/slices/postImgReducer.slice';
-import ImgUpdate from '../../components/PostEdit/ImgUpdate';
-import { StyledContainer, StyledPostBox, StyledPostInput, StyledPostContent, StyledPostBtn, StyledRightContainer, StyledBtnContainer, StyledContentContainer, StyledLeftContainer } from '../../components/PostAdd/PostAddPage.styled';
 
 function PostEditPage() {
   const { postId } = useParams();
@@ -28,8 +38,8 @@ function PostEditPage() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (!title || !content || !images) {
-      alert('제목과 내용을 입력해주세요!');
+    if (!title || (existingImages.length === 0 && images.length === 0) || !content) {
+      alert('칸을 모두 채워주세요!!');
       return;
     }
 
@@ -37,21 +47,18 @@ function PostEditPage() {
       ...post,
       title,
       content,
-      images: images.map((img) => ({
-        url: img.url || URL.createObjectURL(img.file)
-      }))
+      images: [...existingImages, ...images.map((image) => image.file)]
     };
 
-    console.log('Updating post:', updatedPost);
+    console.log('Updating post:', updatedPost); // 콘솔 로그 추가
     dispatch(updatePost({ postId, updatedData: updatedPost }));
 
-    dispatch(clearImg());
-
     setTitle('');
+    dispatch(clearImg());
     setContent('');
 
     alert('성공적으로 수정되었습니다!');
-    navigate(`/posts/${postId}`);
+    navigate('/myPage'); // 수정이 완료된 후에 수정완료된 게시물로 이동
   };
 
   return (
@@ -59,11 +66,20 @@ function PostEditPage() {
       <StyledPostBox>
         <StyledContentContainer>
           <StyledLeftContainer>
-            <ImgUpdate existingImages={existingImages} postId={postId} />
+            <PostImg existingImages={existingImages} />
           </StyledLeftContainer>
           <StyledRightContainer>
-            <StyledPostInput type="text" placeholder="제목을 입력해주세요" value={title} onChange={(e) => setTitle(e.target.value)} />
-            <StyledPostContent placeholder="내용을 입력해주세요" value={content} onChange={(e) => setContent(e.target.value)} />
+            <StyledPostInput
+              type="text"
+              placeholder="제목을 입력해주세요"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+            />
+            <StyledPostContent
+              placeholder="내용을 입력해주세요"
+              value={content}
+              onChange={(e) => setContent(e.target.value)}
+            />
           </StyledRightContainer>
         </StyledContentContainer>
         <StyledBtnContainer>

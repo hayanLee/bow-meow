@@ -22,11 +22,15 @@ export const StyledEditBtn = styled.button`
   padding: 0.5rem 1rem ;
   margin-right: 1rem;
   cursor: pointer;
+  background-color: #DACFC6; /* 수정 기능하다가 어떻게 하는건지 까먹었어요ㅜㅜㅜ */
+  border: none;
 `;
 
 export const StyledDeleteBtn = styled.button`
   padding: 0.5rem 1rem;
   cursor: pointer;
+  background-color: #A49384;
+  border: none;
 `;
 
 //이미지, 회원정보

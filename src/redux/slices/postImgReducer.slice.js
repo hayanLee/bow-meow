@@ -1,8 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { v4 as uuidv4 } from 'uuid';
 
+// /addPost에서 > PostImg.jsx 사용
 const initialState = {
-  images: []
+  images: [],
+  files: []
 };
 
 const PostImgSlice = createSlice({
@@ -12,35 +14,25 @@ const PostImgSlice = createSlice({
     addImg: (state, action) => {
       const newImages = action.payload.map((file) => ({
         file,
-        id: uuidv4(),
-        type: 'new'
+        id: uuidv4()
       }));
-      state.images.push(...newImages);
-    },
-    addExistingImg: (state, action) => {
-      const newImages = action.payload.map((url) => ({
-        url,
-        id: uuidv4(),
-        type: 'existing'
-      }));
+      state.files.push(...action.payload);
       state.images.push(...newImages);
     },
     removeImg: (state, action) => {
-      state.images = state.images.filter((image) => image.id !== action.payload);
+      const removedId = action.payload;
+      const index = state.images.findIndex((image) => image.id === removedId);
+      if (index !== -1) {
+        state.files.splice(index, 1); // files
+        state.images.splice(index, 1); // images
+      }
     },
     clearImg: (state) => {
       state.images = [];
-    },
-    updatedImg: (state, action) => {
-      const { id, newFile } = action.payload;
-      const imageIndex = state.images.findIndex((image) => image.id === id);
-      if (imageIndex !== -1) {
-        state.images[imageIndex].file = newFile;
-        state.images[imageIndex].type = 'new';
-      }
+      state.files = [];
     }
   }
 });
 
 export const postImgReducer = PostImgSlice.reducer;
-export const { addImg, addExistingImg, removeImg, clearImg, updatedImg } = PostImgSlice.actions;
+export const { addImg, removeImg, clearImg } = PostImgSlice.actions;
