@@ -1,17 +1,16 @@
 import React, { useState } from 'react';
-import PostFile from './PostFile';
-import { v4 as uuidv4 } from 'uuid';
+import { useDispatch, useSelector } from 'react-redux';
+import { addImg, removeImg } from '../../../redux/slices/postImgReducer.slice';
 import {
-  ImagePreviewContainer,
+  CenteredText,
+  DeleteButton,
   ImageContainer,
   ImagePreview,
-  DeleteButton,
-  StyledUploadArea,
-  CenteredText
+  ImagePreviewContainer,
+  StyledUploadArea
 } from '../PostAddPage.styled';
 import ModalImg from './ModalImg';
-import { useDispatch, useSelector } from 'react-redux';
-import { addImg, removeImg } from '../../../redux/slices/postImgReducer';
+import PostFile from './PostFile';
 
 const PostImg = () => {
   const [largedImage, setLargedImage] = useState(null);
