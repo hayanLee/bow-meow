@@ -23,7 +23,7 @@ function PostAddPage() {
   const navigate = useNavigate();
 
   const [title, setTitle] = useState('');
-  const images = useSelector((state) => state.images.images);
+  const images = useSelector((state) => state.images.images)
   const [content, setContent] = useState('');
 
   const handleSubmit = (event) => {
@@ -36,7 +36,7 @@ function PostAddPage() {
     const newPost = {
       title,
       content,
-      images: images.map((image) => URL.createObjectURL(image.file))
+      images: images.map(images => URL.createObjectURL(images.file))
     };
 
     console.log('Submitting post:', newPost); // 콘솔 로그 추가
@@ -54,7 +54,7 @@ function PostAddPage() {
       <StyledPostBox>
         <StyledContentContainer>
           <StyledLeftContainer>
-            <PostImg />
+            <PostImg/>
           </StyledLeftContainer>
           <StyledRightContainer>
             <StyledPostInput

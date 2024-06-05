@@ -9,11 +9,13 @@ import {
   StyledDetailContainer,
   StyledDetailDate,
   StyledDetailImg,
+  StyledDetailLeft,
   StyledDetailPageContent,
   StyledDetailRight,
   StyledDetailTitle,
   StyledDetailUser,
-  StyledEditBtn
+  StyledEditBtn,
+  StyledRightUp
 } from '../../components/PostDetail/PostDetail.styled';
 
 function PostDetailPage() {
@@ -22,7 +24,7 @@ function PostDetailPage() {
   const post = posts.find((s) => s.postId.toString() === postId);
 
   if (!post) {
-    return ErrorPage;
+    return <ErrorPage />;
   }
 
   return (
