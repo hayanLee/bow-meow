@@ -10,7 +10,7 @@ export const StWriteIcon = styled(BiSolidPencil)`
   bottom: 50px;
   right: 74px;
   border-radius: 50px;
-  color: #fff;
+  color: var(--bg-color);
   background-color: var(--write-color);
   padding: 8px;
   transition: 0.3s;

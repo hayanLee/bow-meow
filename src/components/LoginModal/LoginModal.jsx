@@ -7,7 +7,7 @@ import {
 import logo from '../../assets/logo_img.png';
 import Button from '../common/Button/Button';
 import { useNavigate } from 'react-router-dom';
-import { useLoginModal } from '../../Hooks/loginModalHook';
+import { useLoginModal } from '../../hooks/loginModalHook';
 
 const LoginModal = () => {
   const navigate = useNavigate();
