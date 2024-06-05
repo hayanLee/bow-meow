@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
 import Masonry from '@mui/lab/Masonry';
 import styled, { keyframes } from 'styled-components';
-import { useLoginModal } from '../hooks/loginModalHook';
+import { useLoginModal } from '../hooks/useLoginModal';
 import fetchPosts from '../mockdatas/postFn';
 const ImageMasonry = () => {
   const { open } = useLoginModal();
