@@ -59,39 +59,35 @@ const ImageMasonry = () => {
       {!firstLoading ? (
         <Masonry columns={3} spacing={3}>
           {itemTest.map((item, index) => (
-            <>
-              <div key={index}>
-                <img
-                  srcSet={`${item.images[0]}?w=162&auto=format&dpr=2 2x`}
-                  src={`${item.images[0]}?w=162&auto=format`}
-                  alt={item.title}
-                  loading="lazy"
-                  style={{
-                    borderBottomLeftRadius: 4,
-                    borderBottomRightRadius: 4,
-                    display: 'block',
-                    width: '100%',
-                    cursor: 'pointer'
-                  }}
-                  onClick={open}
-                />
-              </div>
-            </>
+            <div key={index}>
+              <img
+                srcSet={`${item.img_url}?w=162&auto=format&dpr=2 2x`}
+                src={`${item.img_url}?w=162&auto=format`}
+                alt={`${item.id}번째 이미지`}
+                loading="lazy"
+                style={{
+                  borderBottomLeftRadius: 4,
+                  borderBottomRightRadius: 4,
+                  display: 'block',
+                  width: '100%',
+                  cursor: 'pointer'
+                }}
+                onClick={open}
+              />
+            </div>
           ))}
         </Masonry>
       ) : (
         <StMansonry>
           {itemDatas.map((value, index) => {
             return (
-              <>
-                <div
-                  key={index}
-                  className="coverItems"
-                  style={{ width: '100%', gridColumn: `${columns[index % 3]}`, gridRow: `${rows[index]}` }}
-                >
-                  <div className="item" />
-                </div>
-              </>
+              <div
+                key={index}
+                className="coverItems"
+                style={{ width: '100%', gridColumn: `${columns[index % 3]}`, gridRow: `${rows[index]}` }}
+              >
+                <div className="item" />
+              </div>
             );
           })}
         </StMansonry>
