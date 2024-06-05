@@ -7,6 +7,7 @@ export const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   background-color: var(--box-color);
+  border-radius: 20px;
 `;
 
 export const AuthsInput = styled.div`
