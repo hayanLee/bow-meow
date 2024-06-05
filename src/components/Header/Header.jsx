@@ -2,6 +2,7 @@ import React from 'react';
 import logoImg from '../../assets/logo_img.png';
 import Input from '../common/Input';
 import {
+  ProfileMyPageBtn,
   StContainer,
   StHeader,
   StLeft,
@@ -12,7 +13,18 @@ import {
   StSearchWrapper,
   StTitle
 } from './Header.styled';
+import { useNavigate } from 'react-router-dom';
+
 function Header() {
+  const navigate = useNavigate();
+
+  const headerLoginBtn = () => {
+    navigate('/auth/login');
+  };
+
+  const headerProfileImgBtn = () => {
+    navigate('/myPage');
+  };
   return (
     <StHeader>
       <StContainer>
@@ -26,7 +38,8 @@ function Header() {
             <Input />
             <StSearchIcon />
           </StSearchWrapper>
-          <StLogin>로그인</StLogin>
+          <StLogin onClick={headerLoginBtn}>로그인</StLogin>
+          <ProfileMyPageBtn onClick={headerProfileImgBtn}>profile</ProfileMyPageBtn>
         </StRight>
       </StContainer>
     </StHeader>

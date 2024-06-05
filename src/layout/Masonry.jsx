@@ -33,11 +33,15 @@ const ImageMasonry = () => {
     '16/20'
   ];
 
-  // const imageHandler = () => {
-  //   if (email) {
-  //     console.log
-  //   }
-  // };
+  const [test, setTest] = useState(false);
+
+  const imageHandler = () => {
+    if (test) {
+      open();
+    } else {
+      Navigate('/detail');
+    }
+  };
 
   const fetchData = (setFunction) => {
     setFunction(true);
@@ -78,7 +82,7 @@ const ImageMasonry = () => {
                   width: '100%',
                   cursor: 'pointer'
                 }}
-                onClick={open}
+                onClick={imageHandler}
               />
             </div>
           ))}

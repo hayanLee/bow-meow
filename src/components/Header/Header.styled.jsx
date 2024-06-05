@@ -65,5 +65,14 @@ export const StRight = styled.div`
   display: flex;
   align-items: center;
   gap: 20px;
-  margin-left:auto;
+  margin-left: auto;
+`;
+
+export const ProfileMyPageBtn = styled.div`
+  width: 50px;
+  height: 50px;
+  font-size: 0;
+  border-radius: 50px;
+  border: 1px solid red;
+  cursor: pointer;
 `;
