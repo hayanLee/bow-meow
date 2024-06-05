@@ -18,14 +18,17 @@ function Summary({ userWrittenPostList }) {
     <StSummary>
       <StLabel>
         <span>❤️</span>
-        <span>{totalLiked}</span>
+        <span>좋아요</span>
+        <span> {totalLiked}</span>
       </StLabel>
       <StLabel>
         <span>🐶</span>
-        <span>{totalPosts}</span>
+        <span>작성 게시글</span>
+        <span> {totalPosts}</span>
       </StLabel>
       <StLabel>
         <span>😺</span>
+        <span>받은 댓글 </span>
         <span>{totalComments}</span>
       </StLabel>
     </StSummary>
