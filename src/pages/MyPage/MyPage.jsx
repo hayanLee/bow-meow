@@ -19,13 +19,20 @@ import CustomLink from './../../components/common/CustomLink';
 import { useMemo, useState } from 'react';
 
 //더미 데이터
-import { loadMockData } from '../../mockdatas/devutil';
+import { useSelector } from 'react-redux';
 
-const { mockLoginedUser, mockPostList } = loadMockData();
+const mockLoginedUser = {
+  userId: 101,
+  nickname: 'John',
+  email: 'helloworld@naver.com',
+  pwd: '123123123',
+  profileImg: 'https://uxwing.com/wp-content/themes/uxwing/download/peoples-avatars/employee-icon.png',
+  introduce: '자기소개: 잘 부탁드려요 '
+};
 
 function MyPage() {
   const [loginedUser, setLoginedUser] = useState(mockLoginedUser);
-  const [postList, setPostList] = useState(mockPostList);
+  const postList = useSelector((state) => state.posts.posts);
 
   const userWrittenPostList = useMemo(() => postList.filter((post) => post.userId === loginedUser.userId), [postList]);
 
