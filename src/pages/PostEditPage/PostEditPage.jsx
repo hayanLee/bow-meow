@@ -10,10 +10,10 @@ import {
   StyledPostBtn,
   StyledRightContainer,
   StyledBtnContainer,
+  StyledContainer,
   StyledContentContainer,
   StyledLeftContainer
 } from '../../components/PostAdd/PostAddPage.styled';
-import PostImg from '../../components/PostAdd/PostImgUpload/PostImg';
 import { clearImg } from '../../redux/slices/postImgReducer.slice';
 
 // 여기도 이미지 관련된 부분은 무시하셔도 됩니다ㅠㅠ!!
@@ -24,7 +24,6 @@ function PostEditPage() {
 
   const post = useSelector((state) => state.posts.posts.find((post) => post.postId === postId));
   const images = useSelector((state) => state.images.images);
-
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [existingImages, setExistingImages] = useState([]);

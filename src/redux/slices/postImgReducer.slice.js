@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { v4 as uuidv4 } from 'uuid';
 
-// /addPost에서 > PostImg.jsx 사용
+// addPost에서 > PostImg.jsx 사용  ?? 이건 제가 작성한거 아닌거같은데 일단 이 주석 냅둘께요
 const initialState = {
   images: [], // 이미지 파일 및 정보를 저장할 배열
   files: [] // 업로드된 파일을 저장할 배열
