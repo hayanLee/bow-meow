@@ -2,13 +2,13 @@ import styled from 'styled-components';
 import { BiSolidPencil } from 'react-icons/bi';
 
 export const StWriteIcon = styled(BiSolidPencil)`
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
   font-size: 1rem;
   cursor: pointer;
   position: fixed;
   bottom: 50px;
-  right: 74px;
+  right: 124px;
   border-radius: 50px;
   color: #fff;
   background-color: var(--write-color);

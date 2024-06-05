@@ -3,7 +3,6 @@ import styled from 'styled-components';
 
 export const StHeader = styled.header`
   display: flex;
-  /* justify-content: space-between; */
   align-items: center;
   margin: 20px auto 0 auto;
   width: 80%;
@@ -11,20 +10,23 @@ export const StHeader = styled.header`
 `;
 
 export const StContainer = styled(StHeader)`
-  justify-content: flex-end;
-  gap: 30px;
+  /* justify-content: flex-end; */
+  width: 100%;
 `;
+
+// export const StHeadLogo = styled.div`
+
+// `;
 
 export const StLogo = styled.img`
   /* height: inherit; */
-  margin-top: 20px;
   cursor: pointer;
 `;
 
 export const StTitle = styled.div`
+  white-space: nowrap;
   font-size: 2rem;
   width: auto;
-  background-color: red;
 `;
 
 export const StSearchWrapper = styled.div`
@@ -42,6 +44,7 @@ export const StSearchIcon = styled(FiSearch)`
 `;
 
 export const StLogin = styled.div`
+  white-space: nowrap;
   color: var(--write-color);
   font-size: 1.2rem;
   cursor: pointer;
@@ -50,4 +53,17 @@ export const StLogin = styled.div`
     color: var(--point-color);
     transition: 0.2s;
   }
+`;
+
+export const StLeft = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+`;
+
+export const StRight = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-left:auto;
 `;
