@@ -4,12 +4,6 @@ import { StUpIcon } from './UpButton.styled';
 function UpButton() {
   const [upButton, setUpButton] = useState(false);
 
-  const scrollToTop = () => {
-    window.scroll({
-      top: 0,
-      behavior: 'smooth'
-    });
-  };
   useEffect(() => {
     const handleShowButton = () => {
       if (window.scrollY > 300) {
@@ -24,6 +18,13 @@ function UpButton() {
       window.removeEventListener('scroll', handleShowButton);
     };
   }, []);
+
+  const scrollToTop = () => {
+    window.scroll({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
 
   return <div className="scroll__container">{upButton && <StUpIcon onClick={scrollToTop} />}</div>;
 }

@@ -3,7 +3,7 @@ import { forwardRef, useImperativeHandle } from 'react';
 import InputField from '../InputField/InputField';
 import { StLabelInputPair, StInputFields } from './ProfileInfoInputfields.styled';
 
-import useInput from '../../../Hooks/useInput';
+import useInput from '../../../hooks/useInput';
 import { useDispatch } from 'react-redux';
 import { updateUserProfile } from '../../../redux/slices/userReducer';
 

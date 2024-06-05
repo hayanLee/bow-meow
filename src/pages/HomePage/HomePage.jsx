@@ -4,6 +4,7 @@ import fetchPosts from '../../mockdatas/postFn';
 import WriteButton from '../../components/common/WriteButton/WriteButton';
 import ImageMasonry from '../../layout/Masonry';
 
+
 export default function HomePage() {
   const [posts, setPosts] = useState([]);
   useEffect(() => {

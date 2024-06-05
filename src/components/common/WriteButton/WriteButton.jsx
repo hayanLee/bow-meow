@@ -6,14 +6,11 @@ const WriteButton = () => {
   const navigate = useNavigate();
 
   const goPostAdd = () => {
-    navigate('/postAdd');
+    navigate('/PostAdd');
   };
-
   return (
     <>
-      <button onClick={goPostAdd}>
-        <StWriteIcon />
-      </button>
+      <StWriteIcon onClick={goPostAdd} />
     </>
   );
 };
