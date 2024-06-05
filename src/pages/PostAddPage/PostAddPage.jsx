@@ -1,21 +1,29 @@
 import React, { useState } from 'react';
-import { v4 as uuidv4 } from 'uuid';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import {
-  StyledContainer,
-  StyledPostBox,
-  StyledPostInput,
-  StyledPostContent,
-  StyledPostBtn,
-  StyledRightContainer,
   StyledBtnContainer,
+  StyledContainer,
   StyledContentContainer,
-  StyledLeftContainer
+  StyledLeftContainer,
+  StyledPostBox,
+  StyledPostBtn,
+  StyledPostContent,
+  StyledPostInput,
+  StyledRightContainer
 } from '../../components/PostAdd/PostAddPage.styled';
 import PostImg from '../../components/PostAdd/PostImgUpload/PostImg';
-import { useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { clearImg } from '../../redux/slices/postImgReducer.slice';
 import { createPost } from '../../redux/slices/postReducer.slice';
-import { clearImg } from '../../redux/slices/postImgReducer';
+
+const mockLoginedUser = {
+  userId: 101,
+  nickname: 'John',
+  email: 'helloworld@naver.com',
+  pwd: '123123123',
+  profileImg: 'https://uxwing.com/wp-content/themes/uxwing/download/peoples-avatars/employee-icon.png',
+  introduce: '자기소개: 잘 부탁드려요 '
+};
 
 function PostAddPage() {
   // 이미지, 제목, 내용 상태를 useState 훅을 통해 관리
@@ -23,8 +31,8 @@ function PostAddPage() {
   const navigate = useNavigate();
 
   const [title, setTitle] = useState('');
-  const images = useSelector((state) => state.images.images)
   const [content, setContent] = useState('');
+  const images = useSelector((state) => state.images.images);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -34,9 +42,10 @@ function PostAddPage() {
     }
 
     const newPost = {
+      userId: mockLoginedUser.userId,
       title,
       content,
-      images: images.map(images => URL.createObjectURL(images.file))
+      images: images.map((images) => URL.createObjectURL(images.file))
     };
 
     console.log('Submitting post:', newPost); // 콘솔 로그 추가
@@ -54,7 +63,7 @@ function PostAddPage() {
       <StyledPostBox>
         <StyledContentContainer>
           <StyledLeftContainer>
-            <PostImg/>
+            <PostImg />
           </StyledLeftContainer>
           <StyledRightContainer>
             <StyledPostInput

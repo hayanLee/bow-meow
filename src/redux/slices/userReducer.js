@@ -10,7 +10,15 @@ const initialState = {
       email: 'helloworld@naver.com',
       pwd: '123123123',
       profileImg: 'https://uxwing.com/wp-content/themes/uxwing/download/peoples-avatars/employee-icon.png',
-      introduce: '자기소개: 잘 부탁드려요 '
+      introduce: '잘 부탁드려요'
+    },
+    {
+      userId: 102,
+      nickname: 'Mary',
+      email: 'marryplace@naver.com',
+      pwd: 'abcabcabc',
+      profileImg: 'https://uxwing.com/wp-content/themes/uxwing/download/peoples-avatars/employee-icon.png',
+      introduce: '반가워요'
     }
   ]
 };
@@ -21,6 +29,12 @@ const userSlice = createSlice({
   reducers: {
     updateUserProfile: (state, action) => {
       const newUserProfile = action.payload;
+
+      const loginedUserIdx = state.users.findIndex((user) => user.userId === newUserProfile.userId);
+
+      if (loginedUserIdx !== -1) {
+        state.users[loginedUserIdx] = newUserProfile;
+      }
     }
   }
 });

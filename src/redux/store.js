@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { postReducer } from './slices/postReducer.slice';
-import { postImgReducer } from './slices/postImgReducer';
+import { postImgReducer } from './slices/postImgReducer.slice';
 import { userReducer } from './slices/userReducer';
 
 // 만약 다른 reducer를 추가한다면
