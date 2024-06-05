@@ -1,4 +1,4 @@
-//스타일된 기능용 컴포넌트
+//기능용 컴포넌트
 import ProfileImg from '../../components/MyPage/ProfileImg';
 import PostList from '../../components/MyPage/PostList';
 import Summary from './../../components/MyPage/Summary';
@@ -17,10 +17,9 @@ import CustomLink from './../../components/common/CustomLink';
 
 //리액트 라이브러리
 import { useMemo, useState } from 'react';
-
-//더미 데이터
 import { useSelector } from 'react-redux';
 
+//더미 데이터
 const mockLoginedUser = {
   userId: 101,
   nickname: 'John',
@@ -42,7 +41,7 @@ function MyPage() {
         <ProfileImg profileImg={loginedUser.profileImg} />
         <Summary userWrittenPostList={userWrittenPostList} />
         <StSideGroup>
-          <CustomLink to={'/임시링크'}>글쓰기</CustomLink>
+          <CustomLink to={'/postAdd'}>글쓰기</CustomLink>
           <CustomLink to={'/myPage/profileEdit'}>회원정보 수정</CustomLink>
           <Button text="로그아웃" />
         </StSideGroup>
