@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
 import * as React from 'react';
 import { useEffect, useState } from 'react';
@@ -105,7 +106,7 @@ const pulseAnimation = keyframes`
           background: rgba(237,237,237,0);
         }
         100% {
-          background: #cecece;
+          background: #CECECE;
         }
 `;
 

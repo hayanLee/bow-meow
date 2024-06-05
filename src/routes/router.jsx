@@ -12,7 +12,6 @@ import HomePage from '../pages/HomePage';
 import MyPage from '../pages/MyPage';
 import PostAddPage from '../pages/PostAddPage/PostAddPage';
 import PostDetailPage from '../pages/PostDetailPage';
-import PostList from '../pages/PostDetailPage/PostList';
 import PostEditPage from '../pages/PostEditPage/PostEditPage';
 import ProfileEditPage from '../pages/ProfileEditPage';
 import SupabaseTestPage from '../pages/SupabaseTestPage';
@@ -35,7 +34,6 @@ const router = createBrowserRouter([
       { path: '/myPage', element: <MyPage /> },
       { path: '/myPage/profileEdit', element: <ProfileEditPage /> },
       { path: '/posts', element: <PostDetailPage /> },
-      { path: '/posts/:postId', element: <PostList /> },
       { path: '/postAdd', element: <PostAddPage /> },
       { path: '/posts/:postId/postEdit', element: <PostEditPage /> }
     ]
