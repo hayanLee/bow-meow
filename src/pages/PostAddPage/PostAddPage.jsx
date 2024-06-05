@@ -15,7 +15,7 @@ import PostImg from '../../components/PostAdd/PostImgUpload/PostImg';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { createPost } from '../../redux/slices/postReducer.slice';
-import { clearImg } from '../../redux/slices/postImgReducer';
+import { clearImg } from '../../redux/slices/postImgReducer.slice';
 
 const mockLoginedUser = {
   userId: 101,
@@ -32,7 +32,7 @@ function PostAddPage() {
   const navigate = useNavigate();
 
   const [title, setTitle] = useState('');
-  const images = useSelector((state) => state.images.images)
+  const images = useSelector((state) => state.images.images);
   const [content, setContent] = useState('');
 
   const handleSubmit = (event) => {
@@ -46,12 +46,12 @@ function PostAddPage() {
       userId: mockLoginedUser.userId,
       title,
       content,
-      images: images.map(images => URL.createObjectURL(images.file))
+      images: images.map((images) => URL.createObjectURL(images.file)),
+      files: images
     };
 
     console.log('Submitting post:', newPost); // 콘솔 로그 추가
     dispatch(createPost(newPost));
-
     setTitle('');
     dispatch(clearImg());
     setContent('');
@@ -64,7 +64,7 @@ function PostAddPage() {
       <StyledPostBox>
         <StyledContentContainer>
           <StyledLeftContainer>
-            <PostImg/>
+            <PostImg />
           </StyledLeftContainer>
           <StyledRightContainer>
             <StyledPostInput

@@ -26,3 +26,5 @@ const PostImgSlice = createSlice({
 });
 export const postImgReducer = PostImgSlice.reducer;
 export const { addImg, removeImg, clearImg } = PostImgSlice.actions;
+
+// postimgslice
