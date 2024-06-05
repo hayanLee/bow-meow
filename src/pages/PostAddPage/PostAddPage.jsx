@@ -17,6 +17,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import { createPost } from '../../redux/slices/postReducer.slice';
 import { clearImg } from '../../redux/slices/postImgReducer';
 
+const mockLoginedUser = {
+  userId: 101,
+  nickname: 'John',
+  email: 'helloworld@naver.com',
+  pwd: '123123123',
+  profileImg: 'https://uxwing.com/wp-content/themes/uxwing/download/peoples-avatars/employee-icon.png',
+  introduce: '자기소개: 잘 부탁드려요 '
+};
+
 function PostAddPage() {
   // 이미지, 제목, 내용 상태를 useState 훅을 통해 관리
   const dispatch = useDispatch();
@@ -34,6 +43,7 @@ function PostAddPage() {
     }
 
     const newPost = {
+      userId: mockLoginedUser.userId,
       title,
       content,
       images: images.map(images => URL.createObjectURL(images.file))

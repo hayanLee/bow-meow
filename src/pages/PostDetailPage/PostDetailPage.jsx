@@ -8,8 +8,6 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { Navigation, Pagination } from 'swiper/modules';
 import {
-  StyledBtnContainer,
-  StyledDeleteBtn,
   StyledDetailContainer,
   StyledDetailDate,
   StyledDetailImg,
@@ -18,9 +16,9 @@ import {
   StyledDetailRight,
   StyledDetailTitle,
   StyledDetailUser,
-  StyledEditBtn,
   StyledRightUp
 } from '../../components/PostDetail/PostDetail.styled';
+import PostDetailBtn from '../../components/PostDetail/PostDetailBtn.jsx/PostDetailBtn';
 
 function PostDetailPage() {
   const { postId } = useParams();
@@ -29,10 +27,7 @@ function PostDetailPage() {
 
   return (
     <>
-      <StyledBtnContainer>
-        <StyledEditBtn>수정</StyledEditBtn>
-        <StyledDeleteBtn>삭제</StyledDeleteBtn>
-      </StyledBtnContainer>
+      <PostDetailBtn postId={postId}/>
       <StyledDetailContainer>
         <StyledDetailLeft>
           <StyledDetailImg>
