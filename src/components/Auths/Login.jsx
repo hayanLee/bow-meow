@@ -49,7 +49,7 @@ export default function Login() {
           <Button type="submit" onClick={handleSignUpClick} text="회원가입"></Button>
         </AuthsBtn>
         <SearchIdPw>
-          <div onClick={handleSearchPWClick}>비밀번호 찾기</div>
+          <div onClick={handleSearchPWClick}>비밀번호를 잊으셨나요?</div>
         </SearchIdPw>
       </div>
     </Wrapper>
