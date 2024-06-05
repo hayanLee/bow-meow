@@ -27,6 +27,7 @@ export const StTitle = styled.div`
   white-space: nowrap;
   font-size: 2rem;
   width: auto;
+  cursor: pointer;
 `;
 
 export const StSearchWrapper = styled.div`

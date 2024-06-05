@@ -18,19 +18,16 @@ import { useNavigate } from 'react-router-dom';
 function Header() {
   const navigate = useNavigate();
 
-  const headerLoginBtn = () => {
-    navigate('/auth/login');
+  const homePageBtn = () => {
+    navigate('/');
   };
 
-  const headerProfileImgBtn = () => {
-    navigate('/myPage');
-  };
   return (
     <StHeader>
       <StContainer>
         <StLeft>
-          <StLogo src={logoImg} alt="logo" />
-          <StTitle>멍멍냥냥</StTitle>
+          <StLogo src={logoImg} alt="logo" onClick={homePageBtn} />
+          <StTitle onClick={homePageBtn}>멍멍냥냥</StTitle>
         </StLeft>
 
         <StRight>
@@ -38,8 +35,20 @@ function Header() {
             <Input />
             <StSearchIcon />
           </StSearchWrapper>
-          <StLogin onClick={headerLoginBtn}>로그인</StLogin>
-          <ProfileMyPageBtn onClick={headerProfileImgBtn}>profile</ProfileMyPageBtn>
+          <StLogin
+            onClick={() => {
+              navigate('/auth/login');
+            }}
+          >
+            로그인
+          </StLogin>
+          <ProfileMyPageBtn
+            onClick={() => {
+              navigate('/myPage');
+            }}
+          >
+            profile
+          </ProfileMyPageBtn>
         </StRight>
       </StContainer>
     </StHeader>
