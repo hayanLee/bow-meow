@@ -7,11 +7,12 @@ import supabase from '../../supabase/supabaseClient';
 
 export default function Login() {
   const navigate = useNavigate();
-  const idRef = useRef();
-  const passwordRef = useRef();
+  const idRef = useRef(null);
+  const passwordRef = useRef(null);
 
   const handleLogInClick = async () => {
-    const { data, error } = await supabase.auth.signInWithPassword({
+    console.log(idRef.current.value);
+    const { error } = await supabase.auth.signInWithPassword({
       email: idRef.current.value,
       password: passwordRef.current.value
     });
@@ -20,13 +21,12 @@ export default function Login() {
       return;
     }
 
-    localStorage.setItem('accessToken', data.session.access_token);
-    console.log('accessToken:', data.session.access_token);
-
     if (!idRef.current.value || !passwordRef.current.value) {
       alert('아이디와 비밀번호를 모두 입력하세요.');
       return;
     }
+    alert('로그인 성공!');
+    navigate('/');
   };
 
   console.log(localStorage.getItem('accessToken'));
@@ -46,8 +46,8 @@ export default function Login() {
     <Wrapper>
       <div>
         <AuthsInput>
-          <Input type="text" placeholder="이메일을 입력하세요" inputref={idRef} />
-          <Input type="text" placeholder="비밀번호를 입력하세요" inputref={passwordRef} />
+          <Input type="text" placeholder="이메일을 입력하세요" inputRef={idRef} />
+          <Input type="text" placeholder="비밀번호를 입력하세요" inputRef={passwordRef} />
         </AuthsInput>
         <AuthsBtn>
           <Button type="submit" onClick={handleLogInClick} text="로그인"></Button>
