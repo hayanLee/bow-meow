@@ -12,6 +12,8 @@ import {
 } from '../PostAdd/PostAddPage.styled';
 import PostFile from '../PostAdd/PostImgUpload/PostFile';
 
+
+// 수정페이지에서 이미지는 수정이 안됩니당........
 const ImgUpdate = ({ existingImages = [], postId }) => {
   const [largedImage, setLargedImage] = useState(null);
   const dispatch = useDispatch();

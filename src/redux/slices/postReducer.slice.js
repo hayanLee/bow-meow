@@ -47,6 +47,7 @@ const initialState = {
 // const posts = useSelector((state) => console.log(state.posts.posts));
 // const testDis = () => dispatch(createPost(1, 2));
 
+// postImg 슬라이스랑 거의 같은 구조입니다!!
 const postSlice = createSlice({
   initialState,
   name: 'post',
@@ -75,5 +76,5 @@ const postSlice = createSlice({
   }
 });
 
-export const postReducer = postSlice.reducer;
+export const postReducer = postSlice.reducer; 
 export const { createPost, deletePost, updatePost } = postSlice.actions;

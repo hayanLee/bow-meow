@@ -16,6 +16,7 @@ import {
 import PostImg from '../../components/PostAdd/PostImgUpload/PostImg';
 import { clearImg } from '../../redux/slices/postImgReducer.slice';
 
+// 여기도 이미지 관련된 부분은 무시하셔도 됩니다ㅠㅠ!!
 function PostEditPage() {
   const { postId } = useParams();
   const dispatch = useDispatch();
@@ -34,7 +35,7 @@ function PostEditPage() {
       setContent(post.content);
       setExistingImages(post.images || []);
     }
-  }, [post]);
+  }, [post]); // 게시물이 변경될 때 useEffect가 실행되도록 설정
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -44,9 +45,9 @@ function PostEditPage() {
     }
 
     const updatedPost = {
-      ...post,
-      title,
-      content,
+      ...post, // 기존 게시물 데이터 복사
+      title, // 업데이트된 제목 설정
+      content, // 업데이트된 내용 설정
       images: [...existingImages, ...images.map((image) => image.file)]
     };
 
