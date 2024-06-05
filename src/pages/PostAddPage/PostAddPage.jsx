@@ -1,21 +1,20 @@
 import React, { useState } from 'react';
-import { v4 as uuidv4 } from 'uuid';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import {
-  StyledContainer,
-  StyledPostBox,
-  StyledPostInput,
-  StyledPostContent,
-  StyledPostBtn,
-  StyledRightContainer,
   StyledBtnContainer,
+  StyledContainer,
   StyledContentContainer,
-  StyledLeftContainer
+  StyledLeftContainer,
+  StyledPostBox,
+  StyledPostBtn,
+  StyledPostContent,
+  StyledPostInput,
+  StyledRightContainer
 } from '../../components/PostAdd/PostAddPage.styled';
 import PostImg from '../../components/PostAdd/PostImgUpload/PostImg';
-import { useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { createPost } from '../../redux/slices/postReducer.slice';
 import { clearImg } from '../../redux/slices/postImgReducer.slice';
+import { createPost } from '../../redux/slices/postReducer.slice';
 
 const mockLoginedUser = {
   userId: 101,
@@ -32,8 +31,8 @@ function PostAddPage() {
   const navigate = useNavigate();
 
   const [title, setTitle] = useState('');
-  const images = useSelector((state) => state.images.images);
   const [content, setContent] = useState('');
+  const images = useSelector((state) => state.images.images);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -46,12 +45,12 @@ function PostAddPage() {
       userId: mockLoginedUser.userId,
       title,
       content,
-      images: images.map((images) => URL.createObjectURL(images.file)),
-      files: images
+      images: images.map((images) => URL.createObjectURL(images.file))
     };
 
     console.log('Submitting post:', newPost); // 콘솔 로그 추가
     dispatch(createPost(newPost));
+
     setTitle('');
     dispatch(clearImg());
     setContent('');
