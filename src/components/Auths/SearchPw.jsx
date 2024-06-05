@@ -14,7 +14,7 @@ export default function SearchPw() {
 
   return (
     <Wrapper>
-      비밀번호 찾기
+      <p>비밀번호 재설정</p>
       <AuthsInput>
         <Input
           type="text"

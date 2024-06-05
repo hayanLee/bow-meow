@@ -8,6 +8,10 @@ export const Wrapper = styled.div`
   align-items: center;
   background-color: var(--box-color);
   border-radius: 20px;
+
+  p {
+    margin-bottom: 10px;
+  }
 `;
 
 export const AuthsInput = styled.div`
@@ -18,7 +22,7 @@ export const AuthsInput = styled.div`
   input {
     border-radius: 5px;
     width: 270px;
-    height: 40px;
+    height: 50px;
     margin: 20px;
     border: 0;
   }
@@ -30,9 +34,9 @@ export const AuthsBtn = styled.div`
   button {
     border-radius: 5px;
     width: 120px;
-    height: 35px;
+    height: 40px;
     margin: 15px;
-    margin-top: 25px;
+    margin-top: 20px;
     font-size: 1rem;
     color: #ffffff;
     cursor: pointer;
@@ -45,6 +49,7 @@ export const SearchIdPw = styled.div`
 
   div {
     padding: 5px;
+    margin: 5px;
     cursor: pointer;
   }
 `;
