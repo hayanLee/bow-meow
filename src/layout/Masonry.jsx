@@ -7,6 +7,8 @@ import Masonry from '@mui/lab/Masonry';
 import styled, { keyframes } from 'styled-components';
 import { useLoginModal } from '../hooks/useLoginModal';
 import fetchPosts from '../mockdatas/postFn';
+import supabase from '../supabase/supabaseClient';
+
 const ImageMasonry = () => {
   const { open } = useLoginModal();
   const itemDatas = new Array(15).fill(null); // 스켈레톤 ui를 위한 더미 배열
@@ -33,6 +35,7 @@ const ImageMasonry = () => {
     '16/20'
   ];
 
+  
   const fetchData = (setFunction) => {
     setFunction(true);
     fetchPosts(update)
