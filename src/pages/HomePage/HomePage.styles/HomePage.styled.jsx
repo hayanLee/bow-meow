@@ -56,3 +56,20 @@ export const ModalSginUpBtn = styled.div`
     color: var(--bg-color);
   }
 `;
+
+// FilterContainer style
+export const StFilter = styled.ul`
+  display: flex;
+  justify-content: right;
+  font-size: 1.1rem;
+  margin-right: 28px;
+`;
+
+export const NewListBtn = styled.li`
+  cursor: pointer;
+`;
+
+export const LikeListBtn = styled.li`
+  margin-left: 4px;
+  cursor: pointer;
+`;
