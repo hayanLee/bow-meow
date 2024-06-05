@@ -8,7 +8,8 @@ const initialState = {
       postCommentId: 1001,
       title: 'First Post',
       content: 'This is the content of the first post.',
-      images: ['https://cdn.pixabay.com/photo/2023/04/28/14/35/dog-7956828_960_720.jpg']
+      images: ['https://cdn.pixabay.com/photo/2023/04/28/14/35/dog-7956828_960_720.jpg'],
+      createdAt: "2022-11-22"
     },
     {
       postId: 2,
@@ -18,8 +19,9 @@ const initialState = {
       content: 'This is the content of the second post.',
       images: [
         'https://cdn.pixabay.com/photo/2023/04/27/10/22/cat-7954262_1280.jpg',
-        'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg'
-      ]
+        'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
+      ],
+      createdAt: "2022-11-22"
     },
     {
       postId: 3,
@@ -30,8 +32,9 @@ const initialState = {
       images: [
         'https://cdn.pixabay.com/photo/2017/11/09/21/41/cat-2934720_1280.jpg',
         'https://cdn.pixabay.com/photo/2023/06/29/12/28/cats-8096304_960_720.jpg',
-        'https://cdn.pixabay.com/photo/2023/07/15/15/41/dog-8129106_1280.jpg'
-      ]
+        'https://cdn.pixabay.com/photo/2023/07/15/15/41/dog-8129106_1280.jpg',
+      ],
+      createdAt: "2022-11-22"
     }
   ]
 };

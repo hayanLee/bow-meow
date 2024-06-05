@@ -6,19 +6,24 @@ export const Wrapper = styled.div`
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  background-color: yellow;
+  background-color: var(--box-color);
+  border-radius: 20px;
+
+  p {
+    margin-bottom: 10px;
+  }
 `;
 
 export const AuthsInput = styled.div`
-  background-color: red;
+  background-color: var(--box-color);
   display: flex;
   justify-content: center;
   flex-direction: column;
   input {
     border-radius: 5px;
-    width: 250px;
-    height: 40px;
-    margin: 10px;
+    width: 270px;
+    height: 50px;
+    margin: 20px;
     border: 0;
   }
 `;
@@ -28,9 +33,10 @@ export const AuthsBtn = styled.div`
   justify-content: center;
   button {
     border-radius: 5px;
-    width: 100px;
-    height: 35px;
-    margin: 10px;
+    width: 120px;
+    height: 40px;
+    margin: 15px;
+    margin-top: 20px;
     font-size: 1rem;
     color: #ffffff;
     cursor: pointer;
@@ -43,6 +49,7 @@ export const SearchIdPw = styled.div`
 
   div {
     padding: 5px;
+    margin: 5px;
     cursor: pointer;
   }
 `;

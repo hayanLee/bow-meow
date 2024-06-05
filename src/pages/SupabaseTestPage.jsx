@@ -6,12 +6,25 @@ import { checkProfile } from '../supabase/profile';
 export default function SupabaseTestPage() {
   const [value, setValue] = useState({ id: '', pw: '' });
   const onChange = (e) => setValue((prev) => ({ ...prev, [e.target.id]: e.target.value }));
+
+  const lengthPassword = (password) => {
+    if (password.length !== 6) {
+      alert('비밀번호를 6자리로 입력해주세요');
+      return false;
+    }
+    return true;
+  };
+
   const onLogin = () => {
     singInWithEmail(value.id, value.pw);
     // resetPassWord(value.id);
     // insertPost();
   };
-  const onSignUp = () => signUpWithEmail(value.id, value.pw);
+
+  const onSignUp = async () => {
+    if (!lengthPassword(value.pw)) return;
+    await signUpWithEmail(value.id, value.pw);
+  };
   const onLogout = () => signOut();
   const onClickAuth = () => checkSignIn();
 
