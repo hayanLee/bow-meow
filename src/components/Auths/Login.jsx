@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Button from '../common/Button/Button';
 import Input from '../common/Input/Input';
 import { AuthsBtn, AuthsInput, SearchIdPw, Wrapper } from './Login.styled';
+import { checkSignIn, singInWithEmail } from '../../supabase/auth.login';
 
 export default function Login() {
   const navigate = useNavigate();
@@ -13,6 +14,9 @@ export default function Login() {
     if (!userEmail || !password) {
       alert('아이디와 비밀번호를 모두 입력하세요.');
     }
+    console.log('ghkrdls');
+    singInWithEmail(userEmail, password);
+    checkSignIn();
   };
 
   const handleSignUpClick = () => {

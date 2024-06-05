@@ -33,6 +33,12 @@ const ImageMasonry = () => {
     '16/20'
   ];
 
+  // const imageHandler = () => {
+  //   if (email) {
+  //     console.log
+  //   }
+  // };
+
   const fetchData = (setFunction) => {
     setFunction(true);
     fetchPosts(update)
@@ -78,7 +84,7 @@ const ImageMasonry = () => {
           ))}
         </Masonry>
       ) : (
-        <StMansonry>
+        <StMasonry>
           {itemDatas.map((value, index) => {
             return (
               <div
@@ -90,7 +96,7 @@ const ImageMasonry = () => {
               </div>
             );
           })}
-        </StMansonry>
+        </StMasonry>
       )}
       {loading && <>로딩중!</>}
     </Box>
@@ -106,7 +112,7 @@ const pulseAnimation = keyframes`
         }
 `;
 
-const StMansonry = styled.div`
+const StMasonry = styled.div`
   display: grid;
   width: 100%;
   height: 1200px;
