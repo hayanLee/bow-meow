@@ -10,11 +10,11 @@ import {
   StyledPostBtn,
   StyledRightContainer,
   StyledBtnContainer,
-  StyledContainer,
   StyledContentContainer,
   StyledLeftContainer
 } from '../../components/PostAdd/PostAddPage.styled';
 import { clearImg } from '../../redux/slices/postImgReducer.slice';
+import ImgUpdate from '../../components/PostEdit/ImgUpdate'
 
 // 여기도 이미지 관련된 부분은 무시하셔도 됩니다ㅠㅠ!!
 function PostEditPage() {
@@ -66,7 +66,7 @@ function PostEditPage() {
       <StyledPostBox>
         <StyledContentContainer>
           <StyledLeftContainer>
-            <PostImg existingImages={existingImages} />
+            <ImgUpdate existingImages={existingImages} />
           </StyledLeftContainer>
           <StyledRightContainer>
             <StyledPostInput
