@@ -29,7 +29,7 @@ export default function Login() {
     }
 
     dispatch(updateUserProfile({ userId: loginData.userId, email: loginData.userEmail }));
-
+    localStorage.setItem('uid',loginData.id)
     alert('로그인 성공!');
 //     console.log(localStorage.getItem('accessToken'));
     navigate('/');

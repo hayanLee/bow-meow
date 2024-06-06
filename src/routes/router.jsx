@@ -14,14 +14,14 @@ import PostAddPage from '../pages/PostAddPage/PostAddPage';
 import PostDetailPage from '../pages/PostDetailPage';
 import PostEditPage from '../pages/PostEditPage/PostEditPage';
 import ProfileEditPage from '../pages/ProfileEditPage';
-import SupabaseTestPage from '../pages/SupabaseTestPage';
+// import SupabaseTestPage from '../pages/SupabaseTestPage';
 import ReduxTestPage from './../pages/ReduxTestPage';
 
 const router = createBrowserRouter([
-  {
-    path: '/test',
-    element: <SupabaseTestPage />
-  },
+  // {
+  //   path: '/test',
+  //   element: <SupabaseTestPage />
+  // },
   {
     path: '/test-redux',
     element: <ReduxTestPage />

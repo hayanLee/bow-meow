@@ -14,6 +14,7 @@ import {
   StTitle
 } from './Header.styled';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 function Header() {
   const navigate = useNavigate();
@@ -21,6 +22,9 @@ function Header() {
   const homePageBtn = () => {
     navigate('/');
   };
+
+  const data = useSelector(state=>state)
+  console.log(data);
 
   return (
     <StHeader>
