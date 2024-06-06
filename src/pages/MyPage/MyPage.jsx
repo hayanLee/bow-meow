@@ -18,22 +18,41 @@ import CustomLink from './../../components/common/CustomLink';
 //리액트 라이브러리
 import { useMemo, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+
+//SupaBase API
+import { signOut } from './../../supabase/auth.login';
 
 //더미 데이터
 const mockLoginedUser = {
-  userId: 101,
-  nickname: 'John',
-  email: 'helloworld@naver.com',
-  pwd: '123123123',
-  profileImg: 'https://uxwing.com/wp-content/themes/uxwing/download/peoples-avatars/employee-icon.png',
-  introduce: '잘 부탁드려요 '
+  userId: 101
 };
 
+//To-be: DB API 사용해서 현재 로그인된 유저 정보 가져오기
+function getLoginedUserData(loginedUserId) {
+  const users = useSelector((state) => state.users.users);
+
+  const loginedUser = users.find((user) => user.userId === loginedUserId);
+
+  return loginedUser;
+}
+
 function MyPage() {
-  const [loginedUser, setLoginedUser] = useState(mockLoginedUser);
+  const [loginedUser, setLoginedUser] = useState(getLoginedUserData(mockLoginedUser.userId));
+
+  const navigate = useNavigate();
+
   const postList = useSelector((state) => state.posts.posts);
 
   const userWrittenPostList = useMemo(() => postList.filter((post) => post.userId === loginedUser.userId), [postList]);
+
+  function handleLogoutButtonClick() {
+    //SupaBase API
+    signOut();
+
+    alert('로그아웃되었습니다.');
+    navigate('/');
+  }
 
   return (
     <StMain>
@@ -43,7 +62,7 @@ function MyPage() {
         <StSideGroup>
           <CustomLink to={'/postAdd'}>글쓰기</CustomLink>
           <CustomLink to={'/myPage/profileEdit'}>회원정보 수정</CustomLink>
-          <Button text="로그아웃" />
+          <Button onClick={handleLogoutButtonClick} text="로그아웃" />
         </StSideGroup>
       </StUpperSection>
       <StLowerSection>

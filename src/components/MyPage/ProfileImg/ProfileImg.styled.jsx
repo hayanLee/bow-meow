@@ -11,6 +11,7 @@ const StProfileImg = styled.div`
   & > img {
     width: 75%;
     aspect-ratio: 1 / 1;
+    object-fit: cover;
 
     border: black solid 1px;
     border-radius: 100%;
