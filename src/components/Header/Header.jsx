@@ -1,9 +1,9 @@
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import logoImg from '../../assets/logo_img.png';
 import { getUserToken } from '../../supabase/auth.login';
 import Input from '../common/Input';
 import {
-  ProfileMyPageBtn,
   StContainer,
   StHeader,
   StLeft,
@@ -12,8 +12,10 @@ import {
   StRight,
   StSearchIcon,
   StSearchWrapper,
-  StTitle
+  StTitle,
+  ProfileImg
 } from './Header.styled';
+import supabase from '../../supabase/supabaseClient';
 
 function Header() {
   const navigate = useNavigate();
@@ -23,6 +25,23 @@ function Header() {
   };
 
   const accessToken = getUserToken();
+
+  const [userImg, setUserImg] = useState(null);
+
+  const getUserFunction = async() => {
+    const {data} = await supabase.auth.getUser()
+
+    const {data:userInfo,error} = await supabase.from('users').select().eq('uuid',data.user.id)
+    if(error){
+      console.log(error)
+    }else{
+      setUserImg(userInfo[0].profile_img)
+    }
+  }
+
+  useEffect(()=>{
+    getUserFunction();
+  },[])
 
   return (
     <StHeader>
@@ -37,11 +56,9 @@ function Header() {
             <StSearchIcon />
           </StSearchWrapper>
           {accessToken ? (
-            <ProfileMyPageBtn
-              onClick={() => {
+              <ProfileImg  onClick={() => {
                 navigate('/myPage');
-              }}
-            />
+              }} src={userImg} />
           ) : (
             <StLogin
               onClick={() => {
