@@ -60,6 +60,7 @@ const uploadToImages = async (rowId, fileUrls) => {
     const results = await Promise.all(uploadPromises);
 
     results.forEach(({ data, error }) => {
+      console.log(data);
       if (data) console.log(data);
       if (error) {
         console.log('이미지 url 추가 에러:', error);

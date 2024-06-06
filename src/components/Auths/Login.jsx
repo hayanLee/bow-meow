@@ -6,6 +6,8 @@ import { signInWithEmail } from '../../supabase/auth.login';
 import Button from '../common/Button/Button';
 import Input from '../common/Input/Input';
 import { AuthsBtn, AuthsInput, SearchIdPw, Wrapper } from './Login.styled';
+import supabase from '../../supabase/supabaseClient';
+import { checkSignIn } from '../../supabase/auth.login';
 
 export default function Login() {
   const navigate = useNavigate();
@@ -25,11 +27,13 @@ export default function Login() {
       alert('로그인 실패. 유저 정보를 불러오지 못했습니다.');
       return;
     }
+
     dispatch(updateUserProfile({ userId: loginData.userId, email: loginData.userEmail }));
 
     alert('로그인 성공!');
-    console.log(localStorage.getItem('accessToken'));
+//     console.log(localStorage.getItem('accessToken'));
     navigate('/');
+
   };
 
   const handleSignUpClick = () => {

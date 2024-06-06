@@ -4,10 +4,11 @@ import { StyledModalImg, StyledModalContent, CloseButton } from '../PostAddPage.
 const ModalImg = ({ imgSrc, onClose }) => {
   return (
     <StyledModalImg>
-      <StyledModalContent onClick={(e) => e.stopPropagation()}>  {/* 모달 컨텐츠 */}
+      <StyledModalContent onClick={(e) => e.stopPropagation()}>
+        {/* 모달 컨텐츠 */}
         <CloseButton onClick={onClose}>X</CloseButton>
         {/* 이미지가 있으면 표시하고 없으면 '로딩 중...' 메시지 표시 */}
-        {imgSrc ? <img src={imgSrc} alt="larged" style={{ maxHeight: '100%', maxWidth: '100%' }} /> : 'Loading...'}
+        {imgSrc ? <img src={imgSrc} alt="크게보기" style={{ maxHeight: '50%', maxWidth: '50%' }} /> : 'Loading...'}
       </StyledModalContent>
     </StyledModalImg>
   );
