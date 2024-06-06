@@ -6,6 +6,7 @@ export const StyledDetailContainer = styled.div`
   height: 700px;
   align-items: center;
   justify-content: center;
+  margin-bottom: 3rem;
 `;
 
 // 상단 우측 수정,삭제 버튼
@@ -18,19 +19,23 @@ export const StyledBtnContainer = styled.div`
 `;
 
 export const StyledEditBtn = styled.button`
-  padding: 0.2rem 1rem ;
+  padding: 0.5rem 1rem ;
   margin-right: 1rem;
   cursor: pointer;
+  background-color: #DACFC6; /* 수정 기능하다가 어떻게 하는건지 까먹었어요ㅜㅜㅜ */
+  border: none;
 `;
 
 export const StyledDeleteBtn = styled.button`
-  padding: 0.2rem 1rem;
+  padding: 0.5rem 1rem;
   cursor: pointer;
+  background-color: #A49384;
+  border: none;
 `;
 
 //이미지, 회원정보
 export const StyledDetailLeft = styled.div`
-  width: 45%;
+  width: 47%; /* 수정 */
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -65,12 +70,13 @@ export const StyledDetailUser = styled.div`
 
 // 제목,날짜,내용
 export const StyledDetailRight = styled.div`
-  width: 45%;
+  width: 47%; /* 수정 */
   height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: white;
+  margin-right: 2rem;
 `;
 
 export const StyledRightUp = styled.div`
@@ -80,7 +86,7 @@ export const StyledRightUp = styled.div`
 `;
 
 export const StyledDetailTitle = styled.div`
-  height: 50%;
+  height: 47%;
   display: flex;
   background-color: white;
   align-items: center;

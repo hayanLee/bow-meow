@@ -4,6 +4,8 @@ import Button from '../common/Button/Button';
 import Input from '../common/Input/Input';
 import { AuthsBtn, AuthsInput, SearchIdPw, Wrapper } from './Login.styled';
 import supabase from '../../supabase/supabaseClient';
+import { checkSignIn, singInWithEmail } from '../../supabase/auth.login';
+
 
 export default function Login() {
   const navigate = useNavigate();
@@ -27,6 +29,8 @@ export default function Login() {
     }
     alert('로그인 성공!');
     navigate('/');
+    singInWithEmail(userEmail, password);
+    checkSignIn();
   };
 
   console.log(localStorage.getItem('accessToken'));
