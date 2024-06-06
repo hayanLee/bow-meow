@@ -73,21 +73,19 @@ const uploadToImages = async (rowId, fileUrls) => {
 // ======== Read ==========
 // posts ids 가져오기
 export const getImageIdsFromTable = async () => {
-  let { data, error } = await supabase.from('posts').select('id');
+  const { data, error } = await supabase.from('posts').select('id');
   if (error) console.log('posts 이미지 아이디 가져오기 에러', error);
   else return data;
 };
 
 // posts 가져오기
 export const getImagesFromTable = async () => {
-  let { data, error } = await supabase.from('posts').select('*');
+  const { data, error } = await supabase.from('posts').select('*');
   if (error) console.log('데이터 가져오기 에러', error);
   else return data;
 };
 
 // posts 가져오기
-// id(post) === post_id(images) 같은 것중 하나만 이미지를 보여주고
-// id로는 navigation에 연결
 export const getImagesFromImages = async (post_ids) => {
   try {
     const promises = post_ids.map(async (post) => {
@@ -96,12 +94,20 @@ export const getImagesFromImages = async (post_ids) => {
     });
 
     const images = await Promise.all(promises);
-    // console.log(images);
     return images;
   } catch (error) {
     console.error('이미지 가져오기 에러:', error);
     return [];
   }
+};
+
+// post 가져오기
+export const getPost = async (post_id) => {
+  const { data, error } = await supabase.from('posts').select('*').eq('id', post_id);
+  if (error) {
+    console.log('post 가져오기 에러', error);
+    return {};
+  } else return data[0];
 };
 
 // 사용자 피드
