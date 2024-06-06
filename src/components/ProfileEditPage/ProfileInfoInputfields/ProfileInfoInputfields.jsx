@@ -4,8 +4,10 @@ import { StLabelInputPair, StInputFields } from './ProfileInfoInputfields.styled
 
 //react library
 import { forwardRef, useImperativeHandle } from 'react';
-import { useDispatch } from 'react-redux';
-import { updateUserProfile } from '../../../redux/slices/userReducer';
+
+//reducer
+//import { useDispatch } from 'react-redux';
+//import { updateUserProfile } from '../../../redux/slices/userReducer';
 
 //custom hook
 import useInput from '../../../hooks/useInput';
@@ -16,7 +18,7 @@ const ProfileInfoInputFields = forwardRef(({ loginedUser }, ref) => {
   const [nickname, changeNickname] = useInput(defaultNickname);
   const [introduce, changeIntroduce] = useInput(defaultIntroduce);
 
-  const dispatch = useDispatch();
+  //const dispatch = useDispatch();
 
   useImperativeHandle(
     ref.infoInputRef,
@@ -36,7 +38,7 @@ const ProfileInfoInputFields = forwardRef(({ loginedUser }, ref) => {
     //Todo: 변경된 사항이 있는지 체크하고 없으면 함수종료
 
     //Step 3: 리듀서에게 보내기
-    dispatch(updateUserProfile(editedUser));
+    //dispatch(updateUserProfile(editedUser));
 
     //Step 4: DB에 반영하기 (Todo)
 
@@ -53,11 +55,11 @@ const ProfileInfoInputFields = forwardRef(({ loginedUser }, ref) => {
     <StInputFields>
       <StLabelInputPair>
         <span>닉네임</span>
-        <InputField defaultValue={defaultNickname} value={nickname} onChange={changeNickname} />
+        <InputField defaultValue={defaultNickname || '미설정'} value={nickname} onChange={changeNickname} />
       </StLabelInputPair>
       <StLabelInputPair>
         <span>한줄소개</span>
-        <InputField defaultValue={defaultIntroduce} value={introduce} onChange={changeIntroduce} />
+        <InputField defaultValue={defaultIntroduce || '미구현'} value={introduce} onChange={changeIntroduce} />
       </StLabelInputPair>
     </StInputFields>
   );
