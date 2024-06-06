@@ -23,6 +23,8 @@
 //   };
 
 //   const onSignUp = async () =>  {
+
+//   const onSignUp = async () => {
 //     if (!lengthPassword(value.pw)) return;
 //     await signUpWithEmail(value.id, value.pw);
 //   };

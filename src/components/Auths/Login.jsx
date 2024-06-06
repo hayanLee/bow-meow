@@ -2,17 +2,16 @@ import { useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { updateUserProfile } from '../../redux/slices/userReducer';
-import { signInWithEmail } from '../../supabase/auth.login';
+import { getSupabaseToken, signInWithEmail } from '../../supabase/auth.login';
 import Button from '../common/Button/Button';
 import Input from '../common/Input/Input';
 import { AuthsBtn, AuthsInput, SearchIdPw, Wrapper } from './Login.styled';
-import supabase from '../../supabase/supabaseClient';
-import { checkSignIn } from '../../supabase/auth.login';
 
 export default function Login() {
   const navigate = useNavigate();
   const idRef = useRef(null);
   const passwordRef = useRef(null);
+
   const dispatch = useDispatch();
 
   const handleLogInClick = async () => {
@@ -22,18 +21,19 @@ export default function Login() {
     }
 
     const loginData = await signInWithEmail(idRef.current.value, passwordRef.current.value);
-    console.log(loginData);
+    // console.log(loginData);
     if (!loginData || !loginData.id || !loginData.email) {
       alert('로그인 실패. 유저 정보를 불러오지 못했습니다.');
       return;
     }
 
-    dispatch(updateUserProfile({ userId: loginData.userId, email: loginData.userEmail }));
-    localStorage.setItem('uid',loginData.id)
-    alert('로그인 성공!');
-//     console.log(localStorage.getItem('accessToken'));
-    navigate('/');
+    const accessToken = getSupabaseToken();
+    console.log(accessToken);
+    dispatch(updateUserProfile({ userId: accessToken.id, email: accessToken.email }));
 
+    alert('로그인 성공!');
+    // console.log(localStorage.getItem('accessToken'));
+    navigate('/');
   };
 
   const handleSignUpClick = () => {

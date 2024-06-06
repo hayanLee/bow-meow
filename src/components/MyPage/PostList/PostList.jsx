@@ -10,9 +10,9 @@ function PostList({ userPostList }) {
   return (
     <StPostList>
       {userPostList.map((post) => {
-        const yyyy_mm_dd = post.created_at.slice(0, 11);
+        const yyyy_mm_dd = post.created_at.slice(0, 10);
 
-        return <Post key={post.id} image={post.images} date={yyyy_mm_dd} postId={post.id} />;
+        return <Post key={post.id} image={post.image} date={yyyy_mm_dd} postId={post.id} />;
       })}
     </StPostList>
   );

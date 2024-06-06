@@ -1,14 +1,14 @@
 //기능용 컴포넌트
-import ProfileImg from '../../components/MyPage/ProfileImg';
 import PostList from '../../components/MyPage/PostList';
+import ProfileImg from '../../components/MyPage/ProfileImg';
 import Summary from './../../components/MyPage/Summary';
 
 //스타일용 컴포넌트
 import {
-  StMain,
-  StUpperSection,
   StLowerSection,
-  StSideGroup
+  StMain,
+  StSideGroup,
+  StUpperSection
 } from '../../components/MyPage/MyPage.styles/MyPage.styled';
 
 //공용 컴포넌트
@@ -20,8 +20,8 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 //SupaBase API
-import { signOut, getUser } from './../../supabase/auth.login';
-import { getPetsOfUserImage } from '../../supabase/post';
+import { getImagesFromImages, getPetsOfUserImage } from '../../supabase/post';
+import { getSupabaseToken, getUser, signOut } from './../../supabase/auth.login';
 
 function MyPage() {
   const [loginedUser, setLoginedUser] = useState(null);
@@ -32,15 +32,18 @@ function MyPage() {
   function handleLogoutButtonClick() {
     signOut(); //SupaBase API
 
+    const supabaseKey = getSupabaseToken();
+    localStorage.removeItem(supabaseKey);
+
     alert('로그아웃되었습니다.');
     navigate('/');
   }
 
   useEffect(() => {
     //현재 로그인된 유저 정보와
-    //현재 로그인된 유저가 작성한 포스트를 로드
+    //현재 로그인된 유저가 작성한 포스트를 DB에서 로드
     async function loadUserAndPosts() {
-      const loadedUserData = await getUser(); //SupaBase API
+      const loadedUserData = await getUser();
       const loginedUser = {
         ...loadedUserData.user,
         ...loadedUserData.user.user_metadata
@@ -51,11 +54,35 @@ function MyPage() {
       console.log('loginedUser ↓');
       console.dir(loginedUser);
 
-      const userPostList = await getPetsOfUserImage(loginedUser.id); //SupaBase API
+      const userPostList = await getPetsOfUserImage(loginedUser.id);
+      const postImages = await getImagesFromImages(userPostList);
+
+      for (const post of userPostList) {
+        const postImgIdx = postImages.findIndex((postImage) => {
+          if (post && postImage) {
+            return post.id === postImage.post_id;
+          }
+          return false;
+        });
+
+        if (postImgIdx !== -1) {
+          post.image = postImages[postImgIdx].img_url;
+        }
+      }
 
       setUserPostList(userPostList);
       console.log('userPostList ↓');
       console.dir(userPostList);
+
+      console.log('postImages ↓');
+      console.dir(postImages);
+
+      /* post shape
+        user_id, (post)id, title, created_at, content
+      */
+      /* image shape
+        (img)id, post_id, created_at, img_url, 
+      */
     }
 
     loadUserAndPosts();

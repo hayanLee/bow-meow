@@ -24,7 +24,7 @@ function Header() {
   };
 
   const data = useSelector(state=>state)
-  console.log(data);
+  console.log(data.users.users);
 
   return (
     <StHeader>

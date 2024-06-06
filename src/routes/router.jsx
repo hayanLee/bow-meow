@@ -18,10 +18,10 @@ import ProfileEditPage from '../pages/ProfileEditPage';
 import ReduxTestPage from './../pages/ReduxTestPage';
 
 const router = createBrowserRouter([
-  // {
-  //   path: '/test',
-  //   element: <SupabaseTestPage />
-  // },
+  //   {
+  //     path: '/test',
+  //     element: <SupabaseTestPage />
+  //   },
   {
     path: '/test-redux',
     element: <ReduxTestPage />
