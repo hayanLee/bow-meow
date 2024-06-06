@@ -1,44 +1,43 @@
-import React, { useState } from 'react';
+import { useRef } from 'react';
 import Input from '../common/Input/Input';
-import Button from '../common/Button/Button';
 import supabase from '../../supabase/supabaseClient';
+import Button from '../common/Button';
+import { AuthsBtn, AuthsInput, Wrapper } from './Login.styled';
 
-export default function UpdatePW() {
-  const [changePW, setChangePW] = useState();
-  const [checkPW, setCheckPW] = useState();
+const UpdatePW = () => {
+  const resetRef = useRef(null);
+  const verifyRef = useRef(null);
 
-  const handleChangePW = async () => {
-    const user = supabase.auth.user();
-    if (!user) {
-      console.log('사용자 정보를 가져올 수 없습니다.');
-      return;
-    }
+  const resetData = async () => {
+    const { data, error } = await supabase.auth.updateUser({
+      password: resetRef.current.value,
+      nonce: verifyRef.current.value
+    });
+    console.log(data);
+  };
 
-    if (changePW !== checkPW) {
-      console.log('비밀번호가 일치하지 않습니다.');
-      return;
-    }
+  const getNonce = async () => {
+    const { error } = await supabase.auth.reauthenticate();
 
-    const { error } = await supabase.auth.updateUser(user.id, { password: changePW });
-
-    if (error) {
-      console.log('비밀번호 변경 중 오류가 발생했습니다.', error.message);
-    } else {
-      console.log('비밀번호가 성공적으로 변경되었습니다.');
-    }
+    console.log(error);
   };
 
   return (
-    <div>
-      UpdatePW
-      <Input type="text" placeholder="바꿀 비밀번호" value={changePW} onChange={(e) => setChangePW(e.target.value)} />
-      <Input
-        type="text"
-        placeholder="바꿀 비밀번호 확인 "
-        value={checkPW}
-        onChange={(e) => setCheckPW(e.target.value)}
-      />
-      <Button onClick={handleChangePW} text="확인"></Button>
-    </div>
+    <Wrapper>
+      <div>
+        <AuthsBtn>
+          <Button onClick={getNonce} text="인증번호 요청"></Button>
+        </AuthsBtn>
+        <AuthsInput>
+          <Input inputref={verifyRef} placeholder="인증번호" />
+          <Input inputref={resetRef} placeholder="새 비밀번호" />
+        </AuthsInput>
+        <AuthsBtn>
+          <Button onClick={resetData} text="변경하기"></Button>
+        </AuthsBtn>
+      </div>
+    </Wrapper>
   );
-}
+};
+
+export default UpdatePW;

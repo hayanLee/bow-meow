@@ -30,18 +30,20 @@ export default function SignUp() {
       console.log(data);
       if (error) {
         // throw error;
-        console.log(error);
+        console.log('야', error);
       }
-
+      console.log(data);
       const userData = await supabase.from('users').insert({
         uuid: data.user.id,
         email: data.user.email,
         nickname: nicknameRef.current.value,
+        profile_img:
+          'https://suwbeekhficjymjlqdve.supabase.co/storage/v1/object/public/pets/profile/defaultProfile.jpg',
         created_at: new Date()
       });
       console.log(userData);
     } catch (error) {
-      console.log(error);
+      console.log('호', error);
     }
 
     // 성공적인 회원가입 후 로그인 페이지로 이동
