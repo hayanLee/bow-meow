@@ -25,17 +25,21 @@ const ProfileInfoInputFields = forwardRef(({ loginedUser }, ref) => {
 
   function handleEditButtonClick() {
     //Step.1: 유효성 검사 (Todo)
-
     const profileImg = ref.uploadedImgRef.current ?? loginedUser.profileImg;
 
     //Step 2: 새로운 유저 객체 만들기
     const editedUser = { ...loginedUser, nickname, introduce, profileImg };
 
-    //Step 3: 리듀서에게 보내기
+    //Todo: 변경된 사항이 있는지 체크하고 없으면 함수종료
+
+    //Step 3: 리듀서에게 보내기 / DB에 반영하기
     dispatch(updateUserProfile(editedUser));
 
-    //확인메시지
-    console.log('fn: handleEditButtonClick');
+    //Step 4: 완료메시지
+    alert('수정 완료');
+
+    //개발용 메시지
+    console.log('handleEditButtonClick');
     console.log('editedUser ↓');
     console.dir(editedUser);
   }
