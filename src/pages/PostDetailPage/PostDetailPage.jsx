@@ -1,6 +1,3 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
 // 스와이퍼 관련
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -20,10 +17,46 @@ import {
 } from '../../components/PostDetail/PostDetail.styled';
 import PostDetailBtn from '../../components/PostDetail/PostDetailBtn.jsx/PostDetailBtn';
 
+//react lib
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+
+//SupaBase API
+import { getImagesFromImages } from './../../supabase/post';
+import { getPost } from './../../supabase/post';
+
 function PostDetailPage() {
   const { postId } = useParams(); //URL 매개변수에서 postId 가져오기
-  const posts = useSelector((state) => state.posts.posts); // Redux store에서 모든 게시물 가져옴
-  const post = posts.find((s) => s.postId.toString() === postId); // URL의 postId와 일치하는 게시물 찾음
+  const [post, setPost] = useState(null);
+
+  //Redux store에서 모든 게시물 가져옴
+  //const posts = useSelector((state) => state.posts.posts);
+
+  //페이지 로드시 한 번만
+  //DB에서 포스트를 불러옴
+  useEffect(() => {
+    async function loadPosts() {
+      const post = await getPost(postId);
+      const images = await getImagesFromImages([post]);
+      const imageUrls = images.map((image) => image['img_url']);
+      post.images = imageUrls;
+
+      console.log('PostDetailPage > load post by postId');
+      console.log(`post (id:${postId}) ↓`);
+      console.dir(post);
+
+      setPost(post);
+    }
+
+    loadPosts();
+  }, []);
+
+  //아직 포스트가 로딩되지 않은 경우
+  //Todo: 스켈레톤 UI 적용?
+  if (!post) {
+    return <></>;
+  }
 
   return (
     <>
