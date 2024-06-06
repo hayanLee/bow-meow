@@ -31,9 +31,8 @@ function getLoginedUserData(loginedUserId) {
 function ProfileEditPage() {
   const [loginedUser, setLoginedUser] = useState(getLoginedUserData(mockLoginedUser.userId));
 
-  //아래 ref는 컴포넌트 설계 오류를 우회하기 위해 사용했습니다.
-  const uploadedImgURLRef = useRef(null); // <= 임시방편
-  const infoInputElemRef = useRef(null); // <= 임시방편
+  const uploadedImgURLRef = useRef(null);
+  const infoInputElemRef = useRef(null);
 
   return (
     <Main>
