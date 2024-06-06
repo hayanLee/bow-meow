@@ -1,9 +1,12 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import logoImg from '../../assets/logo_img.png';
-import { getUserToken } from '../../supabase/auth.login';
+import { updateUserProfile } from '../../redux/slices/userReducer';
+import { getUserRow } from '../../supabase/profile';
 import Input from '../common/Input';
 import {
+  ProfileImg,
   StContainer,
   StHeader,
   StLeft,
@@ -12,36 +15,29 @@ import {
   StRight,
   StSearchIcon,
   StSearchWrapper,
-  StTitle,
-  ProfileImg
+  StTitle
 } from './Header.styled';
-import supabase from '../../supabase/supabaseClient';
 
 function Header() {
+  const [userImg, setUserImg] = useState(null);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const homePageBtn = () => {
     navigate('/');
   };
+  useEffect(() => {
+    (async () => {
+      const profileImg = await getUserRow();
+      const { uuid: userId, nickname, profile_img } = profileImg;
 
-  const accessToken = getUserToken();
+      setUserImg(profile_img);
+      dispatch(updateUserProfile({ isLogin: true, userId, nickname, profileImg: profile_img }));
+    })();
+  }, [userImg]);
 
-  const [userImg, setUserImg] = useState(null);
-
-  const getUserFunction = async() => {
-    const {data} = await supabase.auth.getUser()
-
-    const {data:userInfo,error} = await supabase.from('users').select().eq('uuid',data.user.id)
-    if(error){
-      console.log(error)
-    }else{
-      setUserImg(userInfo[0].profile_img)
-    }
-  }
-
-  useEffect(()=>{
-    getUserFunction();
-  },[])
+  const isLogin = useSelector((state) => state.user.isLogin);
+  console.log('로그인 리듀서', isLogin);
 
   return (
     <StHeader>
@@ -55,10 +51,13 @@ function Header() {
             <Input />
             <StSearchIcon />
           </StSearchWrapper>
-          {accessToken ? (
-              <ProfileImg  onClick={() => {
+          {isLogin ? (
+            <ProfileImg
+              onClick={() => {
                 navigate('/myPage');
-              }} src={userImg} />
+              }}
+              src={userImg}
+            />
           ) : (
             <StLogin
               onClick={() => {

@@ -20,11 +20,9 @@ import PostDetailBtn from '../../components/PostDetail/PostDetailBtn.jsx/PostDet
 //react lib
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 
 //SupaBase API
-import { getImagesFromImages } from './../../supabase/post';
-import { getPost } from './../../supabase/post';
+import { getImagesFromImages, getPost } from './../../supabase/post';
 
 function PostDetailPage() {
   const { postId } = useParams(); //URL 매개변수에서 postId 가져오기
