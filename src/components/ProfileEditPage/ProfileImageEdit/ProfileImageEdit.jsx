@@ -1,7 +1,7 @@
 import { forwardRef, useRef } from 'react';
 import { StDiv, StImg, StInput, StLabel, StSpan } from './ProfileImageEdit.styled';
 
-const ProfileImageEdit = forwardRef(({ loginedUser }, ref) => {
+const ProfileImageEdit = forwardRef(function ProfileImageEdit({ loginedUser }, ref) {
   const { profileImg } = loginedUser;
   const imageElemRef = useRef(null);
 

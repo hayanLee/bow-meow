@@ -47,7 +47,8 @@ function MyPage() {
     async function loadUserAndPosts() {
       const loadedUserData = await getUser();
       const loginedUser = {
-        ...loadedUserData.user
+        ...loadedUserData.user,
+        ...loadedUserData.user.user_metadata
       };
 
       setLoginedUser(loginedUser);

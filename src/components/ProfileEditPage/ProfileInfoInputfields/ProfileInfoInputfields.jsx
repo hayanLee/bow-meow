@@ -1,24 +1,19 @@
 //subcomponent
 import InputField from '../InputField/InputField';
-import { StLabelInputPair, StInputFields } from './ProfileInfoInputfields.styled';
+import { StInputFields, StLabelInputPair } from './ProfileInfoInputfields.styled';
 
 //react library
 import { forwardRef, useImperativeHandle } from 'react';
 
-//reducer
-//import { useDispatch } from 'react-redux';
-//import { updateUserProfile } from '../../../redux/slices/userReducer';
-
 //custom hook
 import useInput from '../../../hooks/useInput';
+import { updateUserProfile, uploadUserProfileImg } from '../../../supabase/profile';
 
-const ProfileInfoInputFields = forwardRef(({ loginedUser }, ref) => {
+const ProfileInfoInputFields = forwardRef(function ProfileInfoInputFields({ loginedUser }, ref) {
   const { nickname: defaultNickname, introduce: defaultIntroduce } = loginedUser;
 
   const [nickname, changeNickname] = useInput(defaultNickname);
   const [introduce, changeIntroduce] = useInput(defaultIntroduce);
-
-  //const dispatch = useDispatch();
 
   useImperativeHandle(
     ref.infoInputRef,
@@ -28,27 +23,26 @@ const ProfileInfoInputFields = forwardRef(({ loginedUser }, ref) => {
     [nickname, introduce]
   );
 
-  function handleEditButtonClick() {
-    //Step.1: 유효성 검사 (Todo)
-    const profileImg = ref.uploadedImgRef.current ?? loginedUser.profileImg;
+  async function handleEditButtonClick() {
+    const profileFile = ref.current?.uploadedImgURLRef.current ?? null;
 
-    //Step 2: 새로운 유저 객체 만들기
-    const editedUser = { ...loginedUser, nickname, introduce, profileImg };
+    let profileImgUrl = loginedUser.profileImg;
+    if (profileFile) {
+      profileImgUrl = await uploadUserProfileImg(profileFile);
+      if (!profileImgUrl) {
+        alert('이미지 업로드에 실패했습니다');
+        return;
+      }
+    }
 
-    //Todo: 변경된 사항이 있는지 체크하고 없으면 함수종료
+    const editedUser = { nickname, introduce, profileImg: profileImgUrl };
 
-    //Step 3: 리듀서에게 보내기
-    //dispatch(updateUserProfile(editedUser));
-
-    //Step 4: DB에 반영하기 (Todo)
-
-    //Step 5: 완료메시지
-    alert('수정 완료');
-
-    //개발용 메시지
-    //  console.log('handleEditButtonClick');
-    //  console.log('editedUser ↓');
-    //  console.dir(editedUser);
+    const updatedUser = await updateUserProfile(editedUser);
+    if (updatedUser) {
+      alert('수정 완료');
+    } else {
+      alert('프로필 업데이트에 실패했습니다');
+    }
   }
 
   return (

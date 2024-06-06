@@ -14,14 +14,9 @@ import PostAddPage from '../pages/PostAddPage/PostAddPage';
 import PostDetailPage from '../pages/PostDetailPage';
 import PostEditPage from '../pages/PostEditPage/PostEditPage';
 import ProfileEditPage from '../pages/ProfileEditPage';
-// import SupabaseTestPage from '../pages/SupabaseTestPage';
 import ReduxTestPage from './../pages/ReduxTestPage';
 
 const router = createBrowserRouter([
-  //   {
-  //     path: '/test',
-  //     element: <SupabaseTestPage />
-  //   },
   {
     path: '/test-redux',
     element: <ReduxTestPage />
@@ -37,7 +32,7 @@ const router = createBrowserRouter([
     children: [
       { path: '/', element: <HomePage /> },
       { path: '/myPage', element: <MyPage /> },
-      { path: '/myPage/:userId', element: <MyPage /> },
+      // { path: '/myPage/:userId', element: <MyPage /> },
       { path: '/myPage/profileEdit', element: <ProfileEditPage /> },
       { path: '/posts/:postId', element: <PostDetailPage /> },
       { path: '/postAdd', element: <PostAddPage /> },
