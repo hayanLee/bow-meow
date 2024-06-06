@@ -17,9 +17,6 @@ const ButtonGroup = forwardRef(({ loginedUser }, ref) => {
   }
 
   function handleResetButtonClick() {
-    console.log('loginedUser ↓');
-    console.dir(loginedUser);
-
     //SupaBase API
     forgetPassWord(loginedUser.email);
 
@@ -27,7 +24,7 @@ const ButtonGroup = forwardRef(({ loginedUser }, ref) => {
   }
 
   function handleBackButtonClick() {
-    navigate('/');
+    navigate('/myPage');
   }
 
   function handleEditButtonClick() {
