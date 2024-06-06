@@ -14,7 +14,7 @@ export default function SearchPw() {
 
   return (
     <Wrapper>
-      <p>비밀번호 재설정</p>
+      <p>이메일로 새로운 비밀번호가 전송됩니다</p>
       <AuthsInput>
         <Input
           type="text"
@@ -24,7 +24,7 @@ export default function SearchPw() {
         />
       </AuthsInput>
       <AuthsBtn>
-        <Button type="submit" onClick={handleSearchPWClick} text="조회"></Button>
+        <Button type="submit" onClick={handleSearchPWClick} text="전송"></Button>
       </AuthsBtn>
     </Wrapper>
   );
