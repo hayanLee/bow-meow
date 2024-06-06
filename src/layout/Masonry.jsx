@@ -40,7 +40,7 @@ const ImageMasonry = () => {
     if (test) {
       open();
     } else {
-      navigate(`/posts/${postId}`); // 이부분 수정
+      navigate(`/posts/${postId}`);
     }
   };
 
