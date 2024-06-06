@@ -44,7 +44,7 @@ function ProfileEditPage() {
           loginedUser={loginedUser}
           ref={{ infoInputRef: infoInputElemRef, uploadedImgRef: uploadedImgURLRef }}
         />
-        <ButtonGroup ref={infoInputElemRef} />
+        <ButtonGroup loginedUser={loginedUser} ref={infoInputElemRef} />
       </LowerSection>
     </Main>
   );
