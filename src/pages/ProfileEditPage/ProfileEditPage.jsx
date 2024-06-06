@@ -38,8 +38,6 @@ function ProfileEditPage() {
     loadLoginedUser();
   }, []);
 
-  console.log('ㅡmongmong');
-
   //로그인이 되지 않으면 리턴
   if (!loginedUser) {
     return <p>로그인을 해주세요!</p>;
