@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { checkSignIn, forgetPassWord, signOut, signUpWithEmail, singInWithEmail } from '../supabase/auth.login';
 import { getPetsOfUserImage } from '../supabase/post';
 import { checkProfile } from '../supabase/profile';
+import UpdatePW from '../components/Auths/UpdatePw';
 
 export default function SupabaseTestPage() {
   const [value, setValue] = useState({ id: '', pw: '' });
@@ -50,7 +51,7 @@ export default function SupabaseTestPage() {
     checkProfile();
   };
 
-  const onForgetPassword = async () => await forgetPassWord(value.id);
+  const onForgetPassword = async () => await UpdatePW(value.id);
 
   return (
     <div>
