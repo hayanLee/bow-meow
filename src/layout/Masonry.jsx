@@ -8,6 +8,7 @@ import styled, { keyframes } from 'styled-components';
 import { useLoginModal } from '../hooks/useLoginModal';
 import fetchPosts from '../mockdatas/postFn';
 import supabase from '../supabase/supabaseClient';
+import { Navigate } from 'react-router-dom';
 
 const ImageMasonry = () => {
   const { open } = useLoginModal();
@@ -35,7 +36,16 @@ const ImageMasonry = () => {
     '16/20'
   ];
 
-  
+  const [test, setTest] = useState(false);
+
+  const imageHandler = () => {
+    if (test) {
+      open();
+    } else {
+      Navigate('/detail');
+    }
+  };
+
   const fetchData = (setFunction) => {
     setFunction(true);
     fetchPosts(update)
@@ -75,7 +85,7 @@ const ImageMasonry = () => {
                   width: '100%',
                   cursor: 'pointer'
                 }}
-                onClick={open}
+                onClick={imageHandler}
               />
             </div>
           ))}
