@@ -50,6 +50,7 @@ function MyPage() {
 
       console.log('loginedUser ↓');
       console.dir(loginedUser);
+
       const userPostList = await getPetsOfUserImage(loginedUser.id); //SupaBase API
 
       setUserPostList(userPostList);
