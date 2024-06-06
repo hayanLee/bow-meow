@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { v4 as uuidv4 } from 'uuid';
 import { format } from 'date-fns';
+import { v4 as uuidv4 } from 'uuid';
 
 const initialState = {
   posts: [
@@ -40,12 +40,6 @@ const initialState = {
     }
   ]
 };
-
-// 이런 방식으로 접근하시면 됩니다!
-// 처음 posts는 reducer, 나중 posts는 state의 posts 이름입니다
-
-// const posts = useSelector((state) => console.log(state.posts.posts));
-// const testDis = () => dispatch(createPost(1, 2));
 
 const postSlice = createSlice({
   initialState,
