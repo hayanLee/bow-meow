@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { checkSignIn, forgetPassWord, signOut, signUpWithEmail, singInWithEmail } from '../supabase/auth.login';
-import { getUrlOfCats } from '../supabase/post';
+import { getPetsOfUserImage } from '../supabase/post';
 import { checkProfile } from '../supabase/profile';
 
 export default function SupabaseTestPage() {
@@ -31,18 +31,15 @@ export default function SupabaseTestPage() {
   //   getUser().then((user) => console.log(user));
   // };
 
-  const onGetPost = async () => await getUrlOfCats();
-
-  // 추가
-  // const files = useSelector((state) => state.images.images[0].files); // 일단은 하드코딩
-  // console.log(files);
-  // const onCreatePost = async (dump) => await createPost(dump);
-  // const onCreatePost = async (files) => await uploadImage(files);
-
-  // const onDeletePost = async (id) => {
-  //   console.log(id);
-  //   await deletePost(id);
+  // const onGetPost = async () => {
+  //   const posts = await getImagesFromTable();
+  //   console.log(posts);
   // };
+
+  const onGetUserPosts = async (userId) => {
+    const userPosts = await getPetsOfUserImage(userId);
+    console.log(userPosts); // 여기서 userPosts는 해당 사용자의 게시물입니다.
+  };
 
   const onUpdatePost = async (id) => {
     console.log(id);
@@ -64,7 +61,8 @@ export default function SupabaseTestPage() {
       <button onClick={onLogin}>로그인</button>
       <button onClick={onLogout}>로그아웃</button>
       <button onClick={onClickAuth}>로그인 여부 확인</button>
-      <button onClick={onGetPost}>글 조회하기</button>
+      {/* <button onClick={onGetPost}>글 조회하기</button> */}
+      <button onClick={() => onGetUserPosts('46c9e5cd-7044-414d-a35e-5a84c9bab60e')}>사용자 피드 조회하기</button>
       {/* <button onClick={() => onCreatePost(files)}>글 작성하기</button> */}
       {/* <button onClick={() => onDeletePost(id)}>글 삭제하기</button> */}
       {/* <button onClick={() => onUpdatePost(4)}>글 갱신하기</button> */}
