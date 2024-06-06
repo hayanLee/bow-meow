@@ -37,10 +37,10 @@ function PostDetailPage() {
   //DB에서 포스트를 불러옴
   useEffect(() => {
     async function loadPosts() {
-      const post = await getPost(+postId);
-      const images = await getImagesFromImages([+postId]);
-
-      post.images = images;
+      const post = await getPost(postId);
+      const images = await getImagesFromImages([post]);
+      const imageUrls = images.map((image) => image['img_url']);
+      post.images = imageUrls;
 
       console.log('PostDetailPage > load post by postId');
       console.log(`post (id:${postId}) ↓`);
