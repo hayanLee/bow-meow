@@ -139,6 +139,19 @@ export const upateNewPost = async (updatePost) => {
 
 // ========== Delete ============
 export const deletePost = async (id) => {
-  const { error } = await supabase.from('posts').delete().eq('id', id);
-  if (error) console.log(error);
+  try {
+    const { error: imageError } = await supabase.from('images').delete().eq('post_id', id);
+    if (imageError) {
+      console.log('이미지 삭제 중 에러 발생:', imageError);
+      return;
+    }
+
+    const { error: postError } = await supabase.from('posts').delete().eq('id', id);
+    if (postError) {
+      console.log('게시물 삭제 중 에러 발생:', postError);
+      return;
+    }
+  } catch (error) {
+    console.error('삭제 중 에러 발생:', error);
+  }
 };
