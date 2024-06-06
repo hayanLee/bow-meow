@@ -1,12 +1,9 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
 // 스와이퍼 관련
-import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { Navigation, Pagination } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
 import {
   StyledDetailContainer,
   StyledDetailDate,
@@ -20,18 +17,54 @@ import {
 } from '../../components/PostDetail/PostDetail.styled';
 import PostDetailBtn from '../../components/PostDetail/PostDetailBtn.jsx/PostDetailBtn';
 
+//react lib
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+
+//SupaBase API
+import { getImagesFromImages } from './../../supabase/post';
+import { getPost } from './../../supabase/post';
+
 function PostDetailPage() {
-  const { postId } = useParams();
-  const posts = useSelector((state) => state.posts.posts);
-  const post = posts.find((s) => s.postId.toString() === postId);
+  const { postId } = useParams(); //URL 매개변수에서 postId 가져오기
+  const [post, setPost] = useState(null);
+
+  //Redux store에서 모든 게시물 가져옴
+  //const posts = useSelector((state) => state.posts.posts);
+
+  //페이지 로드시 한 번만
+  //DB에서 포스트를 불러옴
+  useEffect(() => {
+    async function loadPosts() {
+      const post = await getPost(postId);
+      const images = await getImagesFromImages([post]);
+      const imageUrls = images.map((image) => image['img_url']);
+      post.images = imageUrls;
+
+      console.log('PostDetailPage > load post by postId');
+      console.log(`post (id:${postId}) ↓`);
+      console.dir(post);
+
+      setPost(post);
+    }
+
+    loadPosts();
+  }, []);
+
+  //아직 포스트가 로딩되지 않은 경우
+  //Todo: 스켈레톤 UI 적용?
+  if (!post) {
+    return <></>;
+  }
 
   return (
     <>
-      <PostDetailBtn postId={postId}/>
+      <PostDetailBtn postId={postId} /> {/* 수정 및 삭제 버튼이 있는 컴포넌트 렌더링 */}
       <StyledDetailContainer>
         <StyledDetailLeft>
           <StyledDetailImg>
-            {post.images && post.images.length > 0 ? (
+            {post.images && post.images.length > 0 ? ( // 게시물에 이미지가 있는지 확인
               <Swiper
                 modules={[Navigation, Pagination]}
                 pagination={{ clickable: true }}
@@ -39,11 +72,16 @@ function PostDetailPage() {
                 spaceBetween={50}
                 slidesPerView={1}
               >
-                {post.images.map((image, index) => (
-                  <SwiperSlide key={index}>
-                    <img src={image} alt={`Post Image ${index}`} />
-                  </SwiperSlide>
-                ))}
+                {post.images.map(
+                  (
+                    image,
+                    index // 게시물의 이미지를 순회하며 SwiperSlide 렌더링
+                  ) => (
+                    <SwiperSlide key={index}>
+                      <img src={image} alt={`Post Image ${index}`} /> {/* 이미지 렌더링 */}
+                    </SwiperSlide>
+                  )
+                )}
               </Swiper>
             ) : (
               <div>이미지가 없습니다</div>

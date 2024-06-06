@@ -10,31 +10,51 @@ import {
   LowerSection
 } from '../../components/ProfileEditPage/ProfileEditPage.styles/ProfileEditPage.styled';
 
-//리액트 라이브러리
-import { useRef, useState } from 'react';
+//SupaBase API
+import { getUser } from './../../supabase/auth.login';
 
-//더미 데이터
-const mockLoginedUser = {
-  userId: 101,
-  nickname: 'John',
-  email: 'helloworld@naver.com',
-  pwd: '123123123',
-  profileImg: 'https://uxwing.com/wp-content/themes/uxwing/download/peoples-avatars/employee-icon.png',
-  introduce: '자기소개: 잘 부탁드려요 '
-};
+//리액트 라이브러리
+import { useEffect, useRef, useState } from 'react';
 
 function ProfileEditPage() {
-  const [loginedUser, setLoginedUser] = useState(mockLoginedUser);
-  const inputFieldRef = useRef(null);
+  const [loginedUser, setLoginedUser] = useState(null);
+
+  const uploadedImgURLRef = useRef(null);
+  const infoInputElemRef = useRef(null);
+
+  useEffect(() => {
+    async function loadLoginedUser() {
+      const loginedUser = await getUser();
+
+      if (loginedUser.user) {
+        setLoginedUser({
+          ...loginedUser.user,
+          ...loginedUser.user.user_metadata
+        });
+      }
+    }
+
+    loadLoginedUser();
+  }, []);
+
+  console.log('ㅡmongmong');
+
+  //로그인이 되지 않으면 리턴
+  if (!loginedUser) {
+    return <p>로그인을 해주세요!</p>;
+  }
 
   return (
     <Main>
       <UpperSection>
-        <ProfileImageEdit loginedUser={loginedUser} />
+        <ProfileImageEdit loginedUser={loginedUser} ref={uploadedImgURLRef} />
       </UpperSection>
       <LowerSection>
-        <ProfileInfoInputfields loginedUser={loginedUser} ref={inputFieldRef} />
-        <ButtonGroup ref={inputFieldRef} />
+        <ProfileInfoInputfields
+          loginedUser={loginedUser}
+          ref={{ infoInputRef: infoInputElemRef, uploadedImgRef: uploadedImgURLRef }}
+        />
+        <ButtonGroup loginedUser={loginedUser} ref={infoInputElemRef} />
       </LowerSection>
     </Main>
   );

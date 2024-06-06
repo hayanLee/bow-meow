@@ -3,11 +3,14 @@ import { memo } from 'react';
 import StPostList from './PostList.styled';
 import Post from './../Post';
 
-function PostList({ userWrittenPostList }) {
+function PostList({ userPostList }) {
+  console.log('userPostList ↓');
+  console.dir(userPostList);
+
   return (
     <StPostList>
-      {userWrittenPostList.map((post) => (
-        <Post key={post.postId} image={post.images[0]} date={post.date} postId={post.postId} />
+      {userPostList.map((post) => (
+        <Post key={post.id} image={post.images} date={post.created_at} postId={post.id} />
       ))}
     </StPostList>
   );

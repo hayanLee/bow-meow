@@ -53,30 +53,6 @@ export const checkSignIn = async () => {
   if (error) console.log(error);
 };
 
-
-// 이벤트리스너
-const { data } = supabase.auth.onAuthStateChange((event, session) => {
-  // console.log(data, event, session);
-  if (event === 'INITIAL_SESSION') {
-    // console.log('첫번째 세션');
-    // handle initial session
-  } else if (event === 'SIGNED_IN') {
-    // alert('로그인에 성공했습니다!');
-    console.log('로그인 이벤트');
-    // handle sign in event
-  } else if (event === 'SIGNED_OUT') {
-    // alert('로그아웃에 성공했습니다!');
-    console.log('로그아웃 이벤트');
-    // handle sign out event
-  } else if (event === 'PASSWORD_RECOVERY') {
-    console.log('비밀번호 초기화됨');
-    // handle password recovery event
-  } else if (event === 'TOKEN_REFRESHED') {
-    // handle token refreshed event
-  } else if (event === 'USER_UPDATED') {
-    // handle user updated event
-  }
-})
 export const getUser = async () => {
   const { data: authUser, error } = await supabase.auth.getUser();
   // console.log(user);
