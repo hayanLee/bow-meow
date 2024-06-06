@@ -17,11 +17,15 @@ export const signUpWithEmail = async (email, password) => {
   if (error) console.log(error);
 };
 
-export const singInWithEmail = async (email, password) => {
-  console.log('로그인', email, password);
-  const { data, error } = await supabase.auth.signInWithPassword({ email, password });
-  if (data) console.log(data);
-  if (error) console.log(error);
+export const signInWithEmail = async (email, password) => {
+  const { data: loginData, error } = await supabase.auth.signInWithPassword({ email, password }); // 로그인 되면
+  if (loginData) {
+    // const { id: userId, email: userEmail } = loginData.user; // 로그인 한 유저정보를 저장
+
+    // return { userId, userEmail };
+    return loginData.user;
+  }
+  if (error) console.log('로그인 정보 저장 에러: ', error);
 };
 
 export const signOut = async () => {
