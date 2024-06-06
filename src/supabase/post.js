@@ -115,6 +115,27 @@ export const getPetsOfUserImage = async (user_id) => {
 };
 
 // ========== Update ============
+export const upateNewPost = async (updatePost) => {
+  console.log('>>>>>', updatePost);
+  const { id, title, content } = updatePost;
+
+  const { data, error } = await supabase
+    .from('posts')
+    .update({
+      title,
+      content
+    })
+    .eq('id', id)
+    .select();
+
+  if (error) {
+    console.error('포스트 변경 에러:', error);
+    return null;
+  }
+  if (data) {
+    console.log('업뎃 완', data);
+  }
+};
 
 // ========== Delete ============
 export const deletePost = async (id) => {
