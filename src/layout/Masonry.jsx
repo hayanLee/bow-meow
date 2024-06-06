@@ -2,7 +2,7 @@
 /* eslint-disable no-unused-vars */
 import Masonry from '@mui/lab/Masonry';
 import Box from '@mui/material/Box';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled, { keyframes } from 'styled-components';
 import { useLoginModal } from '../hooks/useLoginModal';
