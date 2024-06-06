@@ -41,6 +41,10 @@ export const StyledModalImg = styled.div`
 export const StyledModalContent = styled.div`
   max-width: 100%;
   max-height: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const CloseButton = styled.button`
@@ -51,8 +55,8 @@ export const CloseButton = styled.button`
   right: 0;
   font-size: 1.2rem;
   display: flex;
-  align-items: center; 
-  justify-content: center; 
+  align-items: center;
+  justify-content: center;
 `;
 
 // 이미지 박스 css

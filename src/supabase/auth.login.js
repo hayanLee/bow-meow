@@ -17,11 +17,15 @@ export const signUpWithEmail = async (email, password) => {
   if (error) console.log(error);
 };
 
-export const singInWithEmail = async (email, password) => {
-  console.log('로그인', email, password);
-  const { data, error } = await supabase.auth.signInWithPassword({ email, password });
-  if (data) console.log(data);
-  if (error) console.log(error);
+export const signInWithEmail = async (email, password) => {
+  const { data: loginData, error } = await supabase.auth.signInWithPassword({ email, password }); // 로그인 되면
+  if (loginData) {
+    // const { id: userId, email: userEmail } = loginData.user; // 로그인 한 유저정보를 저장
+
+    // return { userId, userEmail };
+    return loginData.user;
+  }
+  if (error) console.log('로그인 정보 저장 에러: ', error);
 };
 
 export const signOut = async () => {
@@ -60,6 +64,30 @@ export const getUser = async () => {
   if (error) {
     console.log('로그인한 유저를 찾을 수 없음', error);
     return;
+  }
+};
+
+export const getSupabaseToken = () => {
+  const allKeys = Object.keys(localStorage);
+  const supabaseKey = allKeys.find((key) => key.startsWith('sb-') && key.endsWith('-auth-token'));
+  return supabaseKey;
+};
+
+export const getUserToken = () => {
+  const supabaseKey = getSupabaseToken();
+  if (supabaseKey) {
+    const tokenData = localStorage.getItem(supabaseKey);
+
+    try {
+      const parsedData = JSON.parse(tokenData);
+      return parsedData?.user || null;
+    } catch (error) {
+      console.error('토큰 데이터 파싱 오류:', error);
+      return null;
+    }
+  } else {
+    console.log('Supabase 토큰을 찾을 수 없음');
+    return null;
   }
 };
 

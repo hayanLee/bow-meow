@@ -1,26 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  //현재: 더미데이터
-  //Todo: DB에서 유저리스트를 불러와서 initialState를 초기화
-  users: [
-    {
-      userId: 101,
-      nickname: 'John',
-      email: 'helloworld@naver.com',
-      pwd: '123123123',
-      profileImg: 'https://uxwing.com/wp-content/themes/uxwing/download/peoples-avatars/employee-icon.png',
-      introduce: '잘 부탁드려요'
-    },
-    {
-      userId: 102,
-      nickname: 'Mary',
-      email: 'marryplace@naver.com',
-      pwd: 'abcabcabc',
-      profileImg: 'https://uxwing.com/wp-content/themes/uxwing/download/peoples-avatars/employee-icon.png',
-      introduce: '반가워요'
-    }
-  ]
+  // 현재 로그인 유저 id, 닉네임
+  userId: '',
+  nickname: '',
+  profileImg: ''
 };
 
 const userSlice = createSlice({
@@ -28,16 +12,20 @@ const userSlice = createSlice({
   name: 'user',
   reducers: {
     updateUserProfile: (state, action) => {
-      const newUserProfile = action.payload;
-
-      const loginedUserIdx = state.users.findIndex((user) => user.userId === newUserProfile.userId);
-
-      if (loginedUserIdx !== -1) {
-        state.users[loginedUserIdx] = newUserProfile;
-      }
+      console.log('>>>>>>', action);
+      const { userId, nickname, profileImg } = action.payload;
+      state.userId = userId !== undefined ? userId : state.userId;
+      state.nickname = nickname !== undefined ? nickname : state.nickname;
+      state.profileImg = profileImg !== undefined ? profileImg : state.profileImg;
+    },
+    clearUser: (state, action) => {
+      console.log('>>>>>>', action);
+      state.userId = initialState.userId;
+      state.nickname = initialState.nickname;
+      state.profileImg = initialState.profileImg;
     }
   }
 });
 
 export const userReducer = userSlice.reducer;
-export const { updateUserProfile } = userSlice.actions;
+export const { updateUserProfile, clearUser } = userSlice.actions;

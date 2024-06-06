@@ -1,46 +1,44 @@
 import { useRef } from 'react';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { updateUserProfile } from '../../redux/slices/userReducer';
+import { getSupabaseToken, signInWithEmail } from '../../supabase/auth.login';
 import Button from '../common/Button/Button';
 import Input from '../common/Input/Input';
 import { AuthsBtn, AuthsInput, SearchIdPw, Wrapper } from './Login.styled';
-import supabase from '../../supabase/supabaseClient';
-import { checkSignIn, singInWithEmail } from '../../supabase/auth.login';
-
 
 export default function Login() {
   const navigate = useNavigate();
   const idRef = useRef(null);
   const passwordRef = useRef(null);
 
-  const handleLogInClick = async () => {
-    console.log(idRef.current.value);
-    const { error } = await supabase.auth.signInWithPassword({
-      email: idRef.current.value,
-      password: passwordRef.current.value
-    });
-    if (error) {
-      console.error('로그인 오류:', error.message);
-      return;
-    }
+  const dispatch = useDispatch();
 
+  const handleLogInClick = async () => {
     if (!idRef.current.value || !passwordRef.current.value) {
       alert('아이디와 비밀번호를 모두 입력하세요.');
       return;
     }
+
+    const loginData = await signInWithEmail(idRef.current.value, passwordRef.current.value);
+    // console.log(loginData);
+    if (!loginData || !loginData.id || !loginData.email) {
+      alert('로그인 실패. 유저 정보를 불러오지 못했습니다.');
+      return;
+    }
+
+    const accessToken = getSupabaseToken();
+    console.log(accessToken);
+    dispatch(updateUserProfile({ userId: accessToken.id, email: accessToken.email }));
+
     alert('로그인 성공!');
+    // console.log(localStorage.getItem('accessToken'));
     navigate('/');
-    singInWithEmail(userEmail, password);
-    checkSignIn();
   };
 
-  console.log(localStorage.getItem('accessToken'));
   const handleSignUpClick = () => {
     navigate('/auth/signUp');
   };
-
-  // const handleSearchIdClick = () => {
-  //   navigate('/auth/searchId');
-  // };
 
   const handleSearchPWClick = () => {
     navigate('/auth/searchPW');
