@@ -1,14 +1,14 @@
 //기능용 컴포넌트
-import ProfileImg from '../../components/MyPage/ProfileImg';
 import PostList from '../../components/MyPage/PostList';
+import ProfileImg from '../../components/MyPage/ProfileImg';
 import Summary from './../../components/MyPage/Summary';
 
 //스타일용 컴포넌트
 import {
-  StMain,
-  StUpperSection,
   StLowerSection,
-  StSideGroup
+  StMain,
+  StSideGroup,
+  StUpperSection
 } from '../../components/MyPage/MyPage.styles/MyPage.styled';
 
 //공용 컴포넌트
@@ -20,8 +20,8 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 //SupaBase API
-import { signOut, getUser } from './../../supabase/auth.login';
 import { getImagesFromImages, getPetsOfUserImage } from '../../supabase/post';
+import { getSupabaseToken, getUser, signOut } from './../../supabase/auth.login';
 
 function MyPage() {
   const [loginedUser, setLoginedUser] = useState(null);
@@ -31,6 +31,9 @@ function MyPage() {
 
   function handleLogoutButtonClick() {
     signOut(); //SupaBase API
+
+    const supabaseKey = getSupabaseToken();
+    localStorage.removeItem(supabaseKey);
 
     alert('로그아웃되었습니다.');
     navigate('/');
