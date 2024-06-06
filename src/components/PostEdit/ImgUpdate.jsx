@@ -1,7 +1,3 @@
-import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { addImg, removeImg } from '../../redux/slices/postImgReducer.slice';
-import { v4 as uuidv4 } from 'uuid';
 import {
   ImagePreviewContainer,
   ImageContainer,
@@ -10,40 +6,52 @@ import {
   StyledUploadArea,
   CenteredText
 } from '../PostAdd/PostAddPage.styled';
-import PostFile from '../PostAdd/PostImgUpload/PostFile';
 
+import React, { forwardRef, useImperativeHandle, useState } from 'react';
+
+import PostFile from '../PostAdd/PostImgUpload/PostFile';
+import ModalImg from './../PostAdd/PostImgUpload/ModalImg';
 
 // 수정페이지에서 이미지는 수정이 안됩니당........
-const ImgUpdate = ({ existingImages = [], postId }) => {
+const ImgUpdate = forwardRef(({ defaultImages = [] }, ref) => {
   const [largedImage, setLargedImage] = useState(null);
-  const dispatch = useDispatch();
-  const images = useSelector((state) => state.images.images || []); // Redux 스토어에서 이미지 가져오기
-  const [uploadedImageIds, setUploadedImageIds] = useState(existingImages.map((image) => image.id)); // 이미지 ID들을 저장할 상태
 
+  //const images = useSelector((state) => state.images.images || []); // Redux 스토어에서 이미지 가져오기
+  //const images = [];
+
+  const [imagesToUpload, setImagesToUpload] = useState(defaultImages);
+
+  useImperativeHandle(ref, () => {
+    return {
+      get: () => {
+        return imagesToUpload;
+      }
+    };
+  });
 
   const handleImageChange = (files) => {
-    if (images.length + files.length <= 5) {
-      const formattedFiles = Array.from(files).map((file) => ({
-        id: uuidv4(),
-        file
-      }));
-      dispatch(addImg(formattedFiles));
+    if (imagesToUpload.length + files.length <= 5) {
+      const addedImages = files.map((file) => URL.createObjectURL(file));
+
+      //dispatch(addImg(formattedFiles));
       // 이미지 ID들을 업데이트
-      setUploadedImageIds([...uploadedImageIds, ...formattedFiles.map((image) => image.id)]);
+
+      setImagesToUpload([...imagesToUpload, ...addedImages]);
     } else {
       alert('이미지는 최대 5장까지만 업로드할 수 있습니다.');
     }
   };
 
   const handleDrop = (files) => {
-    if (images.length + files.length <= 5) {
-      const formattedFiles = Array.from(files).map((file) => ({
-        id: uuidv4(),
-        file
-      }));
-      dispatch(addImg(formattedFiles));
+    console.log('!!!!!!!!!dropped!!!!!!!!');
+
+    if (imagesToUpload.length + files.length <= 5) {
+      const addedImages = files.map((file) => URL.createObjectURL(file));
+
+      //dispatch(addImg(formattedFiles));
       // 이미지 ID들을 업데이트
-      setUploadedImageIds([...uploadedImageIds, ...formattedFiles.map((image) => image.id)]);
+
+      setImagesToUpload([...imagesToUpload, ...addedImages]);
     } else {
       alert('이미지는 최대 5장까지만 업로드할 수 있습니다.');
     }
@@ -53,10 +61,15 @@ const ImgUpdate = ({ existingImages = [], postId }) => {
     event.preventDefault();
   };
 
-  const handleImageRemove = (id) => {
-    dispatch(removeImg(id));
-    // 이미지 ID들에서 삭제
-    setUploadedImageIds(uploadedImageIds.filter((imageId) => imageId !== id));
+  const handleImageRemove = (e, imgIdx) => {
+    e.preventDefault();
+
+    imagesToUpload.splice(imgIdx, 1);
+    setImagesToUpload([...imagesToUpload]);
+
+    //dispatch(removeImg(id));
+    // 업로드할 이미지에서 삭제
+    //setImagesToUpload(imagesToUpload.filter((imageId) => imageId !== id));
   };
 
   const handleImageClick = (imageUrl) => {
@@ -72,31 +85,26 @@ const ImgUpdate = ({ existingImages = [], postId }) => {
       {largedImage && <ModalImg imgSrc={largedImage} onClose={closeLargedImage} />}
       <ImagePreviewContainer>
         {/* 기존에 입력된 이미지들 렌더링 */}
-        {existingImages.map((image) => (
+        {/* {defaultImages.map((image) => (
           <ImageContainer key={image.id}>
             <ImagePreview
               key={image.id}
-              src={image.file}
-              alt={`preview ${image.id}`}
+              src={image}
+              alt={`preview ${image}`}
               onClick={() => handleImageClick(image.file)}
             />
-            <DeleteButton onClick={() => handleImageRemove(image.id)}>삭제</DeleteButton>
+            <DeleteButton onClick={(e) => handleImageRemove(e)}>삭제</DeleteButton>
           </ImageContainer>
-        ))}
+        ))} */}
         {/* 새로 추가된 이미지들 렌더링 */}
-        {images.map((image) => (
-          <ImageContainer key={image.id}>
-            {image.file instanceof Blob ? (
-              <ImagePreview
-                key={image.id}
-                src={URL.createObjectURL(image.file)}
-                alt={`preview ${image.id}`}
-                onClick={() => handleImageClick(URL.createObjectURL(image.file))}
-              />
-            ) : (
+        {imagesToUpload.map((image, idx) => (
+          <ImageContainer key={idx}>
+            {
+              <ImagePreview src={image} alt={`preview ${image.id}`} onClick={() => handleImageClick(image)} /> /*  : (
               <span>에러발생</span>
-            )}
-            <DeleteButton onClick={() => handleImageRemove(image.id)}>삭제</DeleteButton>
+            ) */
+            }
+            <DeleteButton onClick={(e) => handleImageRemove(e, idx)}>삭제</DeleteButton>
           </ImageContainer>
         ))}
       </ImagePreviewContainer>
@@ -107,6 +115,6 @@ const ImgUpdate = ({ existingImages = [], postId }) => {
       </StyledUploadArea>
     </>
   );
-};
+});
 
 export default ImgUpdate;
