@@ -1,100 +1,72 @@
-import React, { useState } from 'react';
-import PostUpload from '../../components/PostEdit/PostUpload';
-import { v4 as uuidv4 } from 'uuid';
+import React, { useState, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { updatePost } from '../../redux/slices/postReducer.slice';
 import {
   StyledContainer,
   StyledPostBox,
   StyledPostInput,
-  CenteredText,
-  ImagePreviewContainer,
-  ImagePreview,
   StyledPostContent,
   StyledPostBtn,
-  StyledUploadArea,
   StyledRightContainer,
   StyledBtnContainer,
   StyledContentContainer,
   StyledLeftContainer
-} from '../../components/PostEdit/PostEditPage.styled';
+} from '../../components/PostAdd/PostAddPage.styled';
+import { clearImg } from '../../redux/slices/postImgReducer.slice';
+import ImgUpdate from '../../components/PostEdit/ImgUpdate'
 
+// 여기도 이미지 관련된 부분은 무시하셔도 됩니다ㅠㅠ!!
+function PostEditPage() {
+  const { postId } = useParams();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-/// 게시물 수정 페이지로 로직 바꿀 예정
-function PostEditPage({ onPostSubmit }) {
-  // 이미지, 제목, 내용 상태를 useState 훅을 통해 관리
+  const post = useSelector((state) => state.posts.posts.find((post) => post.postId === postId));
+  const images = useSelector((state) => state.images.images);
   const [title, setTitle] = useState('');
-  const [images, setImages] = useState([]);
   const [content, setContent] = useState('');
+  const [existingImages, setExistingImages] = useState([]);
 
-  // 파일 입력 엘리먼트에서 이미지가 선택될 때 호출되는 함수
-  const handleImageChange = (files) => {
-    // 선택된 이미지를 이미지 배열에 추가
-    if (images.length + files.length <= 5) {
-      setImages((prevImages) => [...prevImages, ...files]);
-    } else {
-      alert('이미지는 최대 5장까지만 업로드할 수 있습니다.');
+  useEffect(() => {
+    if (post) {
+      setTitle(post.title);
+      setContent(post.content);
+      setExistingImages(post.images || []);
     }
-  };
-
-  // 드래그 앤 드롭으로 파일이 추가될 때 호출되는 함수
-  const handleDrop = (files) => {
-    if (images.length + files.length <= 5) {
-      setImages((prevImages) => [...prevImages, ...files]);
-    } else {
-      alert('이미지는 최대 5장까지만 업로드할 수 있습니다.');
-    }
-  };
-
-  // 드래그 오버 이벤트를 처리하여 기본 동작을 방지하는 함수
-  const handleDragOver = (event) => {
-    event.preventDefault();
-  };
+  }, [post]); // 게시물이 변경될 때 useEffect가 실행되도록 설정
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (!title || !content) {
-      alert('제목과 내용 모두 입력해주세요!!');
+    if (!title || (existingImages.length === 0 && images.length === 0) || !content) {
+      alert('칸을 모두 채워주세요!!');
       return;
     }
 
-    const newPost = {
-      id: uuidv4(),
-      title,
-      content,
-      images,
-      thumbnail: images.length > 0 ? images[0] : null
+    const updatedPost = {
+      ...post, // 기존 게시물 데이터 복사
+      title, // 업데이트된 제목 설정
+      content, // 업데이트된 내용 설정
+      images: [...existingImages, ...images.map((image) => image.file)]
     };
 
-    console.log('Submitting post:', newPost); // 콘솔 로그 추가
-    onPostSubmit(newPost);
+    console.log('Updating post:', updatedPost); // 콘솔 로그 추가
+    dispatch(updatePost({ postId, updatedData: updatedPost }));
 
     setTitle('');
-    setImages([]);
+    dispatch(clearImg());
     setContent('');
 
-    alert('성공적으로 작성되었습니다!');
+    alert('성공적으로 수정되었습니다!');
+    navigate('/myPage'); // 수정이 완료된 후에 수정완료된 게시물로 이동
   };
 
   return (
     <StyledContainer>
-      <StyledPostBox onSubmit={handleSubmit}>
+      <StyledPostBox>
         <StyledContentContainer>
           <StyledLeftContainer>
-            <StyledUploadArea>
-              {/*이미지 업로드 부분*/}
-              <PostUpload
-                value={images}
-                onFileChange={handleImageChange}
-                onDrop={handleDrop}
-                onDragOver={handleDragOver}
-              >
-                {images.length === 0 && <CenteredText>여기에 파일을 드래그하거나 클릭하여 업로드</CenteredText>}
-                <ImagePreviewContainer>
-                  {images.map((image, index) => (
-                    <ImagePreview key={index} src={URL.createObjectURL(image)} alt={`preview ${index}`} />
-                  ))}
-                </ImagePreviewContainer>
-              </PostUpload>
-            </StyledUploadArea>
+            <ImgUpdate existingImages={existingImages} />
           </StyledLeftContainer>
           <StyledRightContainer>
             <StyledPostInput
@@ -111,7 +83,9 @@ function PostEditPage({ onPostSubmit }) {
           </StyledRightContainer>
         </StyledContentContainer>
         <StyledBtnContainer>
-          <StyledPostBtn type="submit">작성 완료</StyledPostBtn>
+          <StyledPostBtn type="submit" onClick={handleSubmit}>
+            수정 완료
+          </StyledPostBtn>
         </StyledBtnContainer>
       </StyledPostBox>
     </StyledContainer>

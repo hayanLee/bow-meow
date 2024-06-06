@@ -1,7 +1,7 @@
 import { memo } from 'react';
 
-import StSummary from './Summary.styled';
 import { StLabel } from '../MyPage.styles/MyPage.styled';
+import StSummary from './Summary.styled';
 
 function Summary({ userWrittenPostList }) {
   const { totalLiked, totalComments } = userWrittenPostList.reduce(
@@ -19,7 +19,7 @@ function Summary({ userWrittenPostList }) {
       <StLabel>
         <span>❤️</span>
         <span>좋아요</span>
-        <span> {totalLiked}</span>
+        <span> {0}</span>
       </StLabel>
       <StLabel>
         <span>🐶</span>
@@ -29,7 +29,7 @@ function Summary({ userWrittenPostList }) {
       <StLabel>
         <span>😺</span>
         <span>받은 댓글 </span>
-        <span>{totalComments}</span>
+        <span>{0}</span>
       </StLabel>
     </StSummary>
   );

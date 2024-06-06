@@ -1,28 +1,37 @@
 import { FiSearch } from 'react-icons/fi';
-import { GiHamburgerMenu } from 'react-icons/gi';
 import styled from 'styled-components';
+
 export const StHeader = styled.header`
   display: flex;
-  /* justify-content: space-between; */
   align-items: center;
-
-  width: 100%;
-  height: 100px;
-  padding: 0 20px;
+  margin: 20px auto 0 auto;
+  width: 80%;
+  height: 50px;
 `;
 
 export const StContainer = styled(StHeader)`
-  justify-content: flex-end;
-  gap: 30px;
+  /* justify-content: flex-end; */
+  width: 100%;
 `;
 
+// export const StHeadLogo = styled.div`
+
+// `;
+
 export const StLogo = styled.img`
-  height: inherit;
+  /* height: inherit; */
   cursor: pointer;
 `;
 
+export const StTitle = styled.div`
+  white-space: nowrap;
+  font-size: 2rem;
+  width: auto;
+`;
+
 export const StSearchWrapper = styled.div`
-  width: 350px;
+  width: auto;
+  height: auto;
   position: relative;
 `;
 
@@ -34,13 +43,27 @@ export const StSearchIcon = styled(FiSearch)`
   cursor: pointer;
 `;
 
-export const StHamburger = styled(GiHamburgerMenu)`
-  color: var(--text-color);
-  font-size: 2rem;
+export const StLogin = styled.div`
+  white-space: nowrap;
+  color: var(--write-color);
+  font-size: 1.2rem;
   cursor: pointer;
 
   &:hover {
     color: var(--point-color);
     transition: 0.2s;
   }
+`;
+
+export const StLeft = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+`;
+
+export const StRight = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-left:auto;
 `;

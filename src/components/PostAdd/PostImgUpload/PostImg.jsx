@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
-import PostFile from './PostFile';
-import { v4 as uuidv4 } from 'uuid';
+import { useDispatch, useSelector } from 'react-redux';
+import { addImg, removeImg } from '../../../redux/slices/postImgReducer.slice';
 import {
-  ImagePreviewContainer,
+  CenteredText,
+  DeleteButton,
   ImageContainer,
   ImagePreview,
-  DeleteButton,
-  StyledUploadArea,
-  CenteredText
+  ImagePreviewContainer,
+  StyledUploadArea
 } from '../PostAddPage.styled';
 import ModalImg from './ModalImg';
-import { useDispatch, useSelector } from 'react-redux';
-import { addImg, removeImg } from '../../../redux/slices/postImgReducer';
+import PostFile from './PostFile';
 
+// 게시물 이미지 업로드를 담당하는 PostImg 컴포넌트
 const PostImg = () => {
   const [largedImage, setLargedImage] = useState(null);
   const dispatch = useDispatch();
@@ -28,7 +28,7 @@ const PostImg = () => {
     }
   };
 
-  // 드래그 앤 드롭으로 파일이 추가될 때 호출되는 함수
+  // 드래그 앤 드롭 이벤트로 파일이 추가될 때 호출되는 함수
   const handleDrop = (files) => {
     if (images.length + files.length <= 5) {
       dispatch(addImg(files));
@@ -59,9 +59,12 @@ const PostImg = () => {
   return (
     <>
       {largedImage && <ModalImg imgSrc={largedImage} onClose={closeLargedImage} />}
+      {/* 이미지 미리보기 컨테이너 */}
       <ImagePreviewContainer>
+         {/* 이미지 배열을 순회하며 각 이미지를 렌더링 */}
         {images.map((image, index) => (
           <ImageContainer key={image.id}>
+             {/* 이미지가 Blob 형태인 경우 미리보기 이미지 렌더링 */}
             {image.file instanceof Blob ? (
               <ImagePreview
                 src={URL.createObjectURL(image.file)}
