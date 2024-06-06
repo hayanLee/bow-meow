@@ -37,6 +37,7 @@ const router = createBrowserRouter([
     children: [
       { path: '/', element: <HomePage /> },
       { path: '/myPage', element: <MyPage /> },
+      { path: '/myPage/:userId', element: <MyPage /> },
       { path: '/myPage/profileEdit', element: <ProfileEditPage /> },
       { path: '/posts/:postId', element: <PostDetailPage /> },
       { path: '/postAdd', element: <PostAddPage /> },

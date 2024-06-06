@@ -20,21 +20,21 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 //SupaBase API
+import { useDispatch } from 'react-redux';
+import { clearUser } from '../../redux/slices/userReducer';
 import { getImagesFromImages, getPetsOfUserImage } from '../../supabase/post';
-import { getSupabaseToken, getUser, signOut } from './../../supabase/auth.login';
+import { getUser, signOut } from './../../supabase/auth.login';
 
 function MyPage() {
   const [loginedUser, setLoginedUser] = useState(null);
   const [userPostList, setUserPostList] = useState(null);
+  const dispatch = useDispatch();
 
   const navigate = useNavigate();
 
   function handleLogoutButtonClick() {
     signOut(); //SupaBase API
-
-    const supabaseKey = getSupabaseToken();
-    localStorage.removeItem(supabaseKey);
-
+    dispatch(clearUser());
     alert('로그아웃되었습니다.');
     navigate('/');
   }

@@ -1,8 +1,6 @@
 import { useRef } from 'react';
-import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { updateUserProfile } from '../../redux/slices/userReducer';
-import { getSupabaseToken, signInWithEmail } from '../../supabase/auth.login';
+import { signInWithEmail } from '../../supabase/auth.login';
 import Button from '../common/Button/Button';
 import Input from '../common/Input/Input';
 import { AuthsBtn, AuthsInput, SearchIdPw, Wrapper } from './Login.styled';
@@ -11,9 +9,6 @@ export default function Login() {
   const navigate = useNavigate();
   const idRef = useRef(null);
   const passwordRef = useRef(null);
-
-  const dispatch = useDispatch();
-
   const handleLogInClick = async () => {
     if (!idRef.current.value || !passwordRef.current.value) {
       alert('아이디와 비밀번호를 모두 입력하세요.');
@@ -26,10 +21,6 @@ export default function Login() {
       alert('로그인 실패. 유저 정보를 불러오지 못했습니다.');
       return;
     }
-
-    const accessToken = getSupabaseToken();
-    console.log(accessToken);
-    dispatch(updateUserProfile({ userId: accessToken.id, email: accessToken.email }));
 
     alert('로그인 성공!');
     // console.log(localStorage.getItem('accessToken'));
