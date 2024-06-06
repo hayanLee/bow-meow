@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import PostImg from '../../components/PostAdd/PostImgUpload/PostImg';
+
+//스타일 컴포넌트
 import {
   StyledBtnContainer,
   StyledContainer,
@@ -12,21 +12,24 @@ import {
   StyledPostInput,
   StyledRightContainer
 } from '../../components/PostAdd/PostAddPage.styled';
-import PostImg from '../../components/PostAdd/PostImgUpload/PostImg';
+
+//react lib
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+
+//SupaBase API
+import { uploadImg } from '../../supabase/post';
+import { getUser } from './../../supabase/auth.login';
+
+//redux
 import { clearImg } from '../../redux/slices/postImgReducer.slice';
 import { createPost } from '../../redux/slices/postReducer.slice';
-import { uploadImg } from '../../supabase/post';
-const mockLoginedUser = {
-  userId: 101,
-  nickname: 'John',
-  email: 'helloworld@naver.com',
-  pwd: '123123123',
-  profileImg: 'https://uxwing.com/wp-content/themes/uxwing/download/peoples-avatars/employee-icon.png',
-  introduce: '자기소개: 잘 부탁드려요 '
-};
 
 // 이미지, 제목, 내용 상태를 useState 훅을 통해 관리
 function PostAddPage() {
+  const [loginedUser, setLoginedUser] = useState(null);
+
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
 
@@ -35,6 +38,23 @@ function PostAddPage() {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  console.log('loginedUser ↓');
+  console.dir(loginedUser);
+
+  // 페이지 로드 시에 로그인 유저 정보 한 번만 로드
+  useEffect(() => {
+    async function loadLoginedUser() {
+      const loginedUser = await getUser();
+
+      setLoginedUser({
+        ...loginedUser.user,
+        ...loginedUser.user.user_metadata
+      });
+    }
+
+    loadLoginedUser();
+  }, []);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -45,7 +65,7 @@ function PostAddPage() {
     }
 
     const newPost = {
-      userId: mockLoginedUser.userId,
+      userId: loginedUser.id,
       title,
       content,
       images: images.map((images) => URL.createObjectURL(images.file))
@@ -65,6 +85,11 @@ function PostAddPage() {
 
     navigate('/myPage'); // 작성이 완료된 후에 마이페이지로 이동
   };
+
+  //로그인이 되지 않으면 리턴
+  if (!loginedUser) {
+    return <></>;
+  }
 
   return (
     <StyledContainer>
