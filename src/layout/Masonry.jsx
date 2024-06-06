@@ -1,18 +1,18 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
-import * as React from 'react';
-import { useEffect, useState } from 'react';
-import Box from '@mui/material/Box';
 import Masonry from '@mui/lab/Masonry';
+import Box from '@mui/material/Box';
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled, { keyframes } from 'styled-components';
 import { useLoginModal } from '../hooks/useLoginModal';
-import fetchPosts from '../mockdatas/postFn';
+import { getImageIdsFromTable, getImagesFromImages } from '../supabase/post';
 const ImageMasonry = () => {
   const { open } = useLoginModal();
   const itemDatas = new Array(15).fill(null); // 스켈레톤 ui를 위한 더미 배열
   const [loading, setLoading] = useState(false); // 첫 페이지가 아닌 다음 무한스크롤 부터 해당 로딩이 적용됨
   const [firstLoading, setFirstLoading] = useState(false); // only for  첫 페이지 진입시 등장하는 스켈레톤을 위한 상태
-  const [update, setUpdate] = useState(10); // 변경될 때마다 새로운 정보를 가져올 것
+  const [update, setUpdate] = useState(10); // 변경될 때마다 새로운 정보를 가져올 것 ?
   const [itemTest, setItemTest] = useState([]);
   const columns = ['1/2', '2/3', '3/4'];
   const rows = [
@@ -34,43 +34,39 @@ const ImageMasonry = () => {
   ];
 
   const [test, setTest] = useState(false);
-
-  const imageHandler = () => {
+  const navigate = useNavigate();
+  const imageHandler = (e) => {
+    const postId = e.target.id;
     if (test) {
       open();
     } else {
-      Navigate('/detail');
+      navigate(`/posts/${postId}`); // 이부분 수정
     }
   };
 
-  const fetchData = (setFunction) => {
-    setFunction(true);
-    fetchPosts(update)
-      .then((data) => {
-        setFunction(false);
-        setItemTest(data);
-      })
-      .catch((error) => {
-        setFunction(false);
-        console.log(error);
-      });
+  const fetchData = async () => {
+    setFirstLoading(true); // 데이터 불러오기 시작
+    const imageIds = await getImageIdsFromTable();
+    const posts = await getImagesFromImages(imageIds);
+    setItemTest(posts);
+    setFirstLoading(false); // 데이터 로드 완료
   };
-
   useEffect(() => {
-    fetchData(setLoading);
-  }, [update]);
-
-  useEffect(() => {
-    fetchData(setFirstLoading);
+    fetchData();
   }, []);
+
+  useEffect(() => {
+    console.log(itemTest);
+  }, [itemTest]);
 
   return (
     <Box sx={{ width: '100%', height: '100%', padding: '40px 20px', marginLeft: '13px' }}>
       {!firstLoading ? (
         <Masonry columns={3} spacing={3}>
           {itemTest.map((item, index) => (
-            <div key={index}>
+            <div key={item.post_id}>
               <img
+                id={item.post_id}
                 srcSet={`${item.img_url}?w=162&auto=format&dpr=2 2x`}
                 src={`${item.img_url}?w=162&auto=format`}
                 alt={`${item.id}번째 이미지`}
