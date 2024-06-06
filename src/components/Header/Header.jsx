@@ -4,7 +4,6 @@ import logoImg from '../../assets/logo_img.png';
 import { getUserToken } from '../../supabase/auth.login';
 import Input from '../common/Input';
 import {
-  ProfileMyPageBtn,
   StContainer,
   StHeader,
   StLeft,
