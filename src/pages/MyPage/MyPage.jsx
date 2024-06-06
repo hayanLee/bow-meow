@@ -16,49 +16,65 @@ import Button from './../../components/common/Button';
 import CustomLink from './../../components/common/CustomLink';
 
 //리액트 라이브러리
-import { useMemo, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 //SupaBase API
-import { signOut } from './../../supabase/auth.login';
-
-//더미 데이터
-const mockLoginedUser = {
-  userId: 101
-};
-
-//To-be: DB API 사용해서 현재 로그인된 유저 정보 가져오기
-function getLoginedUserData(loginedUserId) {
-  const users = useSelector((state) => state.users.users);
-
-  const loginedUser = users.find((user) => user.userId === loginedUserId);
-
-  return loginedUser;
-}
+import { signOut, getUser } from './../../supabase/auth.login';
+import { getPetsOfUserImage } from '../../supabase/post';
 
 function MyPage() {
-  const [loginedUser, setLoginedUser] = useState(getLoginedUserData(mockLoginedUser.userId));
+  const [loginedUser, setLoginedUser] = useState(null);
+  const [userPostList, setUserPostList] = useState(null);
 
   const navigate = useNavigate();
 
-  const postList = useSelector((state) => state.posts.posts);
-
-  const userWrittenPostList = useMemo(() => postList.filter((post) => post.userId === loginedUser.userId), [postList]);
-
   function handleLogoutButtonClick() {
-    //SupaBase API
-    signOut();
+    signOut(); //SupaBase API
 
     alert('로그아웃되었습니다.');
     navigate('/');
+  }
+
+  useEffect(() => {
+    //현재 로그인된 유저 정보와
+    //현재 로그인된 유저가 작성한 포스트를 로드
+    async function loadUserAndPosts() {
+      const loadedUserData = await getUser(); //SupaBase API
+      const loginedUser = {
+        ...loadedUserData.user,
+        ...loadedUserData.user.user_metadata
+      };
+
+      setLoginedUser(loginedUser);
+
+      console.log('loginedUser ↓');
+      console.dir(loginedUser);
+      const userPostList = await getPetsOfUserImage(loginedUser.id); //SupaBase API
+
+      setUserPostList(userPostList);
+      console.log('userPostList ↓');
+      console.dir(userPostList);
+    }
+
+    loadUserAndPosts();
+  }, []);
+
+  //로그인이 되지 않으면 리턴
+  if (!loginedUser) {
+    return <p>로그인을 해주세요!</p>;
+  }
+
+  //포스트가 로드되지 않았으면 리턴
+  if (!userPostList) {
+    return <p>포스트 로드 중</p>;
   }
 
   return (
     <StMain>
       <StUpperSection>
         <ProfileImg profileImg={loginedUser.profileImg} />
-        <Summary userWrittenPostList={userWrittenPostList} />
+        <Summary userPostList={userPostList} />
         <StSideGroup>
           <CustomLink to={'/postAdd'}>글쓰기</CustomLink>
           <CustomLink to={'/myPage/profileEdit'}>회원정보 수정</CustomLink>
@@ -66,7 +82,7 @@ function MyPage() {
         </StSideGroup>
       </StUpperSection>
       <StLowerSection>
-        <PostList userWrittenPostList={userWrittenPostList} />
+        <PostList userPostList={userPostList} />
       </StLowerSection>
     </StMain>
   );
