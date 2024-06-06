@@ -16,7 +16,7 @@ const ProfileInfoInputFields = forwardRef(({ loginedUser }, ref) => {
   const dispatch = useDispatch();
 
   useImperativeHandle(
-    ref,
+    ref.infoInputRef,
     () => ({
       handleEditButtonClick
     }),
@@ -24,11 +24,12 @@ const ProfileInfoInputFields = forwardRef(({ loginedUser }, ref) => {
   );
 
   function handleEditButtonClick() {
-    //Step.1: 유효성 검사
-    //Todo
+    //Step.1: 유효성 검사 (Todo)
+
+    const profileImg = ref.uploadedImgRef.current ?? loginedUser.profileImg;
 
     //Step 2: 새로운 유저 객체 만들기
-    const editedUser = { ...loginedUser, nickname, introduce };
+    const editedUser = { ...loginedUser, nickname, introduce, profileImg };
 
     //Step 3: 리듀서에게 보내기
     dispatch(updateUserProfile(editedUser));

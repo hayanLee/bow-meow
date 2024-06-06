@@ -26,7 +26,7 @@ const mockLoginedUser = {
   email: 'helloworld@naver.com',
   pwd: '123123123',
   profileImg: 'https://uxwing.com/wp-content/themes/uxwing/download/peoples-avatars/employee-icon.png',
-  introduce: '자기소개: 잘 부탁드려요 '
+  introduce: '잘 부탁드려요 '
 };
 
 function MyPage() {
