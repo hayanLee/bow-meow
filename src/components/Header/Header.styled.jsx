@@ -27,6 +27,7 @@ export const StTitle = styled.div`
   white-space: nowrap;
   font-size: 2rem;
   width: auto;
+  cursor: pointer;
 `;
 
 export const StSearchWrapper = styled.div`
@@ -65,5 +66,14 @@ export const StRight = styled.div`
   display: flex;
   align-items: center;
   gap: 20px;
-  margin-left:auto;
+  margin-left: auto;
+`;
+
+export const ProfileMyPageBtn = styled.div`
+  width: 50px;
+  height: 50px;
+  font-size: 0;
+  border-radius: 50px;
+  border: 1px solid red;
+  cursor: pointer;
 `;

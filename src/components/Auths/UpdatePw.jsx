@@ -25,14 +25,12 @@ const UpdatePW = () => {
   return (
     <Wrapper>
       <div>
-        <AuthsInput>
-          <Input inputref={resetRef} placeholder="새 비밀번호" />
-        </AuthsInput>
         <AuthsBtn>
           <Button onClick={getNonce} text="인증번호 요청"></Button>
         </AuthsBtn>
         <AuthsInput>
           <Input inputref={verifyRef} placeholder="인증번호" />
+          <Input inputref={resetRef} placeholder="새 비밀번호" />
         </AuthsInput>
         <AuthsBtn>
           <Button onClick={resetData} text="변경하기"></Button>
