@@ -55,12 +55,15 @@ function PostDetailPage() {
   //아직 포스트가 로딩되지 않은 경우
   //Todo: 스켈레톤 UI 적용?
   if (!post) {
-    return <></>;
+    return <>포스트 로딩 중</>;
   }
 
   return (
     <>
-      <PostDetailBtn postId={postId} /> {/* 수정 및 삭제 버튼이 있는 컴포넌트 렌더링 */}
+      <PostDetailBtn postId={postId} />
+      {/* 수정 및 삭제 버튼이 있는 컴포넌트 렌더링
+		  Todo: 로그인된 유저 id === 포스트.작성유저 id => 렌더링
+		*/}
       <StyledDetailContainer>
         <StyledDetailLeft>
           <StyledDetailImg>
