@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import logoImg from '../../assets/logo_img.png';
 import { updateUserProfile } from '../../redux/slices/userReducer';
-import { getUserFunction } from '../../supabase/profile';
+import { getUserRow } from '../../supabase/profile';
 import Input from '../common/Input';
 import {
   ProfileImg,
@@ -28,9 +28,11 @@ function Header() {
   };
   useEffect(() => {
     (async () => {
-      const profileImg = await getUserFunction();
-      setUserImg(profileImg);
-      dispatch(updateUserProfile({ isLogin: true, profileImg }));
+      const profileImg = await getUserRow();
+      const { uuid: userId, nickname, profile_img } = profileImg;
+
+      setUserImg(profile_img);
+      dispatch(updateUserProfile({ isLogin: true, userId, nickname, profileImg: profile_img }));
     })();
   }, [userImg]);
 

@@ -20,7 +20,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 //SupaBase API
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { clearUser } from '../../redux/slices/userReducer';
 import { getImagesFromImages, getPetsOfUserImage } from '../../supabase/post';
 import { getUser, signOut } from './../../supabase/auth.login';
@@ -28,7 +28,9 @@ import { getUser, signOut } from './../../supabase/auth.login';
 function MyPage() {
   const [loginedUser, setLoginedUser] = useState(null);
   const [userPostList, setUserPostList] = useState(null);
+
   const dispatch = useDispatch();
+  const { profileImg } = useSelector((state) => state.user);
 
   const navigate = useNavigate();
 
@@ -45,8 +47,7 @@ function MyPage() {
     async function loadUserAndPosts() {
       const loadedUserData = await getUser();
       const loginedUser = {
-        ...loadedUserData.user,
-        ...loadedUserData.user.user_metadata
+        ...loadedUserData.user
       };
 
       setLoginedUser(loginedUser);
@@ -71,11 +72,6 @@ function MyPage() {
       }
 
       setUserPostList(userPostList);
-      console.log('userPostList ↓');
-      console.dir(userPostList);
-
-      console.log('postImages ↓');
-      console.dir(postImages);
 
       /* post shape
         user_id, (post)id, title, created_at, content
@@ -101,7 +97,7 @@ function MyPage() {
   return (
     <StMain>
       <StUpperSection>
-        <ProfileImg profileImg={loginedUser.profileImg} />
+        <ProfileImg profileImg={profileImg} />
         <Summary userPostList={userPostList} />
         <StSideGroup>
           <CustomLink to={'/postAdd'}>글쓰기</CustomLink>

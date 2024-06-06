@@ -60,7 +60,6 @@ export const checkSignIn = async () => {
 export const getUser = async () => {
   const { data: authUser, error } = await supabase.auth.getUser();
   if (authUser) {
-    console.log('>>>>', authUser);
     return authUser;
   }
   if (error) {

@@ -73,6 +73,7 @@ const uploadToImages = async (rowId, fileUrls) => {
 
 // ======== Read ==========
 // posts ids 가져오기
+// 메인 화면에서 그리기 위해
 export const getImageIdsFromTable = async () => {
   const { data, error } = await supabase.from('posts').select('id');
   if (error) console.log('posts 이미지 아이디 가져오기 에러', error);
@@ -80,21 +81,15 @@ export const getImageIdsFromTable = async () => {
 };
 
 // posts 가져오기
-export const getImagesFromTable = async () => {
-  const { data, error } = await supabase.from('posts').select('*');
-  if (error) console.log('데이터 가져오기 에러', error);
-  else return data;
-};
-
-// posts 가져오기
+// {post_id} 를 배열에 담아
+// 해당 포스트의 모든 사진에서 첫번째 사진만 반환 (메인화면/마이페이지에 그리기 위해)
 export const getImagesFromImages = async (post_ids) => {
   try {
-    const promises = post_ids.map(async (post) => {
+    const images = [];
+    for (const post of post_ids) {
       const { data } = await supabase.from('images').select('*').eq('post_id', post.id);
-      return data[0];
-    });
-
-    const images = await Promise.all(promises);
+      images.push(data[0]);
+    }
     return images;
   } catch (error) {
     console.error('이미지 가져오기 에러:', error);
@@ -102,7 +97,7 @@ export const getImagesFromImages = async (post_ids) => {
   }
 };
 
-// post 가져오기
+// post_id의 모든 사진을 가져옴
 export const getPost = async (post_id) => {
   const { data, error } = await supabase.from('posts').select('*').eq('id', post_id);
   if (error) {
@@ -111,7 +106,7 @@ export const getPost = async (post_id) => {
   } else return data[0];
 };
 
-// 사용자 피드
+// user_id의 posts를 모두 가져옴
 export const getPetsOfUserImage = async (user_id) => {
   const { data, error } = await supabase.from('posts').select('*').eq('user_id', user_id);
 
