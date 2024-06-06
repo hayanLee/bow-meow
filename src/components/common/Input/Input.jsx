@@ -1,10 +1,14 @@
 import React from 'react';
 import { StSearchInput } from './Input.styled';
 
-export default function Input({ type, inputRef, placeholder, value, onChange }) {
+export default function Input({inputRef, placeholder, value, onChange }) {
   return (
     <>
-      <StSearchInput type={type} ref={inputRef} placeholder={placeholder} value={value} onChange={onChange} />
+      <StSearchInput 
+      ref={inputRef} 
+      placeholder={placeholder}
+      value={value} 
+      onChange={onChange} />
     </>
   );
 }
