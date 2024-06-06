@@ -54,6 +54,7 @@ export default function SupabaseTestPage() {
   };
 
   const onForgetPassword = async () => await forgetPassWord(value.id);
+
   return (
     <div>
       SupabaseTestPage
