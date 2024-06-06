@@ -37,6 +37,8 @@ export default function SignUp() {
         uuid: data.user.id,
         email: data.user.email,
         nickname: nicknameRef.current.value,
+        profile_img:
+          'https://suwbeekhficjymjlqdve.supabase.co/storage/v1/object/public/pets/profile/defaultProfile.jpg',
         created_at: new Date()
       });
       console.log(userData);
