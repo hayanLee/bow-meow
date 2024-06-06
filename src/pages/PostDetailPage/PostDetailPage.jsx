@@ -39,7 +39,13 @@ function PostDetailPage() {
     async function loadPosts() {
       const post = await getPost(postId);
       const images = await getImagesFromImages([post]);
-      const imageUrls = images.map((image) => image['img_url']);
+      const imageUrls = [];
+      for (const image of images) {
+        if (image) {
+          imageUrls.push(image.img_url);
+        }
+      }
+
       post.images = imageUrls;
 
       console.log('PostDetailPage > load post by postId');
