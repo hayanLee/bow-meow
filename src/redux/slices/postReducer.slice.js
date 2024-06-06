@@ -1,5 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { format } from 'date-fns';
 import { v4 as uuidv4 } from 'uuid';
+
 const initialState = {
   posts: [
     {
@@ -9,7 +11,7 @@ const initialState = {
       title: 'First Post',
       content: 'This is the content of the first post.',
       images: ['https://cdn.pixabay.com/photo/2023/04/28/14/35/dog-7956828_960_720.jpg'],
-      createdAt: "2022-11-22"
+      createdAt: '2022-11-22'
     },
     {
       postId: 2,
@@ -19,9 +21,9 @@ const initialState = {
       content: 'This is the content of the second post.',
       images: [
         'https://cdn.pixabay.com/photo/2023/04/27/10/22/cat-7954262_1280.jpg',
-        'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
+        'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg'
       ],
-      createdAt: "2022-11-22"
+      createdAt: '2022-11-22'
     },
     {
       postId: 3,
@@ -32,18 +34,12 @@ const initialState = {
       images: [
         'https://cdn.pixabay.com/photo/2017/11/09/21/41/cat-2934720_1280.jpg',
         'https://cdn.pixabay.com/photo/2023/06/29/12/28/cats-8096304_960_720.jpg',
-        'https://cdn.pixabay.com/photo/2023/07/15/15/41/dog-8129106_1280.jpg',
+        'https://cdn.pixabay.com/photo/2023/07/15/15/41/dog-8129106_1280.jpg'
       ],
-      createdAt: "2022-11-22"
+      createdAt: '2022-11-22'
     }
   ]
 };
-
-// 이런 방식으로 접근하시면 됩니다!
-// 처음 posts는 reducer, 나중 posts는 state의 posts 이름입니다
-
-// const posts = useSelector((state) => console.log(state.posts.posts));
-// const testDis = () => dispatch(createPost(1, 2));
 
 const postSlice = createSlice({
   initialState,
@@ -54,8 +50,9 @@ const postSlice = createSlice({
         ...action.payload,
         postId: uuidv4(),
         postCommentId: uuidv4(),
-        userId: uuidv4(),
-        createdAt: new Date().toISOString()
+        createdAt: format(new Date(), 'yyyy-MM-dd hh:mm a'),
+        likeCount: 0,
+        commentCount: 0
       };
       state.posts.push(newPost);
     },

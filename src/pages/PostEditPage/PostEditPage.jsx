@@ -1,22 +1,21 @@
 import React, { useState } from 'react';
-import PostUpload from '../../components/PostEdit/PostUpload';
 import { v4 as uuidv4 } from 'uuid';
 import {
-  StyledContainer,
-  StyledPostBox,
-  StyledPostInput,
   CenteredText,
-  ImagePreviewContainer,
   ImagePreview,
-  StyledPostContent,
-  StyledPostBtn,
-  StyledUploadArea,
-  StyledRightContainer,
+  ImagePreviewContainer,
   StyledBtnContainer,
+  StyledContainer,
   StyledContentContainer,
-  StyledLeftContainer
+  StyledLeftContainer,
+  StyledPostBox,
+  StyledPostBtn,
+  StyledPostContent,
+  StyledPostInput,
+  StyledRightContainer,
+  StyledUploadArea
 } from '../../components/PostEdit/PostEditPage.styled';
-
+import PostUpload from '../../components/PostEdit/PostUpload';
 
 /// 게시물 수정 페이지로 로직 바꿀 예정
 function PostEditPage({ onPostSubmit }) {
