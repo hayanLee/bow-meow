@@ -26,7 +26,6 @@ import { ProfileImg } from '../../components/Header/Header.styled';
 import { getUserRow } from '../../supabase/profile';
 import { getPost } from './../../supabase/post';
 import { getPostImages } from './../../supabase/post';
-import { getPost } from './../../supabase/post';
 
 function PostDetailPage() {
   const { postId } = useParams(); //URL 매개변수에서 postId 가져오기
@@ -40,6 +39,10 @@ function PostDetailPage() {
   useEffect(() => {
     async function loadPosts() {
       const post = await getPost(postId);
+      const userInfo = await getUserRow();
+      setUserInfo(userInfo);
+      console.log(userInfo);
+
       const images = await getPostImages(post.id);
       const imageUrls = [];
       for (const image of images) {
