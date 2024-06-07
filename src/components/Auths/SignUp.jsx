@@ -70,9 +70,6 @@ export default function SignUp() {
     });
     alert('회원가입 성공!');
     navigate('/auth/login');
-    // if (error) {
-    //   console.error('error:', error.message);
-    // }
   };
   console.log(form);
 
