@@ -19,7 +19,6 @@ export default function SignUp() {
     checkPw: ''
   });
   const validateEmail = (email) => {
-    // 이메일 정규 표현식
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return re.test(String(email).toLowerCase());
   };
@@ -30,7 +29,6 @@ export default function SignUp() {
       const { data, error } = await supabase.auth.signUp({
         email: emailRef.current.value,
         password: passwordRef.current.value
-        // checkPw: checkpasswordRef.current.value
       });
       console.log(data);
       if (!validateEmail(emailRef)) {
@@ -38,7 +36,6 @@ export default function SignUp() {
         return;
       }
       if (error) {
-        // throw error;
         console.log('야', error);
       }
       console.log(data);
@@ -51,10 +48,8 @@ export default function SignUp() {
       });
       console.log(userData);
     } catch (error) {
-      console.log('호', error);
+      console.log('오류', error);
     }
-
-    // 성공적인 회원가입 후 로그인 페이지로 이동
 
     if (
       !nicknameRef.current.value ||
@@ -92,34 +87,10 @@ export default function SignUp() {
     <Wrapper>
       멍멍냥냥 회원가입
       <AuthsInput>
-        <Input
-          type="text"
-          inputRef={emailRef}
-          placeholder="이메일"
-          // value={form.signEmail}
-          // onChange={(e) => setForm({ ...form, signEmail: e.target.value })}
-        />
-        <Input
-          type="text"
-          inputRef={nicknameRef}
-          placeholder="닉네임"
-          // value={form.nickname}
-          // onChange={(e) => setForm({ ...form, nickname: e.target.value })}
-        />
-        <Input
-          type="password"
-          inputRef={passwordRef}
-          placeholder="비밀번호"
-          // value={form.signPw}
-          // onChange={(e) => setForm({ ...form, signPw: e.target.value })}
-        />
-        <Input
-          type="password"
-          inputRef={checkpasswordRef}
-          placeholder="비밀번호 확인"
-          // value={form.checkPw}
-          // onChange={(e) => setForm({ ...form, checkPw: e.target.value })}
-        />
+        <Input type="text" inputRef={emailRef} placeholder="이메일" />
+        <Input type="text" inputRef={nicknameRef} placeholder="닉네임" />
+        <Input type="password" inputRef={passwordRef} placeholder="비밀번호" />
+        <Input type="password" inputRef={checkpasswordRef} placeholder="비밀번호 확인" />
       </AuthsInput>
       <AuthsBtn>
         <Button onClick={handleSignUpClick} text="가입하기"></Button>
