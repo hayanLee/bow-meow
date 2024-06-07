@@ -22,7 +22,7 @@ export const StyledEditBtn = styled.button`
   padding: 0.5rem 1rem;
   margin-right: 1rem;
   cursor: pointer;
-  background-color: #dacfc6; /* 수정 기능하다가 어떻게 하는건지 까먹었어요ㅜㅜㅜ */
+  background-color: #dacfc6;
   border: none;
 `;
 

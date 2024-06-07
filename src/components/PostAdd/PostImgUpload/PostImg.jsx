@@ -61,10 +61,10 @@ const PostImg = () => {
       {largedImage && <ModalImg imgSrc={largedImage} onClose={closeLargedImage} />}
       {/* 이미지 미리보기 컨테이너 */}
       <ImagePreviewContainer>
-         {/* 이미지 배열을 순회하며 각 이미지를 렌더링 */}
+        {/* 이미지 배열을 순회하며 각 이미지를 렌더링 */}
         {images.map((image, index) => (
           <ImageContainer key={image.id}>
-             {/* 이미지가 Blob 형태인 경우 미리보기 이미지 렌더링 */}
+            {/* 이미지가 Blob 형태인 경우 미리보기 이미지 렌더링 */}
             {image.file instanceof Blob ? (
               <ImagePreview
                 src={URL.createObjectURL(image.file)}
@@ -78,11 +78,9 @@ const PostImg = () => {
           </ImageContainer>
         ))}
       </ImagePreviewContainer>
-      <StyledUploadArea>
-        <PostFile onFileChange={handleImageChange} onDrop={handleDrop} onDragOver={handleDragOver}>
-          <CenteredText>여기에 파일을 드래그하거나 클릭하여 업로드</CenteredText>
-        </PostFile>
-      </StyledUploadArea>
+      <PostFile onFileChange={handleImageChange} onDrop={handleDrop} onDragOver={handleDragOver}>
+        <CenteredText>여기에 파일을 드래그하거나 클릭하여 업로드</CenteredText>
+      </PostFile>
     </>
   );
 };
