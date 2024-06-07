@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import logoImg from '../../assets/logo_img.png';
@@ -17,9 +17,11 @@ import {
   StSearchWrapper,
   StTitle
 } from './Header.styled';
+import supabase from '../../supabase/supabaseClient';
 
 function Header() {
   const [userImg, setUserImg] = useState(null);
+  const filteringImgRef = useRef(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -36,6 +38,12 @@ function Header() {
     })();
   }, [userImg]);
 
+  const filterImg = async () => {
+    const { data, error } = await supabase.from('posts').select().eq('title', filteringImgRef.current.value);
+    setItemTest(data);
+    return data;
+  };
+
   const isLogin = useSelector((state) => state.user.isLogin);
   console.log('로그인 리듀서', isLogin);
 
@@ -48,8 +56,8 @@ function Header() {
         </StLeft>
         <StRight>
           <StSearchWrapper>
-            <Input />
-            <StSearchIcon />
+            <Input inputRef={filteringImgRef} />
+            <StSearchIcon onClick={filterImg} />
           </StSearchWrapper>
           {isLogin ? (
             <ProfileImg
