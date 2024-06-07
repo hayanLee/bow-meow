@@ -8,5 +8,5 @@
  
 ### 위키 페이지
 
- => [위키 페이지](https://github.com/hayanLee/bow-meow/wiki](https://github.com/hayanLee/bow-meow/wiki)
+ => [위키 페이지](https://github.com/hayanLee/bow-meow/wiki)
  
