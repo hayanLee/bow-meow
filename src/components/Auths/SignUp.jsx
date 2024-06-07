@@ -1,9 +1,9 @@
 import { useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import supabase from '../../supabase/supabaseClient';
 import Button from '../common/Button/Button';
 import Input from '../common/Input/Input';
 import { AuthsBtn, AuthsInput, Wrapper } from './Login.styled';
-import supabase from '../../supabase/supabaseClient';
-import { useNavigate } from 'react-router-dom';
 
 export default function SignUp() {
   const navigate = useNavigate();

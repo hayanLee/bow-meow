@@ -1,28 +1,25 @@
 import ImgUpdate from '../../components/PostEdit/ImgUpdate';
 
 import {
-  StyledContainer,
-  StyledPostBox,
-  StyledPostInput,
-  StyledPostContent,
-  StyledPostBtn,
-  StyledRightContainer,
   StyledBtnContainer,
+  StyledContainer,
   StyledContentContainer,
-  StyledLeftContainer
+  StyledLeftContainer,
+  StyledPostBox,
+  StyledPostBtn,
+  StyledPostContent,
+  StyledPostInput,
+  StyledRightContainer
 } from '../../components/PostAdd/PostAddPage.styled';
 
 //react lib
-import { useState, useEffect, useRef } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useEffect, useRef, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 
 //PostEditPage state
-import { clearImg } from '../../redux/slices/postImgReducer.slice';
-import { updatePost } from '../../redux/slices/postReducer.slice';
 
 //SupaBase API
-import { getImagesFromImages, getPost, uploadImg } from './../../supabase/post';
+import { getImagesFromImages, getPost, upateNewPost } from './../../supabase/post';
 
 // 여기도 이미지 관련된 부분은 무시하셔도 됩니다ㅠㅠ!!
 function PostEditPage() {
@@ -77,8 +74,6 @@ function PostEditPage() {
     //    alert('칸을 모두 채워주세요!!');
     //    return;
     //  }
-    console.log('getImagesToUploadRef ↓');
-    console.dir(getImagesToUploadRef);
 
     const images = getImagesToUploadRef.current.get();
 
@@ -90,15 +85,19 @@ function PostEditPage() {
       //images: [...existingImages, ...images.map((image) => image.file)]
     };
 
-    console.log('Updating post:', updatedPost); // 콘솔 로그 추가
+    (async () => {
+      await upateNewPost(updatedPost);
+    })();
+
+    // console.log('Updating post:', updatedPost); // 콘솔 로그 추가
+    // updatedPost로 바꾸면됨
     //dispatch(updatePost({ postId, updatedData: updatedPost }));
 
     setTitle('');
-    //dispatch(clearImg());
     setContent('');
 
     //포스트 업로드 DB API
-    uploadImg(updatedPost, images);
+    // uploadImg(updatedPost, images);
 
     alert('성공적으로 수정되었습니다!');
     navigate('/myPage'); // 수정이 완료된 후에 수정완료된 게시물로 이동
