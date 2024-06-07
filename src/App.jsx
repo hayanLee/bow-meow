@@ -1,10 +1,13 @@
-import { RouterProvider } from 'react-router-dom';
+import { RouterProvider, useNavigate } from 'react-router-dom';
+import GlobalStyle from './components/GlobalStyled/GlobalStyled';
 import router from './routes/router';
+import { Provider } from 'react-redux';
 
 function App() {
   return (
     <>
-      <RouterProvider router={router} />
+      <GlobalStyle />
+      <RouterProvider router={router}></RouterProvider>
     </>
   );
 }
