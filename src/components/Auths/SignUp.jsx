@@ -18,10 +18,6 @@ export default function SignUp() {
     password: '',
     checkPw: ''
   });
-  const validateEmail = (email) => {
-    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return re.test(String(email).toLowerCase());
-  };
 
   const handleSignUpClick = async () => {
     console.log(emailRef.current.value);
@@ -31,12 +27,9 @@ export default function SignUp() {
         password: passwordRef.current.value
       });
       console.log(data);
-      if (!validateEmail(emailRef)) {
-        alert('올바른 이메일 형식이 아닙니다.');
-        return;
-      }
+
       if (error) {
-        console.log('야', error);
+        console.log('오류', error);
       }
       console.log(data);
       const userData = await supabase.from('users').insert({
@@ -64,7 +57,7 @@ export default function SignUp() {
       alert('비밀번호가 일치하지 않습니다.');
       return;
     }
-    if (passwordRef.current.value < 6) {
+    if (passwordRef.current.value !== 6) {
       alert('비밀번호를 6자리로 입력해주세요.');
       return;
     }
