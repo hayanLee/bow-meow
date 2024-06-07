@@ -4,8 +4,8 @@ import StPostList from './PostList.styled';
 import Post from './../Post';
 
 function PostList({ userPostList }) {
-  console.log('userPostList ↓');
-  console.dir(userPostList);
+  //   console.log('userPostList ↓');
+  //   console.dir(userPostList);
 
   return (
     <StPostList>
