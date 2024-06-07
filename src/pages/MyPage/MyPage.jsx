@@ -53,8 +53,8 @@ function MyPage() {
 
       setLoginedUser(loginedUser);
 
-      console.log('loginedUser ↓');
-      console.dir(loginedUser);
+      // console.log('loginedUser ↓');
+      // console.dir(loginedUser);
 
       const userPostList = await getPetsOfUserImage(loginedUser.id);
       const postImages = await getImagesFromImages(userPostList);
