@@ -6,13 +6,13 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled, { keyframes } from 'styled-components';
 import { useLoginModal } from '../hooks/useLoginModal';
+import { getUser } from '../supabase/auth.login';
 import { getImageIdsFromTable, getImagesFromImages } from '../supabase/post';
 const ImageMasonry = () => {
   const { open } = useLoginModal();
   const itemDatas = new Array(15).fill(null); // 스켈레톤 ui를 위한 더미 배열
   const [loading, setLoading] = useState(false); // 첫 페이지가 아닌 다음 무한스크롤 부터 해당 로딩이 적용됨
   const [firstLoading, setFirstLoading] = useState(false); // only for  첫 페이지 진입시 등장하는 스켈레톤을 위한 상태
-  const [update, setUpdate] = useState(10); // 변경될 때마다 새로운 정보를 가져올 것 ?
   const [itemTest, setItemTest] = useState([]);
   const columns = ['1/2', '2/3', '3/4'];
   const rows = [
@@ -32,12 +32,22 @@ const ImageMasonry = () => {
     '13/20',
     '16/20'
   ];
+  const [isLogin, setIsLogin] = useState(false);
 
-  const [test, setTest] = useState(false);
+  useEffect(() => {
+    const fetchUser = async () => {
+      const user = await getUser();
+      console.log(user, user !== null, '<<<<<<');
+      setIsLogin(user.user !== null);
+    };
+
+    fetchUser();
+  }, []);
+
   const navigate = useNavigate();
   const imageHandler = (e) => {
     const postId = e.target.id;
-    if (test) {
+    if (!isLogin) {
       open();
     } else {
       navigate(`/posts/${postId}`);

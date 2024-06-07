@@ -57,7 +57,7 @@ export default function SignUp() {
       alert('비밀번호가 일치하지 않습니다.');
       return;
     }
-    if (passwordRef.current.value !== 6) {
+    if (passwordRef.current.value < 6) {
       alert('비밀번호를 6자리로 입력해주세요.');
       return;
     }
