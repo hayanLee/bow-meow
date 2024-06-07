@@ -22,12 +22,15 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 //SupaBase API
-import { getImagesFromImages, getPost } from './../../supabase/post';
+import { ProfileImg } from '../../components/Header/Header.styled';
+import { getUserRow } from '../../supabase/profile';
+import { getPost } from './../../supabase/post';
+import { getPostImages } from './../../supabase/post';
 
 function PostDetailPage() {
   const { postId } = useParams(); //URL 매개변수에서 postId 가져오기
   const [post, setPost] = useState(null);
-
+  const [userInfo, setUserInfo] = useState();
   //Redux store에서 모든 게시물 가져옴
   //const posts = useSelector((state) => state.posts.posts);
 
@@ -36,7 +39,11 @@ function PostDetailPage() {
   useEffect(() => {
     async function loadPosts() {
       const post = await getPost(postId);
-      const images = await getImagesFromImages([post]);
+      const userInfo = await getUserRow();
+      setUserInfo(userInfo);
+      console.log(userInfo);
+
+      const images = await getPostImages(post.id);
       const imageUrls = [];
       for (const image of images) {
         if (image) {
@@ -94,7 +101,10 @@ function PostDetailPage() {
               <div>이미지가 없습니다</div>
             )}
           </StyledDetailImg>
-          <StyledDetailUser>User ID: {post.userId}</StyledDetailUser>
+
+          <StyledDetailUser>
+            <ProfileImg src={userInfo.profile_img} /> {userInfo.nickname}
+          </StyledDetailUser>
         </StyledDetailLeft>
         <StyledDetailRight>
           <StyledRightUp>
