@@ -106,6 +106,14 @@ export const getPost = async (post_id) => {
   } else return data[0];
 };
 
+export const getPostImages = async (post_id) => {
+  const { data, error } = await supabase.from('images').select('*').eq('post_id', post_id);
+  if (error) {
+    console.log('post 가져오기 에러', error);
+    return {};
+  } else return data;
+};
+
 // user_id의 posts를 모두 가져옴
 export const getPetsOfUserImage = async (user_id) => {
   const { data, error } = await supabase.from('posts').select('*').eq('user_id', user_id);
