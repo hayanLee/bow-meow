@@ -18,6 +18,11 @@ export default function SignUp() {
     password: '',
     checkPw: ''
   });
+  const validateEmail = (email) => {
+    // 이메일 정규 표현식
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(String(email).toLowerCase());
+  };
 
   const handleSignUpClick = async () => {
     console.log(emailRef.current.value);
@@ -28,6 +33,10 @@ export default function SignUp() {
         // checkPw: checkpasswordRef.current.value
       });
       console.log(data);
+      if (!validateEmail(emailRef)) {
+        alert('올바른 이메일 형식이 아닙니다.');
+        return;
+      }
       if (error) {
         // throw error;
         console.log('야', error);
@@ -55,10 +64,16 @@ export default function SignUp() {
     ) {
       alert('내용을 모두 입력하세요.');
     }
+
     if (passwordRef.current.value !== checkpasswordRef.current.value) {
       alert('비밀번호가 일치하지 않습니다.');
       return;
     }
+    if (passwordRef.current.value < 6) {
+      alert('비밀번호를 6자리로 입력해주세요.');
+      return;
+    }
+
     setForm({
       nickname: nicknameRef.current.value,
       signEmail: emailRef.current.value,
@@ -92,14 +107,14 @@ export default function SignUp() {
           // onChange={(e) => setForm({ ...form, nickname: e.target.value })}
         />
         <Input
-          type="text"
+          type="password"
           inputRef={passwordRef}
           placeholder="비밀번호"
           // value={form.signPw}
           // onChange={(e) => setForm({ ...form, signPw: e.target.value })}
         />
         <Input
-          type="text"
+          type="password"
           inputRef={checkpasswordRef}
           placeholder="비밀번호 확인"
           // value={form.checkPw}
