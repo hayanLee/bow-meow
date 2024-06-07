@@ -41,7 +41,7 @@ export default function Login() {
   };
 
   const handleSearchPWClick = () => {
-    navigate('/auth/searchPW');
+    navigate('/auth/updatePW');
   };
 
   return (
@@ -55,9 +55,9 @@ export default function Login() {
           <Button type="submit" onClick={handleLogInClick} text="로그인"></Button>
           <Button type="submit" onClick={handleSignUpClick} text="회원가입"></Button>
         </AuthsBtn>
-        <SearchIdPw>
+        {/* <SearchIdPw>
           <div onClick={handleSearchPWClick}>비밀번호를 잊으셨나요?</div>
-        </SearchIdPw>
+        </SearchIdPw> */}
       </div>
     </Wrapper>
   );
