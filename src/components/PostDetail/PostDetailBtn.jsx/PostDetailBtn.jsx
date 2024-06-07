@@ -1,4 +1,4 @@
-import { StyledBtnContainer, StyledEditBtn, StyledDeleteBtn } from '../PostDetail.styled';
+import { StyledBtnContainer, StyledDeleteBtn, StyledEditBtn } from '../PostDetail.styled';
 
 import { useNavigate } from 'react-router-dom';
 
@@ -15,7 +15,7 @@ const PostDetailBtn = ({ postId }) => {
     if (isConfirmed) {
       //dispatch(deletePost(postId));
 
-      deletePost(postId);
+      deletePost(postId); // 스토리지는 삭제안됨 ,,ㅋ
 
       alert('해당 게시물이 삭제되었습니다!');
       navigate(`/myPage`);

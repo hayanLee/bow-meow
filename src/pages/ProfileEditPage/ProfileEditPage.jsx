@@ -5,16 +5,16 @@ import ButtonGroup from './../../components/ProfileEditPage/ButtonGroup';
 
 //스타일링 컴포넌트
 import {
+  LowerSection,
   Main,
-  UpperSection,
-  LowerSection
+  UpperSection
 } from '../../components/ProfileEditPage/ProfileEditPage.styles/ProfileEditPage.styled';
 
 //SupaBase API
-import { getUser } from './../../supabase/auth.login';
 
 //리액트 라이브러리
 import { useEffect, useRef, useState } from 'react';
+import { getUserRow } from '../../supabase/profile';
 
 function ProfileEditPage() {
   const [loginedUser, setLoginedUser] = useState(null);
@@ -24,16 +24,11 @@ function ProfileEditPage() {
 
   useEffect(() => {
     async function loadLoginedUser() {
-      const loginedUser = await getUser();
-
-      if (loginedUser.user) {
-        setLoginedUser({
-          ...loginedUser.user,
-          ...loginedUser.user.user_metadata
-        });
+      const userRow = await getUserRow();
+      if (userRow) {
+        setLoginedUser(userRow);
       }
     }
-
     loadLoginedUser();
   }, []);
 

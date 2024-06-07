@@ -1,9 +1,9 @@
 import { useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import supabase from '../../supabase/supabaseClient';
 import Button from '../common/Button/Button';
 import Input from '../common/Input/Input';
 import { AuthsBtn, AuthsInput, Wrapper } from './Login.styled';
-import supabase from '../../supabase/supabaseClient';
-import { useNavigate } from 'react-router-dom';
 
 export default function SignUp() {
   const navigate = useNavigate();
@@ -37,8 +37,7 @@ export default function SignUp() {
         uuid: data.user.id,
         email: data.user.email,
         nickname: nicknameRef.current.value,
-        profile_img:
-          'https://suwbeekhficjymjlqdve.supabase.co/storage/v1/object/public/pets/profile/defaultProfile.jpg',
+        profile_img: 'https://suwbeekhficjymjlqdve.supabase.co/storage/v1/object/public/profile/defaultProfile.jpg',
         created_at: new Date()
       });
       console.log(userData);
