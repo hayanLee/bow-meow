@@ -49,11 +49,6 @@ function PostEditPage() {
       const images = await getImagesFromImages([post]);
       const imageUrls = images.map((image) => image['img_url']);
       post.images = imageUrls;
-
-      console.log('PostEditPage > load post by postId');
-      console.log(`post (id:${postId}) ↓`);
-      console.dir(post);
-
       setPost(post);
     }
 

@@ -41,7 +41,6 @@ function PostDetailPage() {
       const post = await getPost(postId);
       const userInfo = await getUserRow();
       setUserInfo(userInfo);
-      console.log(userInfo);
 
       const images = await getPostImages(post.id);
       const imageUrls = [];
@@ -52,11 +51,6 @@ function PostDetailPage() {
       }
 
       post.images = imageUrls;
-
-      console.log('PostDetailPage > load post by postId');
-      console.log(`post (id:${postId}) ↓`);
-      console.dir(post);
-
       setPost(post);
     }
 
