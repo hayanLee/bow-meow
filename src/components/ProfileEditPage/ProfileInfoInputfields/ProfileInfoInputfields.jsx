@@ -49,11 +49,19 @@ const ProfileInfoInputFields = forwardRef(function ProfileInfoInputFields({ logi
     <StInputFields>
       <StLabelInputPair>
         <span>닉네임</span>
-        <InputField defaultValue={defaultNickname || '미설정'} value={nickname} onChange={changeNickname} />
+        <InputField
+          defaultValue={defaultNickname || '닉네임을 설정해주세요'}
+          value={nickname}
+          onChange={changeNickname}
+        />
       </StLabelInputPair>
       <StLabelInputPair>
         <span>한줄소개</span>
-        <InputField defaultValue={defaultIntroduce || '미구현'} value={introduce} onChange={changeIntroduce} />
+        <InputField
+          defaultValue={defaultIntroduce || '한줄소개를 작성해주세요'}
+          value={introduce}
+          onChange={changeIntroduce}
+        />
       </StLabelInputPair>
     </StInputFields>
   );
