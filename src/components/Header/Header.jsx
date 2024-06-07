@@ -1,9 +1,12 @@
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import logoImg from '../../assets/logo_img.png';
-import { getUserToken } from '../../supabase/auth.login';
+import { updateUserProfile } from '../../redux/slices/userReducer';
+import { getUserRow } from '../../supabase/profile';
 import Input from '../common/Input';
 import {
-  ProfileMyPageBtn,
+  ProfileImg,
   StContainer,
   StHeader,
   StLeft,
@@ -16,13 +19,25 @@ import {
 } from './Header.styled';
 
 function Header() {
+  const [userImg, setUserImg] = useState(null);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const homePageBtn = () => {
     navigate('/');
   };
+  useEffect(() => {
+    (async () => {
+      const profileImg = await getUserRow();
+      const { uuid: userId, nickname, profile_img } = profileImg;
 
-  const accessToken = getUserToken();
+      setUserImg(profile_img);
+      dispatch(updateUserProfile({ isLogin: true, userId, nickname, profileImg: profile_img }));
+    })();
+  }, [userImg]);
+
+  const isLogin = useSelector((state) => state.user.isLogin);
+  console.log('로그인 리듀서', isLogin);
 
   return (
     <StHeader>
@@ -36,11 +51,12 @@ function Header() {
             <Input />
             <StSearchIcon />
           </StSearchWrapper>
-          {accessToken ? (
-            <ProfileMyPageBtn
+          {isLogin ? (
+            <ProfileImg
               onClick={() => {
                 navigate('/myPage');
               }}
+              src={userImg}
             />
           ) : (
             <StLogin

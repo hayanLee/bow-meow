@@ -19,17 +19,17 @@ export const StyledBtnContainer = styled.div`
 `;
 
 export const StyledEditBtn = styled.button`
-  padding: 0.5rem 1rem ;
+  padding: 0.5rem 1rem;
   margin-right: 1rem;
   cursor: pointer;
-  background-color: #DACFC6; /* 수정 기능하다가 어떻게 하는건지 까먹었어요ㅜㅜㅜ */
+  background-color: #dacfc6; /* 수정 기능하다가 어떻게 하는건지 까먹었어요ㅜㅜㅜ */
   border: none;
 `;
 
 export const StyledDeleteBtn = styled.button`
   padding: 0.5rem 1rem;
   cursor: pointer;
-  background-color: #A49384;
+  background-color: #a49384;
   border: none;
 `;
 
@@ -61,6 +61,7 @@ export const StyledDetailImg = styled.div`
 export const StyledDetailUser = styled.div`
   width: 90%;
   height: 30%;
+  gap: 30px;
   display: flex;
   background-color: white;
   margin-top: 1rem;
