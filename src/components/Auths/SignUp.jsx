@@ -93,7 +93,7 @@ export default function SignUp() {
           // onChange={(e) => setForm({ ...form, nickname: e.target.value })}
         />
         <Input
-          type="text"
+          type="password"
           inputRef={passwordRef}
           placeholder="비밀번호"
           // value={form.signPw}
